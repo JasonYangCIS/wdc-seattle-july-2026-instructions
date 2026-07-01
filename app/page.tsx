@@ -400,7 +400,7 @@ export default function Home() {
                 </div>
               }
             >
-              <SpaceBetween size="m">
+              <SpaceBetween size="xs">
                 {step.blocks.map((block, i) => (
                   <BlockRenderer key={i} block={block} />
                 ))}
