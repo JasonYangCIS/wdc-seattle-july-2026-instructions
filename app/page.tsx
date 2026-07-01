@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-type TrackId = "cloudscape" | "meridian";
-
 type PromptBlock = {
   label?: string;
   text: string;
@@ -100,94 +98,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
   },
 ];
 
-const MERIDIAN_STEPS: StepContent[] = [
-  {
-    navTitle: "Welcome & Overview",
-    heading: "Overview",
-    eyebrow: "AMAZON WDC LONDON · BUILDER.IO WORKSHOP · MERIDIAN DESIGN SYSTEM EXERCISE",
-    paragraphs: [
-      "We are going to build upon the existing Firefly application using the Meridian design system and Builder's Fusion product.",
-    ],
-    goal: {
-      lead: "Your goal",
-      rest: ": In the next hour, add a new dashboard to Firefly and make it your own. You don't need to know how to code to do this—you can prompt with natural language. You can find the full list of suggested prompts and required resources for the workshop exercise beginning after clicking 'Next ->'",
-    },
-    subheading: "Builder.io 101",
-    simpleBullets: [
-      "You may see your app briefly appear, disappear, and reappear — this is normal.",
-      "Check the left sidebar for progress; if it's \"thinking...\" the task isn't finished.",
-      "If you run into an issue, click \"Attempt to Fix\" (if available) or raise your hand for help.",
-    ],
-  },
-  {
-    navTitle: "Setup Instructions",
-    heading: "Setup Instructions",
-    numbered: [
-      "Find the \"Firefly Meridian\" project in the Projects section and click \"+ New Branch\" to create a new branch for your workshop testing.",
-      "Rename the branch to \"{your-name}-WDC\" by clicking on the branch name in the top-left. This makes it easier to find your branch later.",
-    ],
-  },
-  {
-    navTitle: "Animate the Firefly Ship",
-    heading: "Animate the Firefly Ship",
-    prompts: [
-      { text: "When the ship on the homepage is clicked, make it shake for a second then fly off to the left into hyperspace." },
-    ],
-    paragraphs: ["You can see how Fusion is 'thinking' about your prompt by reviewing the sidebar chat."],
-    note: {
-      lead: "Note:",
-      rest: " if you want to request any changes to the animation, you can prompt again:",
-    },
-  },
-  {
-    navTitle: "Create Pilots Management Page",
-    heading: "Create Pilots Management Page",
-    paragraphs: ["Build a Pilots dashboard with add/remove/edit, backed by randomuser.me, including search and filters."],
-    prompts: [
-      {
-        text: "Create a Pilots dashboard to allow me to add, remove and edit Pilots. Populate it from the randomuser.me API. Make it searchable and filterable.",
-      },
-    ],
-  },
-  {
-    navTitle: "Add Gamification",
-    heading: "Add Gamification",
-    paragraphs: ["Add gamification to this application involving dodging space pirates and other common galactic delays."],
-    prompts: [
-      { text: "Add gamification to this application. The game should involve dodging space pirates and other common galactic delays." },
-    ],
-  },
-  {
-    navTitle: "Use Design View",
-    heading: "Use Design View",
-    paragraphs: [
-      "Make a design change using Design Mode. Switch from Interact to Design, open the Style tab, select an element, and apply visual changes.",
-      "Make some changes to the design.",
-      "You can add a prompt to your visual changes by selecting the \"Generate\" tab, or simply click the blue button that says \"Apply Visual Changes\" to have Fusion implement updates directly.",
-    ],
-    prompts: [{ text: "Apply visual changes." }],
-  },
-  {
-    navTitle: "Free Experimentation",
-    heading: "Free experimentation",
-    paragraphs: [
-      "Hey, basically vibe-coding now! Keep flexing your new found skills with any time you have left. Don't forget to share what you've built with those nearby.",
-    ],
-    subheading: "Here are some ideas:",
-    bullets: [
-      { title: "Change the theme of the entire application", example: "Ex. \"Match the visual style of Star Wars\"" },
-      { title: "Ask Fusion questions", example: "Ex. \"Am I using all Meridian design tokens and components?\"" },
-      { title: "Ask Fusion to give you recommendations", example: "Ex. \"How can I make this page more user friendly? Give me recommendations.\"" },
-      { title: "Explore the Code!", example: "e.g. can you find the 'AGENTS.md'?" },
-    ],
-  },
-];
-
-const TRACKS: Record<TrackId, { label: string; steps: StepContent[] }> = {
-  cloudscape: { label: "Cloudscape", steps: CLOUDSCAPE_STEPS },
-  meridian: { label: "Meridian", steps: MERIDIAN_STEPS },
-};
-
 function ArrowLeftIcon() {
   return (
     <svg
@@ -231,21 +141,13 @@ function ArrowRightIcon() {
 }
 
 export default function Home() {
-  const [trackId, setTrackId] = useState<TrackId>("cloudscape");
   const [stepIndex, setStepIndex] = useState(0);
 
-  const track = TRACKS[trackId];
-  const steps = track.steps;
+  const steps = CLOUDSCAPE_STEPS;
   const total = steps.length;
   const step = steps[stepIndex];
   const progressPct = ((stepIndex + 1) / total) * 100;
-  const accentVar = trackId === "meridian" ? "263 84% 73%" : "210 90% 45%";
-  const isMeridianFont = trackId === "meridian";
-
-  const handleTrackChange = (id: TrackId) => {
-    setTrackId(id);
-    setStepIndex(0);
-  };
+  const accentVar = "210 90% 45%";
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
@@ -287,38 +189,6 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 py-6 md:py-8">
           <div className="flex flex-col md:flex-row gap-6">
             <aside className="md:w-1/4 w-full md:sticky md:top-24 self-start">
-              <div className="relative flex rounded-lg border border-slate-200 bg-white p-1 mb-4 overflow-hidden gap-1">
-                <span
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-md bg-[hsl(var(--primary))] shadow-sm transition-transform duration-300 transform ${
-                    trackId === "meridian" ? "translate-x-full" : "translate-x-0"
-                  }`}
-                />
-                <button
-                  type="button"
-                  aria-pressed={trackId === "cloudscape"}
-                  aria-current={trackId === "cloudscape" ? "page" : undefined}
-                  onClick={() => handleTrackChange("cloudscape")}
-                  className={`relative z-10 flex-1 text-sm py-1.5 rounded-md transition-colors font-sans ${
-                    trackId === "cloudscape" ? "text-white font-semibold" : "text-slate-700"
-                  }`}
-                >
-                  Cloudscape
-                </button>
-                <button
-                  type="button"
-                  aria-pressed={trackId === "meridian"}
-                  aria-current={trackId === "meridian" ? "page" : undefined}
-                  onClick={() => handleTrackChange("meridian")}
-                  className={`relative z-10 flex-1 text-sm py-1.5 rounded-md transition-colors ${
-                    trackId === "meridian" ? "text-white font-semibold" : "text-slate-700"
-                  }`}
-                  style={{ fontFamily: trackId === "meridian" ? "Bookerly, serif" : undefined }}
-                >
-                  Meridian
-                </button>
-              </div>
-
               <nav aria-label="Workshop steps" className="space-y-1">
                 {steps.map((s, i) => {
                   const active = i === stepIndex;
@@ -345,14 +215,11 @@ export default function Home() {
               <article className="rounded-lg border border-slate-200 bg-white text-slate-900 p-5 md:p-6 shadow-sm">
                 <header className="mb-4 md:mb-6 font-sans">
                   <div className="text-xs font-medium tracking-wider text-slate-500 uppercase">
-                    {track.label}
+                    Cloudscape
                   </div>
                 </header>
 
-                <div
-                  className="prose prose-slate max-w-none"
-                  style={{ fontFamily: isMeridianFont ? "Bookerly, serif" : undefined }}
-                >
+                <div className="prose prose-slate max-w-none">
                   <h2>{step.heading}</h2>
 
                   {step.eyebrow && <p>{step.eyebrow}</p>}
