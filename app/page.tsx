@@ -29,7 +29,7 @@ type Block =
   | { type: "paragraph"; text: string; strongLead?: string }
   | { type: "heading"; text: string }
   | { type: "bullets"; items: { text: string; example?: string }[] }
-  | { type: "numbered"; items: { text: string; image?: ImageRef }[] }
+  | { type: "numbered"; items: { title: string; text: string; image?: ImageRef }[] }
   | { type: "prompt"; text: string; image?: ImageRef }
   | { type: "image"; image: ImageRef };
 
@@ -73,6 +73,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         type: "numbered",
         items: [
           {
+            title: "Create Your Branch",
             text: "Find the \"Cloudscape\" project in the Projects section and click \"+ New Branch\" to create a new branch for your workshop testing.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F11340c23f80b475abbc4548435a1a8e6?format=webp&width=800",
@@ -81,6 +82,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
+            title: "Rename Your Branch",
             text: "Rename the branch to \"{your-name}-WDC\" by clicking on the branch name in the top-left of the screen.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Fb9bc0cbd1eb140ee81c60277769c7cee?format=webp&width=800",
@@ -89,6 +91,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
+            title: "Open the Design File",
             text: "Open the Cloudscape dashboard file in Figma by clicking the \"Open in Figma\" button. Make sure you open it in a Figma Organization where you can install plugins.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Feda947fe305242e58cbda6b8b9105c92?format=webp&width=800",
@@ -97,6 +100,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
+            title: "Install the Figma Plugin",
             text: "Install the Builder.io Figma plugin on the design file you just opened. Open the plugin and select the \"Dashboard\" layer in Figma.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F53318c29b86941cb96827ad1126687f0?format=webp&width=800",
@@ -105,6 +109,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
+            title: "Export & Paste the Design",
             text: "Click the \"Smart Export\" button. Once the plugin is done exporting, paste into the Fusion prompt box. Don't submit your prompt yet!—proceed to Step 03 to continue.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F1b389ac948dc4164afec8fbf2353423f?format=webp&width=800",
@@ -305,9 +310,14 @@ function BlockRenderer({ block }: { block: Block }) {
         <SpaceBetween size="s">
           {block.items.map((item, i) => (
             <Container key={i}>
-              <div className="flex items-start gap-3">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#7d8998] text-sm font-bold text-[#0972d3]">
-                  {i + 1}
+              <SpaceBetween size="s">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-7 shrink-0 items-center justify-center rounded-full border border-[#7d8998] px-3 text-sm font-bold text-[#0972d3]">
+                    Step - {i + 1}
+                  </div>
+                  <Box variant="h4" margin="n">
+                    {item.title}
+                  </Box>
                 </div>
                 {item.image ? (
                   <Grid
@@ -326,7 +336,7 @@ function BlockRenderer({ block }: { block: Block }) {
                     {item.text}
                   </Box>
                 )}
-              </div>
+              </SpaceBetween>
             </Container>
           ))}
         </SpaceBetween>
