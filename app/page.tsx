@@ -312,7 +312,13 @@ function BlockRenderer({ block }: { block: Block }) {
             <Container key={i}>
               <SpaceBetween size="s">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-7 shrink-0 items-center justify-center rounded-full border border-[#7d8998] px-3 text-sm font-bold text-[#0972d3]">
+                  <div
+                    className="flex h-7 shrink-0 items-center justify-center rounded-full px-3 text-sm font-bold"
+                    style={{
+                      border: "1px solid var(--color-border-status-info, #006ce0)",
+                      color: "var(--color-text-status-info, #006ce0)",
+                    }}
+                  >
                     Step - {i + 1}
                   </div>
                   <Box variant="h4" margin="n">
