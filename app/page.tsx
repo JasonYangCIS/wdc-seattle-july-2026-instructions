@@ -358,12 +358,7 @@ export default function Home() {
         content={
           <ContentLayout>
             <Container
-              header={
-                <SpaceBetween size="xs">
-                  <Box variant="awsui-key-label">Cloudscape</Box>
-                  <Header variant="h2">{step.heading}</Header>
-                </SpaceBetween>
-              }
+              header={<Header variant="h2">{step.heading}</Header>}
               footer={
                 <div className="flex items-center justify-between">
                   <Button
