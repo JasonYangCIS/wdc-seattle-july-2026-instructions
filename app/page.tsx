@@ -7,6 +7,7 @@ import SideNavigation, {
   SideNavigationProps,
 } from "@cloudscape-design/components/side-navigation";
 import Container from "@cloudscape-design/components/container";
+import Grid from "@cloudscape-design/components/grid";
 import Header from "@cloudscape-design/components/header";
 import Box from "@cloudscape-design/components/box";
 import SpaceBetween from "@cloudscape-design/components/space-between";
@@ -270,12 +271,25 @@ function BlockRenderer({ block }: { block: Block }) {
       return (
         <TextContent>
           <ol>
-            {block.items.map((item, i) => (
-              <li key={i}>
-                {item.text}
-                {item.image && <Figure image={item.image} />}
-              </li>
-            ))}
+            {block.items.map((item, i) =>
+              item.image ? (
+                <li key={i}>
+                  <Grid
+                    gridDefinition={[
+                      { colspan: { default: 12, m: 6 } },
+                      { colspan: { default: 12, m: 6 } },
+                    ]}
+                  >
+                    <Box variant="p" color="text-body-secondary">
+                      {item.text}
+                    </Box>
+                    <Figure image={item.image} />
+                  </Grid>
+                </li>
+              ) : (
+                <li key={i}>{item.text}</li>
+              )
+            )}
           </ol>
         </TextContent>
       );
