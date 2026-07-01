@@ -385,13 +385,13 @@ export default function Home() {
                 fill="white"
               />
             </svg>
-            <span className="mt-0.5 flex items-center gap-1.5 text-sm md:text-base font-semibold tracking-wide">
+            <span className="flex items-center gap-2 text-base md:text-lg font-semibold tracking-wide">
               ×
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://builder.aws.com/assets/logo-dark-mode-BWHgg2gz.svg"
                 alt="AWS"
-                className="h-4 w-auto md:h-5"
+                className="h-7 w-auto md:h-8"
               />
             </span>
           </div>
