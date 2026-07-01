@@ -26,20 +26,20 @@ body {
 }
 
 .workshop-scale {
-  --font-size-body-m: 15px;
-  --line-height-body-m: 22px;
-  --font-size-body-s: 13px;
-  --line-height-body-s: 18px;
-  --font-size-heading-xs: 15px;
-  --line-height-heading-xs: 19px;
-  --font-size-heading-s: 17px;
-  --line-height-heading-s: 21px;
-  --font-size-heading-m: 19px;
-  --line-height-heading-m: 23px;
-  --font-size-heading-l: 22px;
-  --line-height-heading-l: 26px;
-  --font-size-heading-xl: 26px;
-  --line-height-heading-xl: 32px;
+  --font-size-body-m: 16px;
+  --line-height-body-m: 24px;
+  --font-size-body-s: 14px;
+  --line-height-body-s: 19px;
+  --font-size-heading-xs: 16px;
+  --line-height-heading-xs: 20px;
+  --font-size-heading-s: 18px;
+  --line-height-heading-s: 22px;
+  --font-size-heading-m: 20px;
+  --line-height-heading-m: 24px;
+  --font-size-heading-l: 23px;
+  --line-height-heading-l: 27px;
+  --font-size-heading-xl: 27px;
+  --line-height-heading-xl: 33px;
   --space-xxs: 5px;
   --space-xs: 10px;
   --space-s: 14px;
