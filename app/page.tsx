@@ -1,6 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import AppLayout from "@cloudscape-design/components/app-layout";
+import ContentLayout from "@cloudscape-design/components/content-layout";
+import SideNavigation, {
+  SideNavigationProps,
+} from "@cloudscape-design/components/side-navigation";
+import Container from "@cloudscape-design/components/container";
+import Grid from "@cloudscape-design/components/grid";
+import Header from "@cloudscape-design/components/header";
+import Box from "@cloudscape-design/components/box";
+import SpaceBetween from "@cloudscape-design/components/space-between";
+import TextContent from "@cloudscape-design/components/text-content";
+import Button from "@cloudscape-design/components/button";
+import ProgressBar from "@cloudscape-design/components/progress-bar";
 
 type ImageRef = {
   src: string;
@@ -206,115 +219,93 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
   },
 ];
 
-function ArrowLeftIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="mr-2"
-      aria-hidden="true"
-    >
-      <path d="m12 19-7-7 7-7" />
-      <path d="M19 12H5" />
-    </svg>
-  );
-}
-
-function ArrowRightIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="ml-2"
-      aria-hidden="true"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  );
-}
-
 function Figure({ image }: { image: ImageRef }) {
   return (
-    <figure className="not-prose mt-3">
+    <Box margin={{ top: "s" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={image.src}
         alt={image.alt}
-        className="w-full rounded-lg border border-slate-200 shadow-sm"
+        style={{ width: "100%", borderRadius: "8px", border: "1px solid #e9ebed" }}
       />
       {image.caption && (
-        <figcaption className="mt-2 text-center text-sm italic text-slate-400">
+        <Box variant="small" color="text-body-secondary" textAlign="center" margin={{ top: "xs" }}>
           {image.caption}
-        </figcaption>
+        </Box>
       )}
-    </figure>
+    </Box>
   );
 }
 
 function BlockRenderer({ block }: { block: Block }) {
   switch (block.type) {
     case "eyebrow":
-      return <p className="text-sm font-medium tracking-wide text-slate-500">{block.text}</p>;
+      return <Box variant="awsui-key-label">{block.text}</Box>;
     case "paragraph":
       return (
-        <p className="leading-relaxed text-slate-600">
-          {block.strongLead && <strong className="text-slate-900">{block.strongLead}</strong>}
+        <Box variant="p" color="text-body-secondary">
+          {block.strongLead && <strong>{block.strongLead}</strong>}
           {block.text}
-        </p>
+        </Box>
       );
     case "heading":
-      return <h3 className="mt-2 text-xl font-semibold text-slate-900">{block.text}</h3>;
+      return <Box variant="h3">{block.text}</Box>;
     case "bullets":
       return (
-        <ul className="space-y-3 pl-5 text-slate-600 marker:text-slate-300">
-          {block.items.map((item, i) => (
-            <li key={i} className="list-disc leading-relaxed">
-              {item.text}
-              {item.example && (
-                <div className="mt-1 text-sm italic text-slate-400">{item.example}</div>
-              )}
-            </li>
-          ))}
-        </ul>
+        <TextContent>
+          <ul style={{ listStyleType: "disc" }}>
+            {block.items.map((item, i) => (
+              <li key={i}>
+                {item.text}
+                {item.example && (
+                  <Box variant="small" color="text-body-secondary" margin={{ top: "xxxs" }}>
+                    {item.example}
+                  </Box>
+                )}
+              </li>
+            ))}
+          </ul>
+        </TextContent>
       );
     case "numbered":
       return (
-        <ol className="space-y-8">
-          {block.items.map((item, i) => (
-            <li key={i} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start">
-              <div className="flex gap-2">
-                <span className="font-semibold text-slate-900">{i + 1}.</span>
-                <p className="leading-relaxed text-slate-600">{item.text}</p>
-              </div>
-              {item.image && <Figure image={item.image} />}
-            </li>
-          ))}
-        </ol>
+        <TextContent>
+          <ol style={{ listStyleType: "decimal" }}>
+            {block.items.map((item, i) =>
+              item.image ? (
+                <li key={i}>
+                  <Grid
+                    gridDefinition={[
+                      { colspan: { default: 12, m: 6 } },
+                      { colspan: { default: 12, m: 6 } },
+                    ]}
+                  >
+                    <Box variant="p" color="text-body-secondary">
+                      {item.text}
+                    </Box>
+                    <Figure image={item.image} />
+                  </Grid>
+                </li>
+              ) : (
+                <li key={i}>{item.text}</li>
+              )
+            )}
+          </ol>
+        </TextContent>
       );
     case "prompt":
       return (
-        <div>
-          <p className="mb-1 font-semibold text-blue-600">Prompt:</p>
-          <pre className="whitespace-pre-wrap rounded-md border border-slate-200 bg-slate-50 px-4 py-3 font-mono text-sm text-slate-700">
-            `{block.text}`
-          </pre>
+        <SpaceBetween size="s">
+          <Box variant="awsui-key-label" color="text-status-info">
+            Prompt:
+          </Box>
+          <Container disableContentPaddings={false}>
+            <Box variant="pre" margin="n">
+              {block.text}
+            </Box>
+          </Container>
           {block.image && <Figure image={block.image} />}
-        </div>
+        </SpaceBetween>
       );
     case "image":
       return <Figure image={block.image} />;
@@ -328,112 +319,144 @@ export default function Home() {
   const total = steps.length;
   const step = steps[stepIndex];
   const progressPct = ((stepIndex + 1) / total) * 100;
-  const accentVar = "210 90% 45%";
+
+  const navItems: SideNavigationProps.Item[] = steps.map((s, i) => ({
+    type: "link",
+    text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
+    href: `#step-${i}`,
+  }));
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
-      <div className="w-full bg-gradient-to-r from-[#3f1f7a] via-[#2b1c55] to-[#651a00] text-white shadow-sm">
+    <div className="workshop-scale min-h-screen flex flex-col bg-slate-50">
+      <div className="w-full bg-[#0a0a0a] text-white shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
           <div className="flex items-center gap-3">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Fb429f8c62fb847318f4ac4285981b7e2?format=webp&width=800"
-              alt="Builder.io logo"
+            <svg
+              width="608"
+              height="130"
+              viewBox="0 0 608 130"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
               className="h-8 w-auto"
-            />
-            <span className="mt-0.5 text-sm md:text-base font-semibold tracking-wide">
-              × AWS Workshops
+              role="img"
+              aria-label="Builder.io logo"
+            >
+              <path
+                d="M115.14 39C115.14 17.36 97.58 0 76.14 0H10.27C4.58002 0 0 4.62002 0 10.27C0 20.79 22.2899 28.78 22.2899 65C22.2899 101.22 0 109.21 0 119.73C0 125.38 4.58002 130 10.27 130H76.14C97.58 130 115.14 112.64 115.14 91C115.14 75.1 105.59 65.41 105.21 65C105.58 64.59 115.14 54.9 115.14 39ZM13.58 11.1504H76.14C83.58 11.1504 90.58 14.0501 95.84 19.3101C101.1 24.5701 104 31.5703 104 39.0103C104 46.4503 101.26 53.0102 96.38 58.1602L13.59 11.1504H13.58ZM95.83 110.7C90.57 115.96 83.57 118.86 76.13 118.86H13.5699L96.36 71.8501C101.24 77.0001 103.98 83.8 103.98 91C103.98 98.2 101.08 105.44 95.8199 110.7H95.83ZM25.7 99.1602C26.36 97.7802 33.4199 84.08 33.4199 65C33.4199 45.92 26.36 32.2203 25.7 30.8403L85.86 65L25.7 99.1602Z"
+                fill="white"
+              />
+              <path
+                d="M195.12 47.6802C212 47.6802 221.53 61.1602 221.53 77.4902C221.53 93.8202 212 107.19 195.12 107.19C186.35 107.19 179.67 103.68 175.94 97.77L174.41 105.88H163.88V27.5103H176.92V56.46C180.1 51.64 186.34 47.6899 195.11 47.6899L195.12 47.6802ZM192.49 95.6704C202.35 95.6704 208.49 87.67 208.49 77.48C208.49 67.29 202.35 59.1802 192.49 59.1802C182.63 59.1802 176.49 67.07 176.49 77.48C176.49 87.89 182.52 95.6704 192.49 95.6704Z"
+                fill="white"
+              />
+              <path
+                d="M267.45 82.4102V48.9902H280.49V81.7603C280.49 96.3303 273.81 107.18 255.39 107.18C236.97 107.18 230.29 96.3303 230.29 81.7603V48.9902H243.33V82.4102C243.33 91.2902 247.49 95.6704 255.38 95.6704C263.27 95.6704 267.43 91.2902 267.43 82.4102H267.45Z"
+                fill="white"
+              />
+              <path
+                d="M290.92 31.46C290.92 26.39 294.49 22.8203 299.56 22.8203C304.63 22.8203 308.08 26.39 308.08 31.46C308.08 36.53 304.51 39.8701 299.56 39.8701C294.61 39.8701 290.92 36.42 290.92 31.46Z"
+                fill="white"
+              />
+              <path
+                d="M523.58 31.46C523.58 26.39 527.15 22.8203 532.22 22.8203C537.29 22.8203 540.74 26.39 540.74 31.46C540.74 36.53 537.17 39.8701 532.22 39.8701C527.27 39.8701 523.58 36.42 523.58 31.46Z"
+                fill="white"
+              />
+              <path
+                d="M498.48 97.9302C498.48 92.8602 502.05 89.29 507.12 89.29C512.19 89.29 515.64 92.8602 515.64 97.9302C515.64 103 512.07 106.34 507.12 106.34C502.17 106.34 498.48 102.89 498.48 97.9302Z"
+                fill="white"
+              />
+              <path d="M306.02 48.9902H292.98V105.86H306.02V48.9902Z" fill="white" />
+              <path d="M319.06 105.87V27.5H332.1V105.87H319.06Z" fill="white" />
+              <path
+                d="M385.91 27.4902H398.95V105.86H388.42L386.89 97.75C383.27 103.67 376.59 107.17 367.71 107.17C350.94 107.17 341.41 93.6902 341.41 77.4702C341.41 61.2502 350.94 47.6602 367.71 47.6602C376.59 47.6602 382.72 51.6002 385.9 56.4302V27.48L385.91 27.4902ZM370.46 59.1802C360.6 59.1802 354.46 67.07 354.46 77.48C354.46 87.89 360.6 95.6704 370.46 95.6704C380.32 95.6704 386.46 87.67 386.46 77.48C386.46 67.29 380.43 59.1802 370.46 59.1802Z"
+                fill="white"
+              />
+              <path
+                d="M462.62 90.3003C458.57 100.49 449.14 107.18 436.76 107.18C419.56 107.18 408.38 94.3601 408.38 77.3701C408.38 60.3801 419.78 47.6704 436.65 47.6704C453.52 47.6704 464.59 60.4904 464.59 77.1504C464.59 79.2304 464.5 80.0202 464.24 81.2002H421.19C422.18 90.1902 427.98 95.9902 437.08 95.9902C443.33 95.9902 448.48 92.9202 450.89 87.2202L462.62 90.29V90.3003ZM421.41 71.5703H451.66C450.56 63.6803 445.08 58.3101 436.65 58.3101C428.22 58.3101 422.73 63.7903 421.42 71.5703H421.41Z"
+                fill="white"
+              />
+              <path
+                d="M504.48 60.7202C504.48 60.7202 502.95 60.5 501.52 60.5C492.32 60.5 486.84 65.3203 486.84 76.2803V105.87H473.8V49H484.33L485.86 56.8901C487.94 53.2701 492.76 48.4502 502.63 48.4502C503.18 48.4502 504.49 48.5601 504.49 48.5601V60.7202H504.48Z"
+                fill="white"
+              />
+              <path d="M538.67 48.9902H525.63V105.86H538.67V48.9902Z" fill="white" />
+              <path
+                d="M547.99 77.48C547.99 61.48 559.39 47.6704 577.47 47.6704C595.55 47.6704 607.06 61.48 607.06 77.48C607.06 93.48 595.66 107.18 577.47 107.18C559.28 107.18 547.99 93.48 547.99 77.48ZM577.47 95.6704C587 95.6704 594.02 88.44 594.02 77.48C594.02 66.52 587.01 59.1802 577.47 59.1802C567.93 59.1802 561.03 66.41 561.03 77.48C561.03 88.55 568.04 95.6704 577.47 95.6704Z"
+                fill="white"
+              />
+            </svg>
+            <span className="flex items-center gap-2 text-base md:text-lg font-semibold tracking-wide">
+              ×
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://builder.aws.com/assets/logo-dark-mode-BWHgg2gz.svg"
+                alt="AWS"
+                className="h-7 w-auto md:h-8"
+              />
             </span>
           </div>
           <span className="hidden sm:block text-[19px] leading-[19.5px] font-semibold text-white/90">
-            <p>Visual Development Platform</p>
+            <p>Seattle 2026</p>
           </span>
         </div>
       </div>
 
-      <div style={{ "--primary": accentVar, "--ring": accentVar } as React.CSSProperties}>
-        <div className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/80 backdrop-blur">
-          <div className="w-full" aria-label={`Step ${stepIndex + 1} of ${total}`}>
-            <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-2.5 md:px-6">
-              <div className="min-w-24 text-xs font-medium text-slate-500">
-                Step {stepIndex + 1} of {total}
-              </div>
-              <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
-                <div
-                  className="h-full rounded-full bg-[hsl(var(--primary))] transition-all duration-300"
-                  style={{ width: `${progressPct}%` }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-auto max-w-7xl px-4 py-6 md:px-6 md:py-10">
-          <div className="flex flex-col gap-6 md:flex-row md:gap-8">
-            <aside className="w-full self-start md:sticky md:top-20 md:w-1/4">
-              <nav aria-label="Workshop steps" className="space-y-1">
-                {steps.map((s, i) => {
-                  const active = i === stepIndex;
-                  return (
-                    <button
-                      key={s.navTitle}
-                      type="button"
-                      onClick={() => setStepIndex(i)}
-                      className={`flex h-12 w-full items-center rounded-md border-l-4 px-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary))] ${
-                        active
-                          ? "border-[hsl(var(--primary))] bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] font-semibold"
-                          : "border-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-                      }`}
-                    >
-                      <span className="text-sm font-medium tabular-nums">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="ml-3 text-sm md:text-[15px]">{s.navTitle}</span>
-                    </button>
-                  );
-                })}
-              </nav>
-            </aside>
-
-            <section className="w-full md:w-3/4">
-              <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-                <header className="mb-5 md:mb-6">
-                  <div className="text-xs font-medium uppercase tracking-widest text-slate-400">
-                    Cloudscape
-                  </div>
-                </header>
-
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">{step.heading}</h2>
-                  {step.blocks.map((block, i) => (
-                    <BlockRenderer key={i} block={block} />
-                  ))}
-                </div>
-
-                <footer className="mt-10 flex items-center justify-between gap-3">
-                  <button
-                    type="button"
+      <AppLayout
+        navigationWidth={300}
+        toolsHide
+        stickyNotifications
+        notifications={
+          <ProgressBar
+            value={progressPct}
+            label={`Step ${stepIndex + 1} of ${total}`}
+          />
+        }
+        navigation={
+          <SideNavigation
+            header={{ text: "Workshop steps", href: "#step-0" }}
+            activeHref={`#step-${stepIndex}`}
+            items={navItems}
+            onFollow={(event) => {
+              event.preventDefault();
+              const index = Number(event.detail.href.replace("#step-", ""));
+              setStepIndex(index);
+            }}
+          />
+        }
+        content={
+          <ContentLayout>
+            <Container
+              header={<Header variant="h2">{step.heading}</Header>}
+              footer={
+                <div className="flex items-center justify-between">
+                  <Button
+                    iconName="angle-left"
                     disabled={stepIndex === 0}
                     onClick={() => setStepIndex((i) => Math.max(0, i - 1))}
-                    className="inline-flex h-10 items-center rounded-md bg-slate-100 px-4 py-2 font-medium text-slate-500 transition-colors disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    <ArrowLeftIcon />
                     Previous
-                  </button>
-                  <button
-                    type="button"
+                  </Button>
+                  <Button
+                    iconName="angle-right"
+                    iconAlign="right"
+                    variant="primary"
                     disabled={stepIndex === total - 1}
                     onClick={() => setStepIndex((i) => Math.min(total - 1, i + 1))}
-                    className="inline-flex h-10 items-center rounded-md border border-transparent bg-[hsl(var(--primary))] px-5 py-2 font-medium text-white shadow-sm transition-colors hover:border-[hsl(var(--primary))] hover:bg-white hover:text-[hsl(var(--primary))] disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     Next
-                    <ArrowRightIcon />
-                  </button>
-                </footer>
-              </article>
-            </section>
-          </div>
-        </div>
-      </div>
+                  </Button>
+                </div>
+              }
+            >
+              <SpaceBetween size="xs">
+                {step.blocks.map((block, i) => (
+                  <BlockRenderer key={i} block={block} />
+                ))}
+              </SpaceBetween>
+            </Container>
+          </ContentLayout>
+        }
+      />
     </div>
   );
 }

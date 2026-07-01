@@ -24,3 +24,57 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.workshop-scale {
+  --font-size-body-m-a7nh2n: 16px;
+  --line-height-body-m-2mh3ke: 24px;
+  --font-size-body-s-smc8cv: 14px;
+  --line-height-body-s-nu5hx1: 19px;
+  --font-size-key-value-pairs-label-1mmf3j: 16px;
+  --font-size-heading-xs-j8yzxv: 16px;
+  --line-height-heading-xs-q9j004: 20px;
+  --font-size-heading-s-zp08en: 18px;
+  --line-height-heading-s-hmi4vc: 22px;
+  --font-size-heading-m-170yiy: 20px;
+  --line-height-heading-m-uoaqdh: 24px;
+  --font-size-heading-l-vnacx6: 23px;
+  --line-height-heading-l-mg5bx6: 27px;
+  --font-size-heading-xl-wvkbur: 27px;
+  --line-height-heading-xl-hko6p0: 33px;
+  --space-xxs-hwfkai: 5px;
+  --space-xs-ymlm0b: 10px;
+  --space-s-tvghoh: 14px;
+  --space-m-dsumyt: 18px;
+  --space-l-2ud1p3: 24px;
+  --space-xl-jfy3x4: 28px;
+  --space-xxl-32srm4: 36px;
+  --space-scaled-xxs-pfm1nx: 5px;
+  --space-scaled-xs-xwoogq: 10px;
+  --space-scaled-s-8ozaad: 14px;
+  --space-scaled-m-m892r9: 18px;
+  --space-scaled-l-sej05l: 24px;
+  --space-scaled-xl-dunxp5: 28px;
+  --space-scaled-xxl-6wgq96: 36px;
+  --space-side-navigation-item-gap-5vlwdw: 8px;
+
+  /* Builder.io brand colors (https://www.builder.io/brand) */
+  --color-background-button-primary-default-vdt0fu: #01c8f1;
+  --color-background-button-primary-hover-mo85i6: #00a9cc;
+  --color-background-button-primary-active-5cqoqt: #008aa8;
+  --color-border-button-primary-default-45p8u2: #01c8f1;
+  --color-border-button-primary-hover-rktx0f: #00a9cc;
+  --color-border-button-primary-active-6jnxoc: #008aa8;
+  --color-text-button-primary-default-mwl31m: #0a0a0a;
+  --color-text-button-primary-hover-pw12ep: #0a0a0a;
+  --color-text-button-primary-active-refmba: #0a0a0a;
+
+  --color-background-button-normal-default-7f99mv: #ffffff;
+  --color-background-button-normal-hover-53op9s: #faf9f5;
+  --color-background-button-normal-active-5imwxd: #e0e0d7;
+  --color-border-button-normal-default-glqfp1: #0a0a0a;
+  --color-border-button-normal-hover-6a2tdq: #0a0a0a;
+  --color-border-button-normal-active-ru7yhb: #0a0a0a;
+  --color-text-button-normal-default-nzalii: #0a0a0a;
+  --color-text-button-normal-hover-gusgyv: #0a0a0a;
+  --color-text-button-normal-active-vihsxh: #0a0a0a;
+}
