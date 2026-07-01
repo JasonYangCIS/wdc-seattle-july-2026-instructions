@@ -337,8 +337,15 @@ export default function Home() {
               alt="Builder.io logo"
               className="h-8 w-auto"
             />
-            <span className="mt-0.5 text-sm md:text-base font-semibold tracking-wide">
-              × AWS Workshops
+            <span className="mt-0.5 flex items-center gap-1.5 text-sm md:text-base font-semibold tracking-wide">
+              ×
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://builder.aws.com/assets/logo-dark-mode-BWHgg2gz.svg"
+                alt="AWS"
+                className="h-4 w-auto md:h-5"
+              />
+              Workshops
             </span>
           </div>
           <span className="hidden sm:block text-[19px] leading-[19.5px] font-semibold text-white/90">
