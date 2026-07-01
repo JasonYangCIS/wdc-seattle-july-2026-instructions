@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppLayout from "@cloudscape-design/components/app-layout";
 import ContentLayout from "@cloudscape-design/components/content-layout";
 import SideNavigation, {
@@ -247,6 +247,10 @@ function Figure({ image }: { image: ImageRef }) {
 
 function PromptBlock({ text }: { text: string }) {
   const [value, setValue] = useState(text);
+
+  useEffect(() => {
+    setValue(text);
+  }, [text]);
 
   return (
     <Container disableContentPaddings={false}>
