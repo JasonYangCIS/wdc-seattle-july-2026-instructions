@@ -16,6 +16,7 @@ import Button from "@cloudscape-design/components/button";
 import ProgressBar from "@cloudscape-design/components/progress-bar";
 import Icon from "@cloudscape-design/components/icon";
 import CopyToClipboard from "@cloudscape-design/components/copy-to-clipboard";
+import Textarea from "@cloudscape-design/components/textarea";
 
 type ImageRef = {
   src: string;
@@ -239,6 +240,49 @@ function Figure({ image }: { image: ImageRef }) {
   );
 }
 
+function PromptBlock({ text }: { text: string }) {
+  const [value, setValue] = useState(text);
+  const [editing, setEditing] = useState(false);
+
+  return (
+    <Container disableContentPaddings={false}>
+      <SpaceBetween size="xs">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Icon name="gen-ai" variant="link" />
+            <Box variant="awsui-gen-ai-label">Prompt</Box>
+          </div>
+          <CopyToClipboard
+            variant="icon"
+            copyButtonAriaLabel="Copy prompt"
+            copySuccessText="Prompt copied"
+            copyErrorText="Prompt failed to copy"
+            textToCopy={value}
+          />
+        </div>
+        {editing ? (
+          <Textarea
+            value={value}
+            onChange={({ detail }) => setValue(detail.value)}
+            onBlur={() => setEditing(false)}
+            autoFocus
+            rows={3}
+          />
+        ) : (
+          <Box
+            variant="pre"
+            margin="n"
+            className="cursor-text"
+            nativeAttributes={{ onClick: () => setEditing(true) }}
+          >
+            {value}
+          </Box>
+        )}
+      </SpaceBetween>
+    </Container>
+  );
+}
+
 function BlockRenderer({ block }: { block: Block }) {
   switch (block.type) {
     case "eyebrow":
@@ -298,26 +342,7 @@ function BlockRenderer({ block }: { block: Block }) {
     case "prompt":
       return (
         <SpaceBetween size="s">
-          <Container disableContentPaddings={false}>
-            <SpaceBetween size="xs">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Icon name="gen-ai" variant="link" />
-                  <Box variant="awsui-gen-ai-label">Prompt</Box>
-                </div>
-                <CopyToClipboard
-                  variant="icon"
-                  copyButtonAriaLabel="Copy prompt"
-                  copySuccessText="Prompt copied"
-                  copyErrorText="Prompt failed to copy"
-                  textToCopy={block.text}
-                />
-              </div>
-              <Box variant="pre" margin="n">
-                {block.text}
-              </Box>
-            </SpaceBetween>
-          </Container>
+          <PromptBlock text={block.text} />
           {block.image && <Figure image={block.image} />}
         </SpaceBetween>
       );
