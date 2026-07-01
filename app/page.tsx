@@ -272,7 +272,7 @@ function PromptBlock({ text }: { text: string }) {
           <Box
             variant="pre"
             margin="n"
-            className="cursor-text"
+            className="cursor-text whitespace-pre-wrap break-words"
             nativeAttributes={{ onClick: () => setEditing(true) }}
           >
             {value}
