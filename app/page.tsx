@@ -396,7 +396,7 @@ export default function Home() {
             </span>
           </div>
           <span className="hidden sm:block text-[19px] leading-[19.5px] font-semibold text-white/90">
-            <p>Visual Development Platform</p>
+            <p>Seattle 2026</p>
           </span>
         </div>
       </div>
