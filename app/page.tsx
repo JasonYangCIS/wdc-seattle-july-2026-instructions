@@ -1,6 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import AppLayout from "@cloudscape-design/components/app-layout";
+import ContentLayout from "@cloudscape-design/components/content-layout";
+import SideNavigation, {
+  SideNavigationProps,
+} from "@cloudscape-design/components/side-navigation";
+import Container from "@cloudscape-design/components/container";
+import Header from "@cloudscape-design/components/header";
+import Box from "@cloudscape-design/components/box";
+import SpaceBetween from "@cloudscape-design/components/space-between";
+import TextContent from "@cloudscape-design/components/text-content";
+import Button from "@cloudscape-design/components/button";
+import ProgressBar from "@cloudscape-design/components/progress-bar";
 
 type ImageRef = {
   src: string;
@@ -206,115 +218,80 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
   },
 ];
 
-function ArrowLeftIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="mr-2"
-      aria-hidden="true"
-    >
-      <path d="m12 19-7-7 7-7" />
-      <path d="M19 12H5" />
-    </svg>
-  );
-}
-
-function ArrowRightIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="ml-2"
-      aria-hidden="true"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  );
-}
-
 function Figure({ image }: { image: ImageRef }) {
   return (
-    <figure className="not-prose mt-3">
+    <Box margin={{ top: "s" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={image.src}
         alt={image.alt}
-        className="w-full rounded-lg border border-slate-200 shadow-sm"
+        style={{ width: "100%", borderRadius: "8px", border: "1px solid #e9ebed" }}
       />
       {image.caption && (
-        <figcaption className="mt-2 text-center text-sm italic text-slate-400">
+        <Box variant="small" color="text-body-secondary" textAlign="center" margin={{ top: "xs" }}>
           {image.caption}
-        </figcaption>
+        </Box>
       )}
-    </figure>
+    </Box>
   );
 }
 
 function BlockRenderer({ block }: { block: Block }) {
   switch (block.type) {
     case "eyebrow":
-      return <p className="text-sm font-medium tracking-wide text-slate-500">{block.text}</p>;
+      return <Box variant="awsui-key-label">{block.text}</Box>;
     case "paragraph":
       return (
-        <p className="leading-relaxed text-slate-600">
-          {block.strongLead && <strong className="text-slate-900">{block.strongLead}</strong>}
+        <Box variant="p" color="text-body-secondary">
+          {block.strongLead && <strong>{block.strongLead}</strong>}
           {block.text}
-        </p>
+        </Box>
       );
     case "heading":
-      return <h3 className="mt-2 text-xl font-semibold text-slate-900">{block.text}</h3>;
+      return <Box variant="h3">{block.text}</Box>;
     case "bullets":
       return (
-        <ul className="space-y-3 pl-5 text-slate-600 marker:text-slate-300">
-          {block.items.map((item, i) => (
-            <li key={i} className="list-disc leading-relaxed">
-              {item.text}
-              {item.example && (
-                <div className="mt-1 text-sm italic text-slate-400">{item.example}</div>
-              )}
-            </li>
-          ))}
-        </ul>
+        <TextContent>
+          <ul>
+            {block.items.map((item, i) => (
+              <li key={i}>
+                {item.text}
+                {item.example && (
+                  <Box variant="small" color="text-body-secondary" margin={{ top: "xxxs" }}>
+                    {item.example}
+                  </Box>
+                )}
+              </li>
+            ))}
+          </ul>
+        </TextContent>
       );
     case "numbered":
       return (
-        <ol className="space-y-8">
-          {block.items.map((item, i) => (
-            <li key={i} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start">
-              <div className="flex gap-2">
-                <span className="font-semibold text-slate-900">{i + 1}.</span>
-                <p className="leading-relaxed text-slate-600">{item.text}</p>
-              </div>
-              {item.image && <Figure image={item.image} />}
-            </li>
-          ))}
-        </ol>
+        <TextContent>
+          <ol>
+            {block.items.map((item, i) => (
+              <li key={i}>
+                {item.text}
+                {item.image && <Figure image={item.image} />}
+              </li>
+            ))}
+          </ol>
+        </TextContent>
       );
     case "prompt":
       return (
-        <div>
-          <p className="mb-1 font-semibold text-blue-600">Prompt:</p>
-          <pre className="whitespace-pre-wrap rounded-md border border-slate-200 bg-slate-50 px-4 py-3 font-mono text-sm text-slate-700">
-            `{block.text}`
-          </pre>
+        <SpaceBetween size="xs">
+          <Box variant="awsui-key-label" color="text-status-info">
+            Prompt:
+          </Box>
+          <Container disableContentPaddings={false}>
+            <Box variant="pre" margin="n">
+              {block.text}
+            </Box>
+          </Container>
           {block.image && <Figure image={block.image} />}
-        </div>
+        </SpaceBetween>
       );
     case "image":
       return <Figure image={block.image} />;
@@ -328,13 +305,19 @@ export default function Home() {
   const total = steps.length;
   const step = steps[stepIndex];
   const progressPct = ((stepIndex + 1) / total) * 100;
-  const accentVar = "210 90% 45%";
+
+  const navItems: SideNavigationProps.Item[] = steps.map((s, i) => ({
+    type: "link",
+    text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
+    href: `#step-${i}`,
+  }));
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
       <div className="w-full bg-gradient-to-r from-[#3f1f7a] via-[#2b1c55] to-[#651a00] text-white shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
           <div className="flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Fb429f8c62fb847318f4ac4285981b7e2?format=webp&width=800"
               alt="Builder.io logo"
@@ -350,90 +333,67 @@ export default function Home() {
         </div>
       </div>
 
-      <div style={{ "--primary": accentVar, "--ring": accentVar } as React.CSSProperties}>
-        <div className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/80 backdrop-blur">
-          <div className="w-full" aria-label={`Step ${stepIndex + 1} of ${total}`}>
-            <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-2.5 md:px-6">
-              <div className="min-w-24 text-xs font-medium text-slate-500">
-                Step {stepIndex + 1} of {total}
-              </div>
-              <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
-                <div
-                  className="h-full rounded-full bg-[hsl(var(--primary))] transition-all duration-300"
-                  style={{ width: `${progressPct}%` }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-auto max-w-7xl px-4 py-6 md:px-6 md:py-10">
-          <div className="flex flex-col gap-6 md:flex-row md:gap-8">
-            <aside className="w-full self-start md:sticky md:top-20 md:w-1/4">
-              <nav aria-label="Workshop steps" className="space-y-1">
-                {steps.map((s, i) => {
-                  const active = i === stepIndex;
-                  return (
-                    <button
-                      key={s.navTitle}
-                      type="button"
-                      onClick={() => setStepIndex(i)}
-                      className={`flex h-12 w-full items-center rounded-md border-l-4 px-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary))] ${
-                        active
-                          ? "border-[hsl(var(--primary))] bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] font-semibold"
-                          : "border-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-                      }`}
-                    >
-                      <span className="text-sm font-medium tabular-nums">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="ml-3 text-sm md:text-[15px]">{s.navTitle}</span>
-                    </button>
-                  );
-                })}
-              </nav>
-            </aside>
-
-            <section className="w-full md:w-3/4">
-              <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-                <header className="mb-5 md:mb-6">
-                  <div className="text-xs font-medium uppercase tracking-widest text-slate-400">
-                    Cloudscape
-                  </div>
-                </header>
-
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">{step.heading}</h2>
-                  {step.blocks.map((block, i) => (
-                    <BlockRenderer key={i} block={block} />
-                  ))}
-                </div>
-
-                <footer className="mt-10 flex items-center justify-between gap-3">
-                  <button
-                    type="button"
+      <AppLayout
+        navigationWidth={300}
+        toolsHide
+        stickyNotifications
+        notifications={
+          <ProgressBar
+            value={progressPct}
+            label={`Step ${stepIndex + 1} of ${total}`}
+          />
+        }
+        navigation={
+          <SideNavigation
+            header={{ text: "Workshop steps", href: "#step-0" }}
+            activeHref={`#step-${stepIndex}`}
+            items={navItems}
+            onFollow={(event) => {
+              event.preventDefault();
+              const index = Number(event.detail.href.replace("#step-", ""));
+              setStepIndex(index);
+            }}
+          />
+        }
+        content={
+          <ContentLayout>
+            <Container
+              header={
+                <SpaceBetween size="xs">
+                  <Box variant="awsui-key-label">Cloudscape</Box>
+                  <Header variant="h2">{step.heading}</Header>
+                </SpaceBetween>
+              }
+              footer={
+                <div className="flex items-center justify-between">
+                  <Button
+                    iconName="angle-left"
                     disabled={stepIndex === 0}
                     onClick={() => setStepIndex((i) => Math.max(0, i - 1))}
-                    className="inline-flex h-10 items-center rounded-md bg-slate-100 px-4 py-2 font-medium text-slate-500 transition-colors disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    <ArrowLeftIcon />
                     Previous
-                  </button>
-                  <button
-                    type="button"
+                  </Button>
+                  <Button
+                    iconName="angle-right"
+                    iconAlign="right"
+                    variant="primary"
                     disabled={stepIndex === total - 1}
                     onClick={() => setStepIndex((i) => Math.min(total - 1, i + 1))}
-                    className="inline-flex h-10 items-center rounded-md border border-transparent bg-[hsl(var(--primary))] px-5 py-2 font-medium text-white shadow-sm transition-colors hover:border-[hsl(var(--primary))] hover:bg-white hover:text-[hsl(var(--primary))] disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     Next
-                    <ArrowRightIcon />
-                  </button>
-                </footer>
-              </article>
-            </section>
-          </div>
-        </div>
-      </div>
+                  </Button>
+                </div>
+              }
+            >
+              <SpaceBetween size="l">
+                {step.blocks.map((block, i) => (
+                  <BlockRenderer key={i} block={block} />
+                ))}
+              </SpaceBetween>
+            </Container>
+          </ContentLayout>
+        }
+      />
     </div>
   );
 }
