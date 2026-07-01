@@ -253,7 +253,7 @@ function BlockRenderer({ block }: { block: Block }) {
     case "bullets":
       return (
         <TextContent>
-          <ul>
+          <ul style={{ listStyleType: "disc" }}>
             {block.items.map((item, i) => (
               <li key={i}>
                 {item.text}
