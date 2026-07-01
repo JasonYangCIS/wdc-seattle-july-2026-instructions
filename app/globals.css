@@ -26,25 +26,34 @@ body {
 }
 
 .workshop-scale {
-  --font-size-body-m: 16px;
-  --line-height-body-m: 24px;
-  --font-size-body-s: 14px;
-  --line-height-body-s: 19px;
-  --font-size-heading-xs: 16px;
-  --line-height-heading-xs: 20px;
-  --font-size-heading-s: 18px;
-  --line-height-heading-s: 22px;
-  --font-size-heading-m: 20px;
-  --line-height-heading-m: 24px;
-  --font-size-heading-l: 23px;
-  --line-height-heading-l: 27px;
-  --font-size-heading-xl: 27px;
-  --line-height-heading-xl: 33px;
-  --space-xxs: 5px;
-  --space-xs: 10px;
-  --space-s: 14px;
-  --space-m: 18px;
-  --space-l: 24px;
-  --space-xl: 28px;
-  --space-xxl: 36px;
+  --font-size-body-m-a7nh2n: 16px;
+  --line-height-body-m-2mh3ke: 24px;
+  --font-size-body-s-smc8cv: 14px;
+  --line-height-body-s-nu5hx1: 19px;
+  --font-size-key-value-pairs-label-1mmf3j: 16px;
+  --font-size-heading-xs-j8yzxv: 16px;
+  --line-height-heading-xs-q9j004: 20px;
+  --font-size-heading-s-zp08en: 18px;
+  --line-height-heading-s-hmi4vc: 22px;
+  --font-size-heading-m-170yiy: 20px;
+  --line-height-heading-m-uoaqdh: 24px;
+  --font-size-heading-l-vnacx6: 23px;
+  --line-height-heading-l-mg5bx6: 27px;
+  --font-size-heading-xl-wvkbur: 27px;
+  --line-height-heading-xl-hko6p0: 33px;
+  --space-xxs-hwfkai: 5px;
+  --space-xs-ymlm0b: 10px;
+  --space-s-tvghoh: 14px;
+  --space-m-dsumyt: 18px;
+  --space-l-2ud1p3: 24px;
+  --space-xl-jfy3x4: 28px;
+  --space-xxl-32srm4: 36px;
+  --space-scaled-xxs-pfm1nx: 5px;
+  --space-scaled-xs-xwoogq: 10px;
+  --space-scaled-s-8ozaad: 14px;
+  --space-scaled-m-m892r9: 18px;
+  --space-scaled-l-sej05l: 24px;
+  --space-scaled-xl-dunxp5: 28px;
+  --space-scaled-xxl-6wgq96: 36px;
 }
+
