@@ -345,7 +345,6 @@ export default function Home() {
                 alt="AWS"
                 className="h-4 w-auto md:h-5"
               />
-              Workshops
             </span>
           </div>
           <span className="hidden sm:block text-[19px] leading-[19.5px] font-semibold text-white/90">
