@@ -270,7 +270,7 @@ function BlockRenderer({ block }: { block: Block }) {
     case "numbered":
       return (
         <TextContent>
-          <ol>
+          <ol style={{ listStyleType: "decimal" }}>
             {block.items.map((item, i) =>
               item.image ? (
                 <li key={i}>
