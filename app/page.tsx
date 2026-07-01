@@ -328,7 +328,7 @@ export default function Home() {
 
   return (
     <div className="workshop-scale min-h-screen flex flex-col bg-slate-50">
-      <div className="w-full bg-gradient-to-r from-[#3f1f7a] via-[#2b1c55] to-[#651a00] text-white shadow-sm">
+      <div className="w-full bg-[#0a0a0a] text-white shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
           <div className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
