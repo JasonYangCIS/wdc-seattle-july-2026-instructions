@@ -242,7 +242,6 @@ function Figure({ image }: { image: ImageRef }) {
 
 function PromptBlock({ text }: { text: string }) {
   const [value, setValue] = useState(text);
-  const [editing, setEditing] = useState(false);
 
   return (
     <Container disableContentPaddings={false}>
@@ -260,24 +259,11 @@ function PromptBlock({ text }: { text: string }) {
             textToCopy={value}
           />
         </div>
-        {editing ? (
-          <Textarea
-            value={value}
-            onChange={({ detail }) => setValue(detail.value)}
-            onBlur={() => setEditing(false)}
-            autoFocus
-            rows={3}
-          />
-        ) : (
-          <Box
-            variant="pre"
-            margin="n"
-            className="cursor-text whitespace-pre-wrap break-words"
-            nativeAttributes={{ onClick: () => setEditing(true) }}
-          >
-            {value}
-          </Box>
-        )}
+        <Textarea
+          value={value}
+          onChange={({ detail }) => setValue(detail.value)}
+          rows={3}
+        />
       </SpaceBetween>
     </Container>
   );
