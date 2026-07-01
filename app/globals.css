@@ -24,3 +24,27 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.workshop-scale {
+  --font-size-body-m: 15px;
+  --line-height-body-m: 22px;
+  --font-size-body-s: 13px;
+  --line-height-body-s: 18px;
+  --font-size-heading-xs: 15px;
+  --line-height-heading-xs: 19px;
+  --font-size-heading-s: 17px;
+  --line-height-heading-s: 21px;
+  --font-size-heading-m: 19px;
+  --line-height-heading-m: 23px;
+  --font-size-heading-l: 22px;
+  --line-height-heading-l: 26px;
+  --font-size-heading-xl: 26px;
+  --line-height-heading-xl: 32px;
+  --space-xxs: 5px;
+  --space-xs: 10px;
+  --space-s: 14px;
+  --space-m: 18px;
+  --space-l: 24px;
+  --space-xl: 28px;
+  --space-xxl: 36px;
+}

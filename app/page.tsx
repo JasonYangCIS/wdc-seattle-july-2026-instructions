@@ -281,7 +281,7 @@ function BlockRenderer({ block }: { block: Block }) {
       );
     case "prompt":
       return (
-        <SpaceBetween size="xs">
+        <SpaceBetween size="s">
           <Box variant="awsui-key-label" color="text-status-info">
             Prompt:
           </Box>
@@ -313,7 +313,7 @@ export default function Home() {
   }));
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
+    <div className="workshop-scale min-h-screen flex flex-col bg-slate-50">
       <div className="w-full bg-gradient-to-r from-[#3f1f7a] via-[#2b1c55] to-[#651a00] text-white shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
           <div className="flex items-center gap-3">
@@ -380,7 +380,7 @@ export default function Home() {
                 </div>
               }
             >
-              <SpaceBetween size="l">
+              <SpaceBetween size="xl">
                 {step.blocks.map((block, i) => (
                   <BlockRenderer key={i} block={block} />
                 ))}
