@@ -302,29 +302,34 @@ function BlockRenderer({ block }: { block: Block }) {
       );
     case "numbered":
       return (
-        <TextContent>
-          <ol style={{ listStyleType: "decimal" }}>
-            {block.items.map((item, i) =>
-              item.image ? (
-                <li key={i}>
+        <SpaceBetween size="s">
+          {block.items.map((item, i) => (
+            <Container key={i}>
+              <div className="flex items-start gap-3">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#7d8998] text-sm font-bold text-[#0972d3]">
+                  {i + 1}
+                </div>
+                {item.image ? (
                   <Grid
                     gridDefinition={[
                       { colspan: { default: 12, m: 6 } },
                       { colspan: { default: 12, m: 6 } },
                     ]}
                   >
-                    <Box variant="p" color="text-body-secondary">
+                    <Box variant="p" color="text-body-secondary" margin="n">
                       {item.text}
                     </Box>
                     <Figure image={item.image} />
                   </Grid>
-                </li>
-              ) : (
-                <li key={i}>{item.text}</li>
-              )
-            )}
-          </ol>
-        </TextContent>
+                ) : (
+                  <Box variant="p" color="text-body-secondary" margin="n">
+                    {item.text}
+                  </Box>
+                )}
+              </div>
+            </Container>
+          ))}
+        </SpaceBetween>
       );
     case "prompt":
       return (
