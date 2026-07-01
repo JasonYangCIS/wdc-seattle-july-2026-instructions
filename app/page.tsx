@@ -263,6 +263,7 @@ function PromptBlock({ text }: { text: string }) {
           value={value}
           onChange={({ detail }) => setValue(detail.value)}
           rows={3}
+          style={{ root: { boxShadow: { focus: "none" } } }}
         />
       </SpaceBetween>
     </Container>
