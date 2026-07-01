@@ -27,6 +27,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <link
+          href="https://db.onlinewebfonts.com/c/663c911905498d27729fe0a7f1ca2cc4?family=Bookerly"
+          rel="stylesheet"
+          type="text/css"
+        />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
