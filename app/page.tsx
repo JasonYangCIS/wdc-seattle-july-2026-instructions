@@ -414,7 +414,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         items: [
           { text: "Change the theme of the entire application", example: "e.g. \"Match the visual style of Manchester United\"" },
           { text: "Ask questions to Fusion", example: "e.g. \"Am I using all Cloudscape design tokens and components?\"" },
-          { text: "Ask Fusion to give you recommendations", example: "e.g. \"How can I make this dashboard adhere to WCAG 2.1 AA accessibility? Give me recommendations.\"" },
+          { text: "Ask Fusion to give you recommendations", example: "e.g. \"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
           { text: "Add gamification to the application", example: "e.g. \"Gamify the dashboard to make progress feel more fun.\"" },
         ],
       },
