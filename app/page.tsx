@@ -304,7 +304,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Make Changes in Your Local IDE",
-            text: "Open the repo in your own editor (VS Code, Kiro, etc.) and make whatever code changes you like — install packages, refactor, add features, fix bugs.",
+            text: "Open the repo in your own editor (VS Code, Kiro, etc.) and make whatever code changes you like — install packages, refactor, add features, fix bugs. For example, add or simply make a change in the README, then commit the changes.",
           },
           {
             title: "Option A: Push Back with the Push Command",
