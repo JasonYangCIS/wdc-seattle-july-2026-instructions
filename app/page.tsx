@@ -721,7 +721,7 @@ export default function Home() {
       />
 
       <footer className="w-full bg-gray-100 border-t border-gray-200">
-        <div className="mx-auto max-w-7xl px-4 py-4 md:px-6 text-center text-sm text-gray-600">
+        <div className="mx-auto max-w-7xl px-4 py-2 md:px-6 text-center text-sm text-gray-600">
           Builder.io &lt;&gt; AWS Cloudscape Workshop Seattle 2026
         </div>
       </footer>
