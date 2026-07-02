@@ -710,7 +710,7 @@ export default function Home() {
       </div>
 
       <AppLayout
-        navigationWidth={300}
+        navigationWidth={360}
         toolsHide
         stickyNotifications
         notifications={
