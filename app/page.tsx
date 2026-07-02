@@ -112,7 +112,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         header: "TODO",
         text: "Builder team still needs to figure out a way to link attendees to the workshop space and automatically authenticate both in-person and online Amazon employees.",
       },
-      { type: "heading", text: "Builder 101" },
+      { type: "heading", text: "Pro tips" },
       {
         type: "bullets",
         items: [
