@@ -656,7 +656,7 @@ export default function Home() {
               <img
                 src="https://builder.aws.com/assets/logo-dark-mode-BWHgg2gz.svg"
                 alt="AWS"
-                className="h-7 w-auto md:h-8"
+                className="h-7 w-auto md:h-8 mt-4"
               />
             </span>
           </div>
