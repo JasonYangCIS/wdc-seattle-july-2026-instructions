@@ -194,42 +194,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Code Hand-off",
-    heading: "Code Hand-off",
-    blocks: [
-      {
-        type: "paragraph",
-        text: "Take the branch Fusion generated and bring it down to your local machine to keep working in your own editor or terminal.",
-      },
-      {
-        type: "numbered",
-        items: [
-          {
-            title: "Clone the Repo",
-            text: "Clone this repo locally.",
-            link: {
-              text: "Clone this repo locally",
-              href: "https://github.com/JasonYangCIS/cloudscape-demo-july-2026",
-            },
-          },
-          {
-            title: "Copy the Pull Command",
-            text: "Open the Share panel and click \"Pull\" under Code Handoff. Copy the CLI command shown there.",
-            image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa22103b8ca9a4201b7e994ecda45baa2?format=webp&width=800",
-              alt: "Share Project — Pull CLI command",
-              caption: "Share Project — Pull CLI command",
-            },
-          },
-          {
-            title: "Checkout the Branch Locally",
-            text: "In Kiro or any terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
-          },
-        ],
-      },
-    ],
-  },
-  {
     navTitle: "Add Theming",
     heading: "Add Theming",
     blocks: [
@@ -273,6 +237,42 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       {
         type: "paragraph",
         text: "You can add a prompt from the \"Generate\" tab, or click the \"Apply Visual Changes\" button to have Fusion implement updates directly.",
+      },
+    ],
+  },
+  {
+    navTitle: "Code Hand-off",
+    heading: "Code Hand-off",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Take the branch Fusion generated and bring it down to your local machine to keep working in your own editor or terminal.",
+      },
+      {
+        type: "numbered",
+        items: [
+          {
+            title: "Clone the Repo",
+            text: "Clone this repo locally.",
+            link: {
+              text: "Clone this repo locally",
+              href: "https://github.com/JasonYangCIS/cloudscape-demo-july-2026",
+            },
+          },
+          {
+            title: "Copy the Pull Command",
+            text: "Open the Share panel and click \"Pull\" under Code Handoff. Copy the CLI command shown there.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa22103b8ca9a4201b7e994ecda45baa2?format=webp&width=800",
+              alt: "Share Project — Pull CLI command",
+              caption: "Share Project — Pull CLI command",
+            },
+          },
+          {
+            title: "Checkout the Branch Locally",
+            text: "In Kiro or any terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
+          },
+        ],
       },
     ],
   },
