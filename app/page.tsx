@@ -348,8 +348,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "The Builder bot PR review agent automatically runs against your pull request and leaves comments directly on the PR, flagging potential bugs, style issues, or suggestions.",
           },
           {
-            title: "Check Out the Review Comments",
-            text: "Open the pull request on GitHub and read through the bot's comments. Address any findings by pushing follow-up commits, or reply to discuss.",
+            title: "Ask @builder-bot to Make Changes",
+            text: "Open the pull request on GitHub and comment on any flagged line, mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it — you can also tag it once to \"address all feedback in this pull request.\"",
+            video: {
+              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6de6aa254f334d85a732071a6b830b76?alt=media&token=21671f78-b7be-40fe-bce4-502ec269c114&apiKey=YJIGb4i01jvw0SRdL5Bt",
+              caption: "Tagging @builder-bot on a PR comment to request changes",
+            },
           },
         ],
       },
