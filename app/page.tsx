@@ -242,21 +242,27 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         text: "Navigate from \"Interact\" → \"Design\" and select the \"Style\" tab. Select an element in the visual editor to access Figma-like editing controls.",
       },
       {
-        type: "image",
-        image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Fc6cd6b3b0cd5489f92206051e776f9dc?format=webp&width=800",
-          alt: "Design Mode — Style tab",
-          caption: "Design Mode — Style tab",
-        },
-      },
-      {
-        type: "prompt",
-        text: "Apply visual changes.",
-        image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Feebc64d7c2e74a03b8065d86f2f43271?format=webp&width=800",
-          alt: "Apply Visual Changes",
-          caption: "Apply Visual Changes",
-        },
+        type: "numbered",
+        items: [
+          {
+            title: "Navigate to the Style Tab",
+            text: "Switch from \"Interact\" to \"Design\" mode, then select the \"Style\" tab. Select an element in the visual editor to access Figma-like editing controls.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4dd9ff9956644463bee4e3f61692e56d?format=webp&width=1600",
+              alt: "Design Mode — Style tab",
+              caption: "Design Mode — Style tab",
+            },
+          },
+          {
+            title: "Apply the Visual Changes",
+            text: "After adjusting styles in the Style tab, click \"Apply Visual Changes\" to have Fusion implement your edits directly.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F3cc323b429bf4c24b3b740f4087a1bc5?format=webp&width=1600",
+              alt: "Apply Visual Changes",
+              caption: "Apply Visual Changes",
+            },
+          },
+        ],
       },
       {
         type: "paragraph",
