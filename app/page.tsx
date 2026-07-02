@@ -660,9 +660,6 @@ export default function Home() {
               />
             </span>
           </div>
-          <span className="hidden sm:block text-[19px] leading-[19.5px] font-semibold text-white/90">
-            <p>Seattle 2026</p>
-          </span>
         </div>
       </div>
 
@@ -722,6 +719,12 @@ export default function Home() {
           </ContentLayout>
         }
       />
+
+      <footer className="w-full bg-gray-100 border-t border-gray-200">
+        <div className="mx-auto max-w-7xl px-4 py-4 md:px-6 text-center text-sm text-gray-600">
+          Builder.io &lt;&gt; AWS Cloudscape Workshop Seattle 2026
+        </div>
+      </footer>
     </div>
   );
 }
