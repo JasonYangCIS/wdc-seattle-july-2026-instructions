@@ -312,7 +312,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         type: "alert",
         alertType: "warning",
         header: "TODO",
-        text: "Amazon uses git farm internally, so these code hand-off steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm.",
+        text: "Amazon uses git farm internally, so these code hand-off steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm, and is considering changing this step to use the Prototype feature instead of Push/Pull.",
       },
       {
         type: "numbered",
