@@ -194,18 +194,38 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Add Real Data",
-    heading: "Add Real Data",
+    navTitle: "Code Hand-off",
+    heading: "Code Hand-off",
     blocks: [
-      { type: "paragraph", text: "Use an API to add real data to the Code Commits dashboard." },
       {
-        type: "prompt",
-        text: "Populate the table and graphs using the internal Commits API. I want to be able to filter by branch and author, and the charts should show lines of code added and removed and the number of commits per day.",
-        image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Fcb283c52ccd042e29bd6c44525e07c1f?format=webp&width=800",
-          alt: "Real data prompt",
-          caption: "Real data prompt",
-        },
+        type: "paragraph",
+        text: "Take the branch Fusion generated and bring it down to your local machine to keep working in your own editor or terminal.",
+      },
+      {
+        type: "numbered",
+        items: [
+          {
+            title: "Clone the Repo",
+            text: "Clone this repo locally.",
+            link: {
+              text: "Clone this repo locally",
+              href: "https://github.com/JasonYangCIS/cloudscape-demo-july-2026",
+            },
+          },
+          {
+            title: "Copy the Pull Command",
+            text: "Open the Share panel and click \"Pull\" under Code Handoff. Copy the CLI command shown there.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa22103b8ca9a4201b7e994ecda45baa2?format=webp&width=800",
+              alt: "Share Project — Pull CLI command",
+              caption: "Share Project — Pull CLI command",
+            },
+          },
+          {
+            title: "Checkout the Branch Locally",
+            text: "In Kiro or any terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
+          },
+        ],
       },
     ],
   },
@@ -486,7 +506,7 @@ export default function Home() {
     text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
     href: `#step-${i}`,
     info:
-      s.navTitle === "Add Real Data" ? (
+      s.navTitle === "Code Hand-off" ? (
         <Popover content="To raise for discussion with the team" size="small" triggerType="custom">
           <Icon name="status-info" variant="link" />
         </Popover>
