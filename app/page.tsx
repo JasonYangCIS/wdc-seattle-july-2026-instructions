@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AppLayout from "@cloudscape-design/components/app-layout";
 import ContentLayout from "@cloudscape-design/components/content-layout";
 import SideNavigation, {
@@ -15,8 +15,10 @@ import TextContent from "@cloudscape-design/components/text-content";
 import Button from "@cloudscape-design/components/button";
 import ProgressBar from "@cloudscape-design/components/progress-bar";
 import Icon from "@cloudscape-design/components/icon";
+import Popover from "@cloudscape-design/components/popover";
 import CopyToClipboard from "@cloudscape-design/components/copy-to-clipboard";
 import Textarea from "@cloudscape-design/components/textarea";
+import Link from "@cloudscape-design/components/link";
 
 type ImageRef = {
   src: string;
@@ -24,12 +26,59 @@ type ImageRef = {
   caption?: string;
 };
 
+type VideoRef = {
+  src: string;
+  caption?: string;
+};
+
+function renderTextWithInlineLink(
+  text: string,
+  link?: { text: string; href: string },
+  boldText?: string
+) {
+  let content: string | JSX.Element = text;
+  if (boldText) {
+    const index = text.indexOf(boldText);
+    if (index !== -1) {
+      content = (
+        <>
+          {text.slice(0, index)}
+          <strong>{boldText}</strong>
+          {text.slice(index + boldText.length)}
+        </>
+      );
+    }
+  }
+  if (!link) return content;
+  const index = text.indexOf(link.text);
+  if (index === -1) return content;
+  return (
+    <>
+      {text.slice(0, index)}
+      <Link href={link.href} external externalIconAriaLabel="Opens in a new tab">
+        {link.text}
+      </Link>
+      {text.slice(index + link.text.length)}
+    </>
+  );
+}
+
 type Block =
   | { type: "eyebrow"; text: string }
   | { type: "paragraph"; text: string; strongLead?: string }
   | { type: "heading"; text: string }
   | { type: "bullets"; items: { text: string; example?: string }[] }
-  | { type: "numbered"; items: { title: string; text: string; image?: ImageRef }[] }
+  | {
+      type: "numbered";
+      items: {
+        title: string;
+        text: string;
+        boldText?: string;
+        image?: ImageRef;
+        video?: VideoRef;
+        link?: { text: string; href: string };
+      }[];
+    }
   | { type: "prompt"; text: string; image?: ImageRef }
   | { type: "image"; image: ImageRef };
 
@@ -76,7 +125,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             title: "Create Your Branch",
             text: "Find the \"Cloudscape\" project in the Projects section and click \"+ New Branch\" to create a new branch for your workshop testing.",
             image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F11340c23f80b475abbc4548435a1a8e6?format=webp&width=800",
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4f405dd7a45e44fcb812ecc14a3d85e8?format=webp&width=1600",
               alt: "Cloudscape project — New Branch",
               caption: "Cloudscape project — New Branch",
             },
@@ -85,7 +134,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             title: "Rename Your Branch",
             text: "Rename the branch to \"{your-name}-WDC\" by clicking on the branch name in the top-left of the screen.",
             image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Fb9bc0cbd1eb140ee81c60277769c7cee?format=webp&width=800",
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa3cea28d8f1743d6896ff917bdd3c998?format=webp&width=1600",
               alt: "Rename branch UI",
               caption: "Rename branch",
             },
@@ -93,8 +142,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             title: "Open the Design File",
             text: "Open the Cloudscape dashboard file in Figma by clicking the \"Open in Figma\" button. Make sure you open it in a Figma Organization where you can install plugins.",
+            link: {
+              text: "Open the Cloudscape dashboard file in Figma",
+              href: "https://www.figma.com/community/file/1441915505995376925/builder-io-cloudscape-example-design",
+            },
             image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Feda947fe305242e58cbda6b8b9105c92?format=webp&width=800",
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F5b64fc826a2d43818e1d4c368aa6b63c?format=webp&width=1600",
               alt: "Open in Figma",
               caption: "Open in Figma",
             },
@@ -102,17 +155,20 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             title: "Install the Figma Plugin",
             text: "Install the Builder.io Figma plugin on the design file you just opened. Open the plugin and select the \"Dashboard\" layer in Figma.",
-            image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F53318c29b86941cb96827ad1126687f0?format=webp&width=800",
-              alt: "Builder.io Figma plugin",
-              caption: "Builder.io Figma plugin",
+            link: {
+              text: "Install the Builder.io Figma plugin",
+              href: "https://www.figma.com/community/plugin/747985167520967365",
+            },
+            video: {
+              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fdd4aab2a40e54e1ea6fa36f74983e371?alt=media&token=f1a4489f-cf18-4981-bb4f-932fffe1302c&apiKey=YJIGb4i01jvw0SRdL5Bt",
             },
           },
           {
             title: "Export & Paste the Design",
             text: "Click the \"Smart Export\" button. Once the plugin is done exporting, paste into the Fusion prompt box. Don't submit your prompt yet!—proceed to Step 03 to continue.",
+            boldText: "Don't submit your prompt yet!",
             image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F1b389ac948dc4164afec8fbf2353423f?format=webp&width=800",
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F471b86a0abe1411b969def9442e839c2?format=webp&width=1600",
               alt: "Fusion prompt with design attachment",
               caption: "Fusion prompt with design attachment",
             },
@@ -128,9 +184,9 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       { type: "paragraph", text: "Use the Cloudscape Figma design file and a natural language prompt." },
       {
         type: "prompt",
-        text: "Create a Code Commits dashboard based on this design.",
+        text: "Create code commits dashboard using this Figma design and the mock data found in repo.",
         image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F19433b275c23480990468fb0c3d851f9?format=webp&width=800",
+          src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7ead95da82384033b46e1e61d8c954ab?format=webp&width=1600",
           alt: "Figma design prompt",
           caption: "Figma design prompt",
         },
@@ -236,9 +292,52 @@ function Figure({ image }: { image: ImageRef }) {
         alt={image.alt}
         style={{ width: "100%", borderRadius: "8px", border: "1px solid #e9ebed" }}
       />
-      {image.caption && (
+    </Box>
+  );
+}
+
+function LazyVideo({ video }: { video: VideoRef }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Box margin={{ top: "s" }}>
+      <div
+        ref={containerRef}
+        style={{ width: "100%", borderRadius: "8px", overflow: "hidden", border: "1px solid #e9ebed" }}
+      >
+        {isVisible && (
+          <video
+            src={video.src}
+            controls
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            style={{ width: "100%", display: "block" }}
+          />
+        )}
+      </div>
+      {video.caption && (
         <Box variant="small" color="text-body-secondary" textAlign="center" margin={{ top: "xs" }}>
-          {image.caption}
+          {video.caption}
         </Box>
       )}
     </Box>
@@ -329,22 +428,26 @@ function BlockRenderer({ block }: { block: Block }) {
                     {item.title}
                   </Box>
                 </div>
-                {item.image ? (
+                {item.image || item.video ? (
                   <Grid
                     gridDefinition={[
-                      { colspan: { default: 12, m: 6 } },
-                      { colspan: { default: 12, m: 6 } },
+                      { colspan: { default: 12, m: 5 } },
+                      { colspan: { default: 12, m: 7 } },
                     ]}
                   >
-                    <Box variant="p" color="text-body-secondary" margin="n">
-                      {item.text}
-                    </Box>
-                    <Figure image={item.image} />
+                    <SpaceBetween size="xs">
+                      <Box variant="p" color="text-body-secondary" margin="n">
+                        {renderTextWithInlineLink(item.text, item.link, item.boldText)}
+                      </Box>
+                    </SpaceBetween>
+                    {item.video ? <LazyVideo video={item.video} /> : <Figure image={item.image!} />}
                   </Grid>
                 ) : (
-                  <Box variant="p" color="text-body-secondary" margin="n">
-                    {item.text}
-                  </Box>
+                  <SpaceBetween size="xs">
+                    <Box variant="p" color="text-body-secondary" margin="n">
+                      {renderTextWithInlineLink(item.text, item.link, item.boldText)}
+                    </Box>
+                  </SpaceBetween>
                 )}
               </SpaceBetween>
             </Container>
@@ -375,6 +478,12 @@ export default function Home() {
     type: "link",
     text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
     href: `#step-${i}`,
+    info:
+      s.navTitle === "Add Real Data" ? (
+        <Popover content="To raise for discussion with the team" size="small" triggerType="custom">
+          <Icon name="status-info" variant="link" />
+        </Popover>
+      ) : undefined,
   }));
 
   return (
