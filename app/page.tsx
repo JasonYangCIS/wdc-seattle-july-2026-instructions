@@ -252,7 +252,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       },
       {
         type: "prompt",
-        text: "Set up Storybook for this project and add a story for the theming settings component we just built, with controls for switching between the light, dark, and creative themes.",
+        text: "Set up Storybook for this project and add stories for all of the current design system components, with controls for switching between the light, dark, and creative themes so we can see how the new theming affects each component.",
       },
       {
         type: "bullets",
