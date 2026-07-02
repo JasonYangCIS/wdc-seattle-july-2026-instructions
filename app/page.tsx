@@ -309,6 +309,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         text: "Take the branch Fusion generated and bring it down to your local machine to keep working in your own editor or terminal.",
       },
       {
+        type: "alert",
+        alertType: "warning",
+        header: "TODO",
+        text: "Amazon uses git farm internally, so these code hand-off steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm.",
+      },
+      {
         type: "numbered",
         items: [
           {
