@@ -297,6 +297,10 @@ function LazyVideo({ video }: { video: VideoRef }) {
           <video
             src={video.src}
             controls
+            autoPlay
+            muted
+            loop
+            playsInline
             preload="none"
             style={{ width: "100%", display: "block" }}
           />
