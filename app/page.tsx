@@ -243,6 +243,27 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
+    navTitle: "Incorporate Storybook",
+    heading: "Incorporate Storybook",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Set up Storybook so the dashboard's Cloudscape components can be developed and reviewed in isolation.",
+      },
+      {
+        type: "prompt",
+        text: "Set up Storybook for this project and add stories for all of the current design system components, with controls for switching between the light, dark, and creative themes so we can see how the new theming affects each component. Add scripts to run Storybook locally and build a static Storybook, and add a link in the dashboard header to open Storybook, plus a link back to the dashboard from Storybook.",
+      },
+      {
+        type: "bullets",
+        items: [
+          { text: "Storybook lets you preview and test components outside of the full dashboard, one component at a time." },
+          { text: "Once generated, switch to the Code tab to find the new story files alongside the component they document." },
+        ],
+      },
+    ],
+  },
+  {
     navTitle: "Use Design Mode",
     heading: "Use Design Mode",
     blocks: [
@@ -286,6 +307,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       {
         type: "paragraph",
         text: "Take the branch Fusion generated and bring it down to your local machine to keep working in your own editor or terminal.",
+      },
+      {
+        type: "alert",
+        alertType: "warning",
+        header: "TODO",
+        text: "Amazon uses git farm internally, so these code hand-off steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm.",
       },
       {
         type: "numbered",
@@ -346,6 +373,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         text: "Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
       },
       {
+        type: "alert",
+        alertType: "warning",
+        header: "TODO",
+        text: "Amazon uses git farm internally, so these pull request steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm.",
+      },
+      {
         type: "numbered",
         items: [
           {
@@ -373,7 +406,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Experiment using prompts, screenshots, and more. You're low-key coding now—keep flexing your vibe-coding skills with any time you have left. Share what you've built with your table.",
+        text: "Experiment using prompts, screenshots, and more. You're low-key coding now—keep flexing your vibe-coding skills with any time you have left. Share what you've built with your peers around you.",
       },
       { type: "heading", text: "Other recommendations" },
       {
@@ -381,7 +414,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         items: [
           { text: "Change the theme of the entire application", example: "e.g. \"Match the visual style of Manchester United\"" },
           { text: "Ask questions to Fusion", example: "e.g. \"Am I using all Cloudscape design tokens and components?\"" },
-          { text: "Ask Fusion to give you recommendations", example: "e.g. \"How can I make this dashboard adhere to EAA guidelines? Give me recommendations.\"" },
+          { text: "Ask Fusion to give you recommendations", example: "e.g. \"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
           { text: "Add gamification to the application", example: "e.g. \"Gamify the dashboard to make progress feel more fun.\"" },
         ],
       },
@@ -535,12 +568,14 @@ function BlockRenderer({ block }: { block: Block }) {
           <ul style={{ listStyleType: "disc" }}>
             {block.items.map((item, i) => (
               <li key={i}>
-                {item.text}
-                {item.example && (
-                  <Box variant="small" color="text-body-secondary" margin={{ top: "xxxs" }}>
-                    {item.example}
-                  </Box>
-                )}
+                <Box margin={{ bottom: "n" }}>
+                  {item.text}
+                  {item.example && (
+                    <Box variant="small" color="text-body-secondary" margin={{ top: "xxs", left: "xs" }}>
+                      {item.example}
+                    </Box>
+                  )}
+                </Box>
               </li>
             ))}
           </ul>
@@ -631,6 +666,9 @@ export default function Home() {
     type: "link",
     text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
     href: `#step-${i}`,
+    ...((i === 0 || i === 6 || i === 7) && {
+      info: <Icon name="status-warning" variant="warning" ariaLabel="Has an open TODO" />,
+    }),
   }));
 
   useEffect(() => {
