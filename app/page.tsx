@@ -243,6 +243,32 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
+    navTitle: "Incorporate Storybook",
+    heading: "Incorporate Storybook",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Set up Storybook so the dashboard's Cloudscape components can be developed and reviewed in isolation.",
+      },
+      {
+        type: "prompt",
+        text: "Set up Storybook for this project and add a story for the theming settings component we just built, with controls for switching between the light, dark, and creative themes.",
+        image: {
+          src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F3a14f809979e481d8e255632aed3259a?format=webp&width=1600",
+          alt: "Prompt ready to submit in Plan mode",
+          caption: "Prompt ready to submit in Plan mode",
+        },
+      },
+      {
+        type: "bullets",
+        items: [
+          { text: "Storybook lets you preview and test components outside of the full dashboard, one component at a time." },
+          { text: "Once generated, switch to the Code tab to find the new story files alongside the component they document." },
+        ],
+      },
+    ],
+  },
+  {
     navTitle: "Use Design Mode",
     heading: "Use Design Mode",
     blocks: [
@@ -637,7 +663,7 @@ export default function Home() {
     type: "link",
     text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
     href: `#step-${i}`,
-    ...((i === 0 || i === 6) && {
+    ...((i === 0 || i === 7) && {
       info: <Icon name="status-warning" variant="warning" ariaLabel="Has an open TODO" />,
     }),
   }));
