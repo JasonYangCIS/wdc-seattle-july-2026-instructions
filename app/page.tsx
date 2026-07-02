@@ -91,7 +91,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             title: "Create Your Branch",
             text: "Find the \"Cloudscape\" project in the Projects section and click \"+ New Branch\" to create a new branch for your workshop testing.",
             image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F11340c23f80b475abbc4548435a1a8e6?format=webp&width=800",
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4f405dd7a45e44fcb812ecc14a3d85e8?format=webp&width=800&height=1200",
               alt: "Cloudscape project — New Branch",
               caption: "Cloudscape project — New Branch",
             },
@@ -100,7 +100,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             title: "Rename Your Branch",
             text: "Rename the branch to \"{your-name}-WDC\" by clicking on the branch name in the top-left of the screen.",
             image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Fb9bc0cbd1eb140ee81c60277769c7cee?format=webp&width=800",
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa3cea28d8f1743d6896ff917bdd3c998?format=webp&width=800&height=1200",
               alt: "Rename branch UI",
               caption: "Rename branch",
             },
@@ -113,7 +113,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
               href: "https://www.figma.com/community/file/1441915505995376925/builder-io-cloudscape-example-design",
             },
             image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Feda947fe305242e58cbda6b8b9105c92?format=webp&width=800",
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F5b64fc826a2d43818e1d4c368aa6b63c?format=webp&width=800&height=1200",
               alt: "Open in Figma",
               caption: "Open in Figma",
             },
