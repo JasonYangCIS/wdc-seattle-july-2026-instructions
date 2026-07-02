@@ -160,7 +160,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
             video: {
               src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fdd4aab2a40e54e1ea6fa36f74983e371?alt=media&token=f1a4489f-cf18-4981-bb4f-932fffe1302c&apiKey=YJIGb4i01jvw0SRdL5Bt",
-              caption: "Builder.io Figma plugin",
             },
           },
           {
