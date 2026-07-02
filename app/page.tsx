@@ -455,11 +455,18 @@ function BlockRenderer({ block }: { block: Block }) {
         </SpaceBetween>
       );
     case "prompt":
-      return (
-        <SpaceBetween size="s">
+      return block.image ? (
+        <Grid
+          gridDefinition={[
+            { colspan: { default: 12, m: 5 } },
+            { colspan: { default: 12, m: 7 } },
+          ]}
+        >
           <PromptBlock text={block.text} />
-          {block.image && <Figure image={block.image} />}
-        </SpaceBetween>
+          <Figure image={block.image} />
+        </Grid>
+      ) : (
+        <PromptBlock text={block.text} />
       );
     case "image":
       return <Figure image={block.image} />;
