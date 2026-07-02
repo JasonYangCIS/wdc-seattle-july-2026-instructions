@@ -302,6 +302,28 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             title: "Checkout the Branch Locally",
             text: "In Kiro or any terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
           },
+          {
+            title: "Make Changes in Your Local IDE",
+            text: "Open the repo in your own editor (VS Code, Kiro, etc.) and make whatever code changes you like — install packages, refactor, add features, fix bugs.",
+          },
+          {
+            title: "Option A: Push Back with the Push Command",
+            text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Fusion project — it updates automatically, no manual sync needed.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7a6b54b38a7449418747fcbbb5eba30e?format=webp&width=1600",
+              alt: "Share Project — Push CLI command",
+              caption: "Share Project — Push CLI command",
+            },
+          },
+          {
+            title: "Option B: git push and Sync Manually",
+            text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Fusion, the top bar will show you're behind the remote — click the sync icon to pull those changes into the project.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa7314b9f95704816abf7602ae65d560f?format=webp&width=1600",
+              alt: "Fusion — commit behind remote, click to sync",
+              caption: "Fusion — commit behind remote, click to sync",
+            },
+          },
         ],
       },
     ],
