@@ -73,6 +73,7 @@ type Block =
         title: string;
         text: string;
         boldText?: string;
+        prompt?: string;
         image?: ImageRef;
         video?: VideoRef;
         link?: { text: string; href: string };
@@ -198,13 +199,32 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       { type: "paragraph", text: "Add theming functionality to the Code Commits dashboard." },
       {
-        type: "prompt",
-        text: "Add a floating settings icon that on click opens up a small tool tip that allows the user to change their theme, the current UI should be the default \"light\" theme, the users should be able to choose a \"dark\" theme and a \"creative\" theme that freely implements a creative UI as a theme.",
-        image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F322736ae5dec4f6fabf2c02e552beca3?format=webp&width=800",
-          alt: "Theme settings prompt",
-          caption: "Theme settings prompt",
-        },
+        type: "numbered",
+        items: [
+          {
+            title: "Switch to Plan Mode",
+            text: "Click the mode selector next to the prompt box and choose \"Plan\" so Fusion collaborates on an approach before generating any code.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fe1b85ae83928405594647ee9af1c15fa?format=webp&width=800",
+              alt: "Mode selector — Plan",
+              caption: "Mode selector — Plan",
+            },
+          },
+          {
+            title: "Paste in the Prompt",
+            text: "Paste the following prompt into the prompt box, then submit it.",
+            prompt: "Add a floating settings icon that on click opens up a small tool tip that allows the user to change their theme, the current UI should be the default \"light\" theme, the users should be able to choose a \"dark\" theme and a \"creative\" theme that freely implements a creative UI as a theme.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fc88dbbf134ac408399cb18f621d53d14?format=webp&width=800",
+              alt: "Prompt ready to submit in Plan mode",
+              caption: "Prompt ready to submit in Plan mode",
+            },
+          },
+          {
+            title: "Review the Plan & Submit for Action",
+            text: "Read through the plan Fusion proposes. If it looks right, submit it so Fusion can generate the code.",
+          },
+        ],
       },
     ],
   },
@@ -458,6 +478,7 @@ function BlockRenderer({ block }: { block: Block }) {
                       <Box variant="p" color="text-body-secondary" margin="n">
                         {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                       </Box>
+                      {item.prompt && <PromptBlock text={item.prompt} />}
                     </SpaceBetween>
                     {item.video ? <LazyVideo video={item.video} /> : <Figure image={item.image!} />}
                   </Grid>
@@ -466,6 +487,7 @@ function BlockRenderer({ block }: { block: Block }) {
                     <Box variant="p" color="text-body-secondary" margin="n">
                       {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                     </Box>
+                    {item.prompt && <PromptBlock text={item.prompt} />}
                   </SpaceBetween>
                 )}
               </SpaceBetween>
