@@ -199,11 +199,11 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       { type: "paragraph", text: "Add theming functionality to the Code Commits dashboard." },
       {
         type: "prompt",
-        text: "Add a dark mode toggle to this page.",
+        text: "Add a floating settings icon that on click opens up a small tool tip that allows the user to change their theme, the current UI should be the default \"light\" theme, the users should be able to choose a \"dark\" theme and a \"creative\" theme that freely implements a creative UI as a theme.",
         image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F232a0909a8504928b9f03cd3b406370c?format=webp&width=800",
-          alt: "Dark mode prompt",
-          caption: "Dark mode prompt",
+          src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F322736ae5dec4f6fabf2c02e552beca3?format=webp&width=800",
+          alt: "Theme settings prompt",
+          caption: "Theme settings prompt",
         },
       },
     ],
