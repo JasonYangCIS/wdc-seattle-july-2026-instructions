@@ -329,6 +329,33 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
+    navTitle: "Submit a Pull Request",
+    heading: "Submit a Pull Request",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
+      },
+      {
+        type: "numbered",
+        items: [
+          {
+            title: "Send the PR",
+            text: "Click the \"Send PR\" button in the top right of the Fusion workspace to open a pull request for your branch against the base branch.",
+          },
+          {
+            title: "Wait for the Builder Bot Review",
+            text: "The Builder bot PR review agent automatically runs against your pull request and leaves comments directly on the PR, flagging potential bugs, style issues, or suggestions.",
+          },
+          {
+            title: "Check Out the Review Comments",
+            text: "Open the pull request on GitHub and read through the bot's comments. Address any findings by pushing follow-up commits, or reply to discuss.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     navTitle: "Free Experimentation",
     heading: "Experiment!",
     blocks: [
