@@ -17,6 +17,7 @@ import ProgressBar from "@cloudscape-design/components/progress-bar";
 import Icon from "@cloudscape-design/components/icon";
 import CopyToClipboard from "@cloudscape-design/components/copy-to-clipboard";
 import Textarea from "@cloudscape-design/components/textarea";
+import Link from "@cloudscape-design/components/link";
 
 type ImageRef = {
   src: string;
@@ -29,7 +30,10 @@ type Block =
   | { type: "paragraph"; text: string; strongLead?: string }
   | { type: "heading"; text: string }
   | { type: "bullets"; items: { text: string; example?: string }[] }
-  | { type: "numbered"; items: { title: string; text: string; image?: ImageRef }[] }
+  | {
+      type: "numbered";
+      items: { title: string; text: string; image?: ImageRef; link?: { text: string; href: string } }[];
+    }
   | { type: "prompt"; text: string; image?: ImageRef }
   | { type: "image"; image: ImageRef };
 
@@ -93,6 +97,10 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             title: "Open the Design File",
             text: "Open the Cloudscape dashboard file in Figma by clicking the \"Open in Figma\" button. Make sure you open it in a Figma Organization where you can install plugins.",
+            link: {
+              text: "Open the Cloudscape dashboard Figma file",
+              href: "https://www.figma.com/community/file/1441915505995376925/builder-io-cloudscape-example-design",
+            },
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Feda947fe305242e58cbda6b8b9105c92?format=webp&width=800",
               alt: "Open in Figma",
@@ -336,15 +344,29 @@ function BlockRenderer({ block }: { block: Block }) {
                       { colspan: { default: 12, m: 7 } },
                     ]}
                   >
-                    <Box variant="p" color="text-body-secondary" margin="n">
-                      {item.text}
-                    </Box>
+                    <SpaceBetween size="xs">
+                      <Box variant="p" color="text-body-secondary" margin="n">
+                        {item.text}
+                      </Box>
+                      {item.link && (
+                        <Link href={item.link.href} external externalIconAriaLabel="Opens in a new tab">
+                          {item.link.text}
+                        </Link>
+                      )}
+                    </SpaceBetween>
                     <Figure image={item.image} />
                   </Grid>
                 ) : (
-                  <Box variant="p" color="text-body-secondary" margin="n">
-                    {item.text}
-                  </Box>
+                  <SpaceBetween size="xs">
+                    <Box variant="p" color="text-body-secondary" margin="n">
+                      {item.text}
+                    </Box>
+                    {item.link && (
+                      <Link href={item.link.href} external externalIconAriaLabel="Opens in a new tab">
+                        {item.link.text}
+                      </Link>
+                    )}
+                  </SpaceBetween>
                 )}
               </SpaceBetween>
             </Container>
