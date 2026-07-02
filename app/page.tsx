@@ -568,7 +568,7 @@ function BlockRenderer({ block }: { block: Block }) {
           <ul style={{ listStyleType: "disc" }}>
             {block.items.map((item, i) => (
               <li key={i}>
-                <Box margin={{ bottom: item.example ? "s" : "n" }}>
+                <Box margin={{ bottom: "n" }}>
                   {item.text}
                   {item.example && (
                     <Box variant="small" color="text-body-secondary" margin={{ top: "xxs", left: "xs" }}>
