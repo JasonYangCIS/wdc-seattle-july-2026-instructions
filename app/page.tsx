@@ -352,7 +352,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Open the pull request on GitHub and leave a comment — on a specific line of code, or directly on the PR itself — mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it — you can also tag it once to \"address all feedback in this pull request.\"",
             video: {
               src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6de6aa254f334d85a732071a6b830b76?alt=media&token=21671f78-b7be-40fe-bce4-502ec269c114&apiKey=YJIGb4i01jvw0SRdL5Bt",
-              caption: "Tagging @builder-bot on a PR comment to request changes",
             },
           },
         ],
