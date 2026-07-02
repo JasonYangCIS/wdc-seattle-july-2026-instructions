@@ -149,7 +149,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             title: "Export & Paste the Design",
             text: "Click the \"Smart Export\" button. Once the plugin is done exporting, paste into the Fusion prompt box. Don't submit your prompt yet!—proceed to Step 03 to continue.",
             image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F471b86a0abe1411b969def9442e839c2?format=webp&width=800",
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F471b86a0abe1411b969def9442e839c2?format=webp&width=1600",
               alt: "Fusion prompt with design attachment",
               caption: "Fusion prompt with design attachment",
             },
