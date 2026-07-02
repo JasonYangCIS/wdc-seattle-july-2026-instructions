@@ -183,7 +183,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       { type: "paragraph", text: "Use the Cloudscape Figma design file and a natural language prompt." },
       {
         type: "prompt",
-        text: "Create a Code Commits dashboard based on this design.",
+        text: "Create code commits dashboard using this Figma design and the mock data found in repo.",
         image: {
           src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F19433b275c23480990468fb0c3d851f9?format=webp&width=800",
           alt: "Figma design prompt",
