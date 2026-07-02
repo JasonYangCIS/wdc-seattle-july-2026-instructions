@@ -18,6 +18,7 @@ import Icon from "@cloudscape-design/components/icon";
 import CopyToClipboard from "@cloudscape-design/components/copy-to-clipboard";
 import Textarea from "@cloudscape-design/components/textarea";
 import Link from "@cloudscape-design/components/link";
+import Alert from "@cloudscape-design/components/alert";
 
 type ImageRef = {
   src: string;
@@ -80,7 +81,8 @@ type Block =
       }[];
     }
   | { type: "prompt"; text: string; image?: ImageRef }
-  | { type: "image"; image: ImageRef };
+  | { type: "image"; image: ImageRef }
+  | { type: "alert"; alertType: "success" | "error" | "warning" | "info"; header?: string; text: string };
 
 type StepContent = {
   navTitle: string;
@@ -102,6 +104,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         type: "paragraph",
         strongLead: "Your goal",
         text: ": In the next hour, add a new dashboard to Cloudscape and make it your own. You don't need to know how to code to do this—and can do so by prompting with natural language. You can find the full list of suggested prompts and required resources for the workshop exercise beginning after clicking 'Next ->'",
+      },
+      {
+        type: "alert",
+        alertType: "warning",
+        header: "TODO",
+        text: "Builder team still needs to figure out a way to link attendees to the workshop space and automatically authenticate both in-person and online Amazon employees.",
       },
       { type: "heading", text: "Builder 101" },
       {
@@ -574,6 +582,12 @@ function BlockRenderer({ block }: { block: Block }) {
       );
     case "image":
       return <Figure image={block.image} />;
+    case "alert":
+      return (
+        <Alert type={block.alertType} header={block.header}>
+          {block.text}
+        </Alert>
+      );
   }
 }
 
