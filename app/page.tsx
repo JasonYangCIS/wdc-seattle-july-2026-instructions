@@ -19,6 +19,7 @@ import CopyToClipboard from "@cloudscape-design/components/copy-to-clipboard";
 import Textarea from "@cloudscape-design/components/textarea";
 import Link from "@cloudscape-design/components/link";
 import Alert from "@cloudscape-design/components/alert";
+import Modal from "@cloudscape-design/components/modal";
 
 type ImageRef = {
   src: string;
@@ -393,15 +394,42 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
   },
 ];
 
+function getHighResSrc(src: string) {
+  if (!src.includes("img.builder.io") && !src.includes("cdn.builder.io")) return src;
+  return src.replace(/([?&]width=)\d+/, "$12400");
+}
+
 function Figure({ image }: { image: ImageRef }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Box margin={{ top: "s" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={image.src}
         alt={image.alt}
-        style={{ width: "100%", borderRadius: "8px", border: "1px solid #e9ebed" }}
+        onClick={() => setIsOpen(true)}
+        style={{
+          width: "100%",
+          borderRadius: "8px",
+          border: "1px solid #e9ebed",
+          cursor: "zoom-in",
+        }}
       />
+      <Modal
+        visible={isOpen}
+        onDismiss={() => setIsOpen(false)}
+        closeAriaLabel="Close image preview"
+        header={image.caption ?? image.alt}
+        size="max"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={getHighResSrc(image.src)}
+          alt={image.alt}
+          style={{ width: "100%", borderRadius: "8px" }}
+        />
+      </Modal>
     </Box>
   );
 }
@@ -606,27 +634,8 @@ export default function Home() {
   }));
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const target = event.target as HTMLElement | null;
-      if (
-        target &&
-        (target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.isContentEditable)
-      ) {
-        return;
-      }
-
-      if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
-        setStepIndex((i) => Math.max(0, i - 1));
-      } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
-        setStepIndex((i) => Math.min(total - 1, i + 1));
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [total]);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [stepIndex]);
 
   return (
     <div className="workshop-scale min-h-screen flex flex-col bg-slate-50">
@@ -701,7 +710,7 @@ export default function Home() {
       </div>
 
       <AppLayout
-        navigationWidth={300}
+        navigationWidth={360}
         toolsHide
         stickyNotifications
         notifications={
