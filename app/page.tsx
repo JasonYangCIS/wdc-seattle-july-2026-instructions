@@ -15,7 +15,6 @@ import TextContent from "@cloudscape-design/components/text-content";
 import Button from "@cloudscape-design/components/button";
 import ProgressBar from "@cloudscape-design/components/progress-bar";
 import Icon from "@cloudscape-design/components/icon";
-import Popover from "@cloudscape-design/components/popover";
 import CopyToClipboard from "@cloudscape-design/components/copy-to-clipboard";
 import Textarea from "@cloudscape-design/components/textarea";
 import Link from "@cloudscape-design/components/link";
@@ -74,6 +73,7 @@ type Block =
         title: string;
         text: string;
         boldText?: string;
+        prompt?: string;
         image?: ImageRef;
         video?: VideoRef;
         link?: { text: string; href: string };
@@ -194,34 +194,42 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Add Real Data",
-    heading: "Add Real Data",
-    blocks: [
-      { type: "paragraph", text: "Use an API to add real data to the Code Commits dashboard." },
-      {
-        type: "prompt",
-        text: "Populate the table and graphs using the internal Commits API. I want to be able to filter by branch and author, and the charts should show lines of code added and removed and the number of commits per day.",
-        image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2Fcb283c52ccd042e29bd6c44525e07c1f?format=webp&width=800",
-          alt: "Real data prompt",
-          caption: "Real data prompt",
-        },
-      },
-    ],
-  },
-  {
-    navTitle: "Add Theming",
-    heading: "Add Theming",
+    navTitle: "Add Theming with Plan mode",
+    heading: "Add Theming with Plan mode",
     blocks: [
       { type: "paragraph", text: "Add theming functionality to the Code Commits dashboard." },
       {
-        type: "prompt",
-        text: "Add a dark mode toggle to this page.",
-        image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F232a0909a8504928b9f03cd3b406370c?format=webp&width=800",
-          alt: "Dark mode prompt",
-          caption: "Dark mode prompt",
-        },
+        type: "numbered",
+        items: [
+          {
+            title: "Switch to Plan Mode",
+            text: "Click the mode selector next to the prompt box and choose \"Plan\" so Fusion collaborates on an approach before generating any code.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fb3a4968ac0514794b5f010d405118f19?format=webp&width=1600",
+              alt: "Mode selector — Plan",
+              caption: "Mode selector — Plan",
+            },
+          },
+          {
+            title: "Paste in the Prompt",
+            text: "Paste the following prompt into the prompt box, then submit it.",
+            prompt: "Add a floating settings icon that on click opens up a small tool tip that allows the user to change their theme, the current UI should be the default \"light\" theme, the users should be able to choose a \"dark\" theme and a \"creative\" theme that freely implements a creative UI as a theme.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F3a14f809979e481d8e255632aed3259a?format=webp&width=1600",
+              alt: "Prompt ready to submit in Plan mode",
+              caption: "Prompt ready to submit in Plan mode",
+            },
+          },
+          {
+            title: "Review the Plan & Submit for Action",
+            text: "Read through the plan Fusion proposes, making changes if necessary. Once it looks right, implement the plan so Fusion can generate the code.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F25d836efcb734e8a8d6b2ccb50b60c55?format=webp&width=1600",
+              alt: "Reviewing and implementing the plan",
+              caption: "Reviewing and implementing the plan",
+            },
+          },
+        ],
       },
     ],
   },
@@ -253,6 +261,42 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       {
         type: "paragraph",
         text: "You can add a prompt from the \"Generate\" tab, or click the \"Apply Visual Changes\" button to have Fusion implement updates directly.",
+      },
+    ],
+  },
+  {
+    navTitle: "Code Hand-off",
+    heading: "Code Hand-off",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Take the branch Fusion generated and bring it down to your local machine to keep working in your own editor or terminal.",
+      },
+      {
+        type: "numbered",
+        items: [
+          {
+            title: "Clone the Repo",
+            text: "Clone this repo locally.",
+            link: {
+              text: "Clone this repo locally",
+              href: "https://github.com/JasonYangCIS/cloudscape-demo-july-2026",
+            },
+          },
+          {
+            title: "Copy the Pull Command",
+            text: "Open the Share panel and click \"Pull\" under Code Handoff. Copy the CLI command shown there.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa22103b8ca9a4201b7e994ecda45baa2?format=webp&width=800",
+              alt: "Share Project — Pull CLI command",
+              caption: "Share Project — Pull CLI command",
+            },
+          },
+          {
+            title: "Checkout the Branch Locally",
+            text: "In Kiro or any terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
+          },
+        ],
       },
     ],
   },
@@ -439,6 +483,7 @@ function BlockRenderer({ block }: { block: Block }) {
                       <Box variant="p" color="text-body-secondary" margin="n">
                         {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                       </Box>
+                      {item.prompt && <PromptBlock text={item.prompt} />}
                     </SpaceBetween>
                     {item.video ? <LazyVideo video={item.video} /> : <Figure image={item.image!} />}
                   </Grid>
@@ -447,6 +492,7 @@ function BlockRenderer({ block }: { block: Block }) {
                     <Box variant="p" color="text-body-secondary" margin="n">
                       {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                     </Box>
+                    {item.prompt && <PromptBlock text={item.prompt} />}
                   </SpaceBetween>
                 )}
               </SpaceBetween>
@@ -485,12 +531,6 @@ export default function Home() {
     type: "link",
     text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
     href: `#step-${i}`,
-    info:
-      s.navTitle === "Add Real Data" ? (
-        <Popover content="To raise for discussion with the team" size="small" triggerType="custom">
-          <Icon name="status-info" variant="link" />
-        </Popover>
-      ) : undefined,
   }));
 
   return (
