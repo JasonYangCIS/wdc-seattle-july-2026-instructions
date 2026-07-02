@@ -18,6 +18,7 @@ import Icon from "@cloudscape-design/components/icon";
 import CopyToClipboard from "@cloudscape-design/components/copy-to-clipboard";
 import Textarea from "@cloudscape-design/components/textarea";
 import Link from "@cloudscape-design/components/link";
+import Alert from "@cloudscape-design/components/alert";
 
 type ImageRef = {
   src: string;
@@ -80,7 +81,8 @@ type Block =
       }[];
     }
   | { type: "prompt"; text: string; image?: ImageRef }
-  | { type: "image"; image: ImageRef };
+  | { type: "image"; image: ImageRef }
+  | { type: "alert"; alertType: "success" | "error" | "warning" | "info"; header?: string; text: string };
 
 type StepContent = {
   navTitle: string;
@@ -101,7 +103,13 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       {
         type: "paragraph",
         strongLead: "Your goal",
-        text: ": In the next hour, add a new dashboard to Cloudscape and make it your own. You don't need to know how to code to do this—and can do so by prompting with natural language. You can find the full list of suggested prompts and required resources for the workshop exercise beginning after clicking 'Next ->'",
+        text: ": In the next hour, add a new dashboard to Cloudscape and make it your own. You don't need to know how to code to do this—and can do so by prompting with natural language. You can find the full list of suggested prompts and required resources for the workshop exercise beginning after going to the next step.",
+      },
+      {
+        type: "alert",
+        alertType: "warning",
+        header: "TODO",
+        text: "Builder team still needs to figure out a way to link attendees to the workshop space and automatically authenticate both in-person and online Amazon employees.",
       },
       { type: "heading", text: "Builder 101" },
       {
@@ -574,6 +582,12 @@ function BlockRenderer({ block }: { block: Block }) {
       );
     case "image":
       return <Figure image={block.image} />;
+    case "alert":
+      return (
+        <Alert type={block.alertType} header={block.header}>
+          {block.text}
+        </Alert>
+      );
   }
 }
 
@@ -660,9 +674,6 @@ export default function Home() {
               />
             </span>
           </div>
-          <span className="hidden sm:block text-[19px] leading-[19.5px] font-semibold text-white/90">
-            <p>Seattle 2026</p>
-          </span>
         </div>
       </div>
 
@@ -722,6 +733,12 @@ export default function Home() {
           </ContentLayout>
         }
       />
+
+      <footer className="w-full bg-gray-100 border-t border-gray-200">
+        <div className="mx-auto max-w-7xl px-4 py-2 md:px-6 text-center text-sm text-gray-600">
+          Builder.io &lt;&gt; AWS Cloudscape Workshop Seattle 2026
+        </div>
+      </footer>
     </div>
   );
 }
