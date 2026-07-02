@@ -637,29 +637,6 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [stepIndex]);
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const target = event.target as HTMLElement | null;
-      if (
-        target &&
-        (target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.isContentEditable)
-      ) {
-        return;
-      }
-
-      if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
-        setStepIndex((i) => Math.max(0, i - 1));
-      } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
-        setStepIndex((i) => Math.min(total - 1, i + 1));
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [total]);
-
   return (
     <div className="workshop-scale min-h-screen flex flex-col bg-slate-50">
       <div className="w-full bg-[#0a0a0a] text-white shadow-sm">
