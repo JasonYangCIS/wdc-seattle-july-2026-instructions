@@ -302,6 +302,58 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             title: "Checkout the Branch Locally",
             text: "In Kiro or any terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
           },
+          {
+            title: "Make Changes in Your Local IDE",
+            text: "Open the repo in your own editor (VS Code, Kiro, etc.) and make whatever code changes you like — install packages, refactor, add features, fix bugs. For example, add or simply make a change in the README, then commit the changes.",
+          },
+          {
+            title: "Option A: Push Back with the Push Command",
+            text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Fusion project — it updates automatically, no manual sync needed.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7a6b54b38a7449418747fcbbb5eba30e?format=webp&width=1600",
+              alt: "Share Project — Push CLI command",
+              caption: "Share Project — Push CLI command",
+            },
+          },
+          {
+            title: "Option B: git push and Sync Manually",
+            text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Fusion, the top bar will show you're behind the remote — click the sync icon to pull those changes into the project.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa7314b9f95704816abf7602ae65d560f?format=webp&width=1600",
+              alt: "Fusion — commit behind remote, click to sync",
+              caption: "Fusion — commit behind remote, click to sync",
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    navTitle: "Submit a Pull Request",
+    heading: "Submit a Pull Request",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
+      },
+      {
+        type: "numbered",
+        items: [
+          {
+            title: "Send the PR",
+            text: "Click the \"Send PR\" button in the top right of the Fusion workspace to open a pull request for your branch against the base branch.",
+          },
+          {
+            title: "Wait for the Builder Bot Review",
+            text: "The Builder bot PR review agent automatically runs against your pull request and leaves comments directly on the PR, flagging potential bugs, style issues, or suggestions.",
+          },
+          {
+            title: "Ask @builder-bot to Make Changes",
+            text: "Open the pull request on GitHub and leave a comment — on a specific line of code, or directly on the PR itself — mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it — you can also tag it once to \"address all feedback in this pull request.\"",
+            video: {
+              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6de6aa254f334d85a732071a6b830b76?alt=media&token=21671f78-b7be-40fe-bce4-502ec269c114&apiKey=YJIGb4i01jvw0SRdL5Bt",
+            },
+          },
         ],
       },
     ],
@@ -604,7 +656,7 @@ export default function Home() {
               <img
                 src="https://builder.aws.com/assets/logo-dark-mode-BWHgg2gz.svg"
                 alt="AWS"
-                className="h-7 w-auto md:h-8"
+                className="h-7 w-auto md:h-8 mt-4"
               />
             </span>
           </div>
