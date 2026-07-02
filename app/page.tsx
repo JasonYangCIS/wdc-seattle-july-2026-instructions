@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AppLayout from "@cloudscape-design/components/app-layout";
 import ContentLayout from "@cloudscape-design/components/content-layout";
 import SideNavigation, {
@@ -25,6 +25,11 @@ type ImageRef = {
   caption?: string;
 };
 
+type VideoRef = {
+  src: string;
+  caption?: string;
+};
+
 type Block =
   | { type: "eyebrow"; text: string }
   | { type: "paragraph"; text: string; strongLead?: string }
@@ -32,7 +37,13 @@ type Block =
   | { type: "bullets"; items: { text: string; example?: string }[] }
   | {
       type: "numbered";
-      items: { title: string; text: string; image?: ImageRef; link?: { text: string; href: string } }[];
+      items: {
+        title: string;
+        text: string;
+        image?: ImageRef;
+        video?: VideoRef;
+        link?: { text: string; href: string };
+      }[];
     }
   | { type: "prompt"; text: string; image?: ImageRef }
   | { type: "image"; image: ImageRef };
@@ -114,9 +125,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
               text: "Install the Builder.io Figma plugin",
               href: "https://www.figma.com/community/plugin/747985167520967365",
             },
-            image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F53318c29b86941cb96827ad1126687f0?format=webp&width=800",
-              alt: "Builder.io Figma plugin",
+            video: {
+              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fdd4aab2a40e54e1ea6fa36f74983e371?alt=media&token=f1a4489f-cf18-4981-bb4f-932fffe1302c&apiKey=YJIGb4i01jvw0SRdL5Bt",
               caption: "Builder.io Figma plugin",
             },
           },
@@ -257,6 +267,50 @@ function Figure({ image }: { image: ImageRef }) {
   );
 }
 
+function LazyVideo({ video }: { video: VideoRef }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Box margin={{ top: "s" }}>
+      <div
+        ref={containerRef}
+        style={{ width: "100%", borderRadius: "8px", overflow: "hidden", border: "1px solid #e9ebed" }}
+      >
+        {isVisible && (
+          <video
+            src={video.src}
+            controls
+            preload="none"
+            style={{ width: "100%", display: "block" }}
+          />
+        )}
+      </div>
+      {video.caption && (
+        <Box variant="small" color="text-body-secondary" textAlign="center" margin={{ top: "xs" }}>
+          {video.caption}
+        </Box>
+      )}
+    </Box>
+  );
+}
+
 function PromptBlock({ text }: { text: string }) {
   const [value, setValue] = useState(text);
 
@@ -341,7 +395,7 @@ function BlockRenderer({ block }: { block: Block }) {
                     {item.title}
                   </Box>
                 </div>
-                {item.image ? (
+                {item.image || item.video ? (
                   <Grid
                     gridDefinition={[
                       { colspan: { default: 12, m: 5 } },
@@ -358,7 +412,7 @@ function BlockRenderer({ block }: { block: Block }) {
                         </Link>
                       )}
                     </SpaceBetween>
-                    <Figure image={item.image} />
+                    {item.video ? <LazyVideo video={item.video} /> : <Figure image={item.image!} />}
                   </Grid>
                 ) : (
                   <SpaceBetween size="xs">
