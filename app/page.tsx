@@ -253,11 +253,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       {
         type: "prompt",
         text: "Set up Storybook for this project and add a story for the theming settings component we just built, with controls for switching between the light, dark, and creative themes.",
-        image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F3a14f809979e481d8e255632aed3259a?format=webp&width=1600",
-          alt: "Prompt ready to submit in Plan mode",
-          caption: "Prompt ready to submit in Plan mode",
-        },
       },
       {
         type: "bullets",
