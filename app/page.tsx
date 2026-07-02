@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import AppLayout from "@cloudscape-design/components/app-layout";
 import ContentLayout from "@cloudscape-design/components/content-layout";
 import SideNavigation, {
@@ -36,7 +36,7 @@ function renderTextWithInlineLink(
   link?: { text: string; href: string },
   boldText?: string
 ) {
-  let content: string | JSX.Element = text;
+  let content: string | ReactNode = text;
   if (boldText) {
     const index = text.indexOf(boldText);
     if (index !== -1) {
@@ -455,11 +455,18 @@ function BlockRenderer({ block }: { block: Block }) {
         </SpaceBetween>
       );
     case "prompt":
-      return (
-        <SpaceBetween size="s">
+      return block.image ? (
+        <Grid
+          gridDefinition={[
+            { colspan: { default: 12, m: 5 } },
+            { colspan: { default: 12, m: 7 } },
+          ]}
+        >
           <PromptBlock text={block.text} />
-          {block.image && <Figure image={block.image} />}
-        </SpaceBetween>
+          <Figure image={block.image} />
+        </Grid>
+      ) : (
+        <PromptBlock text={block.text} />
       );
     case "image":
       return <Figure image={block.image} />;
