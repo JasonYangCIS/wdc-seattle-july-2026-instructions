@@ -30,10 +30,27 @@ type VideoRef = {
   caption?: string;
 };
 
-function renderTextWithInlineLink(text: string, link?: { text: string; href: string }) {
-  if (!link) return text;
+function renderTextWithInlineLink(
+  text: string,
+  link?: { text: string; href: string },
+  boldText?: string
+) {
+  let content: string | JSX.Element = text;
+  if (boldText) {
+    const index = text.indexOf(boldText);
+    if (index !== -1) {
+      content = (
+        <>
+          {text.slice(0, index)}
+          <strong>{boldText}</strong>
+          {text.slice(index + boldText.length)}
+        </>
+      );
+    }
+  }
+  if (!link) return content;
   const index = text.indexOf(link.text);
-  if (index === -1) return text;
+  if (index === -1) return content;
   return (
     <>
       {text.slice(0, index)}
@@ -55,6 +72,7 @@ type Block =
       items: {
         title: string;
         text: string;
+        boldText?: string;
         image?: ImageRef;
         video?: VideoRef;
         link?: { text: string; href: string };
@@ -148,6 +166,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             title: "Export & Paste the Design",
             text: "Click the \"Smart Export\" button. Once the plugin is done exporting, paste into the Fusion prompt box. Don't submit your prompt yet!—proceed to Step 03 to continue.",
+            boldText: "Don't submit your prompt yet!",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F471b86a0abe1411b969def9442e839c2?format=webp&width=1600",
               alt: "Fusion prompt with design attachment",
@@ -418,7 +437,7 @@ function BlockRenderer({ block }: { block: Block }) {
                   >
                     <SpaceBetween size="xs">
                       <Box variant="p" color="text-body-secondary" margin="n">
-                        {renderTextWithInlineLink(item.text, item.link)}
+                        {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                       </Box>
                     </SpaceBetween>
                     {item.video ? <LazyVideo video={item.video} /> : <Figure image={item.image!} />}
@@ -426,7 +445,7 @@ function BlockRenderer({ block }: { block: Block }) {
                 ) : (
                   <SpaceBetween size="xs">
                     <Box variant="p" color="text-body-secondary" margin="n">
-                      {renderTextWithInlineLink(item.text, item.link)}
+                      {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                     </Box>
                   </SpaceBetween>
                 )}
