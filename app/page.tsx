@@ -110,6 +110,10 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             title: "Install the Figma Plugin",
             text: "Install the Builder.io Figma plugin on the design file you just opened. Open the plugin and select the \"Dashboard\" layer in Figma.",
+            link: {
+              text: "Install the Builder.io Figma plugin",
+              href: "https://www.figma.com/community/plugin/747985167520967365",
+            },
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F53318c29b86941cb96827ad1126687f0?format=webp&width=800",
               alt: "Builder.io Figma plugin",
