@@ -185,7 +185,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         type: "prompt",
         text: "Create code commits dashboard using this Figma design and the mock data found in repo.",
         image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2F76e39d6cb5b24501bed5149204e569f5%2F19433b275c23480990468fb0c3d851f9?format=webp&width=800",
+          src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7ead95da82384033b46e1e61d8c954ab?format=webp&width=1600",
           alt: "Figma design prompt",
           caption: "Figma design prompt",
         },
