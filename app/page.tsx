@@ -273,11 +273,6 @@ function Figure({ image }: { image: ImageRef }) {
         alt={image.alt}
         style={{ width: "100%", borderRadius: "8px", border: "1px solid #e9ebed" }}
       />
-      {image.caption && (
-        <Box variant="small" color="text-body-secondary" textAlign="center" margin={{ top: "xs" }}>
-          {image.caption}
-        </Box>
-      )}
     </Box>
   );
 }
