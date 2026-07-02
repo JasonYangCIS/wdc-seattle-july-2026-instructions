@@ -332,8 +332,8 @@ function BlockRenderer({ block }: { block: Block }) {
                 {item.image ? (
                   <Grid
                     gridDefinition={[
-                      { colspan: { default: 12, m: 6 } },
-                      { colspan: { default: 12, m: 6 } },
+                      { colspan: { default: 12, m: 5 } },
+                      { colspan: { default: 12, m: 7 } },
                     ]}
                   >
                     <Box variant="p" color="text-body-secondary" margin="n">
