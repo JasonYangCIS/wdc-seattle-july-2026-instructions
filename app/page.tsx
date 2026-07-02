@@ -30,6 +30,21 @@ type VideoRef = {
   caption?: string;
 };
 
+function renderTextWithInlineLink(text: string, link?: { text: string; href: string }) {
+  if (!link) return text;
+  const index = text.indexOf(link.text);
+  if (index === -1) return text;
+  return (
+    <>
+      {text.slice(0, index)}
+      <Link href={link.href} external externalIconAriaLabel="Opens in a new tab">
+        {link.text}
+      </Link>
+      {text.slice(index + link.text.length)}
+    </>
+  );
+}
+
 type Block =
   | { type: "eyebrow"; text: string }
   | { type: "paragraph"; text: string; strongLead?: string }
@@ -109,7 +124,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             title: "Open the Design File",
             text: "Open the Cloudscape dashboard file in Figma by clicking the \"Open in Figma\" button. Make sure you open it in a Figma Organization where you can install plugins.",
             link: {
-              text: "Open the Cloudscape dashboard Figma file",
+              text: "Open the Cloudscape dashboard file in Figma",
               href: "https://www.figma.com/community/file/1441915505995376925/builder-io-cloudscape-example-design",
             },
             image: {
@@ -408,26 +423,16 @@ function BlockRenderer({ block }: { block: Block }) {
                   >
                     <SpaceBetween size="xs">
                       <Box variant="p" color="text-body-secondary" margin="n">
-                        {item.text}
+                        {renderTextWithInlineLink(item.text, item.link)}
                       </Box>
-                      {item.link && (
-                        <Link href={item.link.href} external externalIconAriaLabel="Opens in a new tab">
-                          {item.link.text}
-                        </Link>
-                      )}
                     </SpaceBetween>
                     {item.video ? <LazyVideo video={item.video} /> : <Figure image={item.image!} />}
                   </Grid>
                 ) : (
                   <SpaceBetween size="xs">
                     <Box variant="p" color="text-body-secondary" margin="n">
-                      {item.text}
+                      {renderTextWithInlineLink(item.text, item.link)}
                     </Box>
-                    {item.link && (
-                      <Link href={item.link.href} external externalIconAriaLabel="Opens in a new tab">
-                        {item.link.text}
-                      </Link>
-                    )}
                   </SpaceBetween>
                 )}
               </SpaceBetween>
