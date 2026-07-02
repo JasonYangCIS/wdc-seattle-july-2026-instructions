@@ -15,7 +15,6 @@ import TextContent from "@cloudscape-design/components/text-content";
 import Button from "@cloudscape-design/components/button";
 import ProgressBar from "@cloudscape-design/components/progress-bar";
 import Icon from "@cloudscape-design/components/icon";
-import Popover from "@cloudscape-design/components/popover";
 import CopyToClipboard from "@cloudscape-design/components/copy-to-clipboard";
 import Textarea from "@cloudscape-design/components/textarea";
 import Link from "@cloudscape-design/components/link";
@@ -505,12 +504,6 @@ export default function Home() {
     type: "link",
     text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
     href: `#step-${i}`,
-    info:
-      s.navTitle === "Code Hand-off" ? (
-        <Popover content="To raise for discussion with the team" size="small" triggerType="custom">
-          <Icon name="status-info" variant="link" />
-        </Popover>
-      ) : undefined,
   }));
 
   return (
