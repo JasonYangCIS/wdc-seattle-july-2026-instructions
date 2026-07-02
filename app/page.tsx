@@ -222,7 +222,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Review the Plan & Submit for Action",
-            text: "Read through the plan Fusion proposes. If it looks right, submit it so Fusion can generate the code.",
+            text: "Read through the plan Fusion proposes, making changes if necessary. Once it looks right, implement the plan so Fusion can generate the code.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F25d836efcb734e8a8d6b2ccb50b60c55?format=webp&width=800",
+              alt: "Reviewing and implementing the plan",
+              caption: "Reviewing and implementing the plan",
+            },
           },
         ],
       },
