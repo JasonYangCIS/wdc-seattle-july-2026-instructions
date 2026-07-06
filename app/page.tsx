@@ -604,7 +604,14 @@ function BlockRenderer({ block }: { block: Block }) {
                   {item.text}
                   {item.example && (
                     <Box variant="small" color="text-body-secondary" margin={{ top: "xxs", left: "xs" }}>
-                      {item.example}
+                      <CopyToClipboard
+                        variant="inline"
+                        copyButtonAriaLabel="Copy prompt"
+                        copySuccessText="Prompt copied"
+                        copyErrorText="Prompt failed to copy"
+                        textToCopy={item.example.match(/"([^"]*)"/)?.[1] ?? item.example}
+                        textToDisplay={item.example}
+                      />
                     </Box>
                   )}
                 </Box>
