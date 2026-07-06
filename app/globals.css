@@ -26,12 +26,13 @@ body {
 }
 
 .step-figure-image {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
 .step-figure-image:hover {
   transform: scale(1.01);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  opacity: 0.9;
 }
 
 .workshop-scale {
