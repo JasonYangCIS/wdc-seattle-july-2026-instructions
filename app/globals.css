@@ -25,6 +25,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.step-figure-image {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.step-figure-image:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
 .workshop-scale {
   --font-size-body-m-a7nh2n: 16px;
   --line-height-body-m-2mh3ke: 24px;

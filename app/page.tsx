@@ -474,6 +474,7 @@ function Figure({ image }: { image: ImageRef }) {
         src={image.src}
         alt={image.alt}
         onClick={() => setIsOpen(true)}
+        className="step-figure-image"
         style={{
           width: "100%",
           borderRadius: "8px",
