@@ -174,7 +174,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Export & Paste the Design",
-            text: "Click the \"Smart Export\" button. Once the plugin is done exporting, paste into the Fusion prompt box. Don't submit your prompt yet!—proceed to Step 03 to continue.",
+            text: "Click the \"Smart Export\" button. Once the plugin is done exporting, paste into the Fusion prompt box. Don't submit your prompt yet! Proceed to Step 03 to continue.",
             boldText: "Don't submit your prompt yet!",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F471b86a0abe1411b969def9442e839c2?format=webp&width=1600",
@@ -340,11 +340,11 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Make Changes in Your Local IDE",
-            text: "Open the repo in your own editor (VS Code, Kiro, etc.) and make whatever code changes you like — install packages, refactor, add features, fix bugs. For example, add or simply make a change in the README, then commit the changes.",
+            text: "Open the repo in your own editor (VS Code, Kiro, etc.) and make whatever code changes you like: install packages, refactor, add features, fix bugs. For example, add or simply make a change in the README, then commit the changes.",
           },
           {
             title: "Option A: Push Back with the Push Command",
-            text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Fusion project — it updates automatically, no manual sync needed.",
+            text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Fusion project. It updates automatically, so there's no manual sync needed.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7a6b54b38a7449418747fcbbb5eba30e?format=webp&width=1600",
               alt: "Share Project, Push CLI command",
@@ -353,7 +353,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Option B: git push and Sync Manually",
-            text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Fusion, the top bar will show you're behind the remote — click the sync icon to pull those changes into the project.",
+            text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Fusion, the top bar will show you're behind the remote. Click the sync icon to pull those changes into the project.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa7314b9f95704816abf7602ae65d560f?format=webp&width=1600",
               alt: "Fusion, commit behind remote, click to sync",
@@ -391,7 +391,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Ask @builder-bot to Make Changes",
-            text: "Open the pull request on GitHub and leave a comment — on a specific line of code, or directly on the PR itself — mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it — you can also tag it once to \"address all feedback in this pull request.\"",
+            text: "Open the pull request on GitHub and leave a comment, either on a specific line of code or directly on the PR itself, mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it. You can also tag it once to \"address all feedback in this pull request.\"",
             video: {
               src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6de6aa254f334d85a732071a6b830b76?alt=media&token=21671f78-b7be-40fe-bce4-502ec269c114&apiKey=YJIGb4i01jvw0SRdL5Bt",
             },
@@ -412,10 +412,10 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       {
         type: "bullets",
         items: [
-          { text: "Change the theme of the entire application", example: "e.g. \"Match the visual style of Manchester United\"" },
-          { text: "Ask questions to Fusion", example: "e.g. \"Am I using all Cloudscape design tokens and components?\"" },
-          { text: "Ask Fusion to give you recommendations", example: "e.g. \"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
-          { text: "Add gamification to the application", example: "e.g. \"Gamify the dashboard to make progress feel more fun.\"" },
+          { text: "Change the theme of the entire application", example: "\"Match the visual style of Manchester United\"" },
+          { text: "Ask questions to Fusion", example: "\"Am I using all Cloudscape design tokens and components?\"" },
+          { text: "Ask Fusion to give you recommendations", example: "\"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
+          { text: "Add gamification to the application", example: "\"Gamify the dashboard to make progress feel more fun.\"" },
         ],
       },
       { type: "heading", text: "Explore the Code" },
@@ -474,6 +474,7 @@ function Figure({ image }: { image: ImageRef }) {
         src={image.src}
         alt={image.alt}
         onClick={() => setIsOpen(true)}
+        className="step-figure-image"
         style={{
           width: "100%",
           borderRadius: "8px",
@@ -600,14 +601,19 @@ function BlockRenderer({ block }: { block: Block }) {
           <ul style={{ listStyleType: "disc" }}>
             {block.items.map((item, i) => (
               <li key={i}>
-                <Box margin={{ bottom: "n" }}>
-                  {item.text}
-                  {item.example && (
-                    <Box variant="small" color="text-body-secondary" margin={{ top: "xxs", left: "xs" }}>
-                      {item.example}
-                    </Box>
-                  )}
-                </Box>
+                <Box margin={{ bottom: "n" }}>{item.text}{item.example ? ":" : ""}</Box>
+                {item.example && (
+                  <Box variant="small" color="text-body-secondary" margin={{ top: "xxs" }}>
+                    <CopyToClipboard
+                      variant="inline"
+                      copyButtonAriaLabel="Copy prompt"
+                      copySuccessText="Prompt copied"
+                      copyErrorText="Prompt failed to copy"
+                      textToCopy={item.example.match(/"([^"]*)"/)?.[1] ?? item.example}
+                      textToDisplay={item.example}
+                    />
+                  </Box>
+                )}
               </li>
             ))}
           </ul>
