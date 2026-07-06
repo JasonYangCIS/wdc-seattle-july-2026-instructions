@@ -66,7 +66,7 @@ function renderTextWithInlineLink(
 
 type Block =
   | { type: "eyebrow"; text: string }
-  | { type: "paragraph"; text: string; strongLead?: string }
+  | { type: "paragraph"; text: string; strongLead?: string; link?: { text: string; href: string } }
   | { type: "heading"; text: string }
   | { type: "bullets"; items: { text: string; example?: string }[] }
   | {
@@ -99,12 +99,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       { type: "eyebrow", text: "AMAZON WDC SEATTLE · BUILDER.IO WORKSHOP · CLOUDSCAPE DESIGN SYSTEM EXERCISE" },
       {
         type: "paragraph",
-        text: "We are going to build some custom dashboards using the Cloudscape design system and the Builder's Fusion product.",
+        text: "We are going to build a custom dashboard using the Cloudscape design system and the Builder's Fusion product.",
       },
       {
         type: "paragraph",
         strongLead: "Your goal",
-        text: ": In the next hour, add a new dashboard to Cloudscape and make it your own. You don't need to know how to code to do this—and can do so by prompting with natural language. You can find the full list of suggested prompts and required resources for the workshop exercise beginning after going to the next step.",
+        text: ": In the next hour, add a new dashboard to Cloudscape and make it your own. You don't need to know how to code to do this, and can do so by prompting with natural language. You can find the full list of suggested prompts and required resources for the workshop exercise beginning after going to the next step.",
       },
       {
         type: "alert",
@@ -112,7 +112,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         header: "TODO",
         text: "Builder team still needs to figure out a way to link attendees to the workshop space and automatically authenticate both in-person and online Amazon employees.",
       },
-      { type: "heading", text: "Builder 101" },
+      { type: "heading", text: "Pro tips" },
       {
         type: "bullets",
         items: [
@@ -135,8 +135,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Find the \"Cloudscape\" project in the Projects section and click \"+ New Branch\" to create a new branch for your workshop testing.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4f405dd7a45e44fcb812ecc14a3d85e8?format=webp&width=1600",
-              alt: "Cloudscape project — New Branch",
-              caption: "Cloudscape project — New Branch",
+              alt: "Cloudscape project, New Branch",
+              caption: "Cloudscape project, New Branch",
             },
           },
           {
@@ -215,8 +215,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Click the mode selector next to the prompt box and choose \"Plan\" so Fusion collaborates on an approach before generating any code.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fb3a4968ac0514794b5f010d405118f19?format=webp&width=1600",
-              alt: "Mode selector — Plan",
-              caption: "Mode selector — Plan",
+              alt: "Mode selector, Plan",
+              caption: "Mode selector, Plan",
             },
           },
           {
@@ -279,8 +279,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Switch from \"Interact\" to \"Design\" mode, then select the \"Style\" tab. Select an element in the visual editor to access Figma-like editing controls.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4dd9ff9956644463bee4e3f61692e56d?format=webp&width=1600",
-              alt: "Design Mode — Style tab",
-              caption: "Design Mode — Style tab",
+              alt: "Design Mode, Style tab",
+              caption: "Design Mode, Style tab",
             },
           },
           {
@@ -330,8 +330,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Open the Share panel and click \"Pull\" under Code Handoff. Copy the CLI command shown there.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa22103b8ca9a4201b7e994ecda45baa2?format=webp&width=800",
-              alt: "Share Project — Pull CLI command",
-              caption: "Share Project — Pull CLI command",
+              alt: "Share Project, Pull CLI command",
+              caption: "Share Project, Pull CLI command",
             },
           },
           {
@@ -347,8 +347,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Fusion project — it updates automatically, no manual sync needed.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7a6b54b38a7449418747fcbbb5eba30e?format=webp&width=1600",
-              alt: "Share Project — Push CLI command",
-              caption: "Share Project — Push CLI command",
+              alt: "Share Project, Push CLI command",
+              caption: "Share Project, Push CLI command",
             },
           },
           {
@@ -356,8 +356,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Fusion, the top bar will show you're behind the remote — click the sync icon to pull those changes into the project.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa7314b9f95704816abf7602ae65d560f?format=webp&width=1600",
-              alt: "Fusion — commit behind remote, click to sync",
-              caption: "Fusion — commit behind remote, click to sync",
+              alt: "Fusion, commit behind remote, click to sync",
+              caption: "Fusion, commit behind remote, click to sync",
             },
           },
         ],
@@ -406,7 +406,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Experiment using prompts, screenshots, and more. You're low-key coding now—keep flexing your vibe-coding skills with any time you have left. Share what you've built with your peers around you.",
+        text: "Experiment using prompts, screenshots, and more. You're low-key coding now, so keep flexing your vibe-coding skills with any time you have left. Share what you've built with your peers around you.",
       },
       { type: "heading", text: "Other recommendations" },
       {
@@ -422,6 +422,38 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       {
         type: "paragraph",
         text: "Switch to the Code tab to see what Fusion generated, browse files, and learn how Cloudscape tokens are applied.",
+      },
+    ],
+  },
+  {
+    navTitle: "Recap & Resources",
+    heading: "Recap & Resources",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Nice work! Over the course of this workshop, you used Fusion to go from a Figma design to a fully themed, production-ready Cloudscape dashboard.",
+      },
+      { type: "heading", text: "What we covered" },
+      {
+        type: "bullets",
+        items: [
+          { text: "Generating a dashboard from a Figma design using the Builder.io Figma plugin and Smart Export." },
+          { text: "Using Plan mode to collaborate with Fusion on an approach before generating code, then adding theming support." },
+          { text: "Setting up Storybook to develop and review components in isolation." },
+          { text: "Using Design mode's Style tab to make Figma-like visual edits and apply them directly to the code." },
+          { text: "Handing code off between Fusion and a local IDE with Push/Pull, or plain git push/sync." },
+          { text: "Submitting a pull request and using the Builder bot review agent, including tagging @builder-bot to address feedback." },
+          { text: "Free experimentation with prompts, theming, and accessibility recommendations." },
+        ],
+      },
+      { type: "heading", text: "Keep learning" },
+      {
+        type: "paragraph",
+        text: "To keep exploring Fusion beyond this workshop, check out the Get Started with Fusion docs.",
+        link: {
+          text: "Get Started with Fusion docs",
+          href: "https://www.builder.io/c/docs/get-started-fusion",
+        },
       },
     ],
   },
@@ -557,7 +589,7 @@ function BlockRenderer({ block }: { block: Block }) {
       return (
         <Box variant="p" color="text-body-secondary">
           {block.strongLead && <strong>{block.strongLead}</strong>}
-          {block.text}
+          {renderTextWithInlineLink(block.text, block.link)}
         </Box>
       );
     case "heading":
