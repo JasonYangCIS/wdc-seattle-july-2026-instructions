@@ -600,22 +600,19 @@ function BlockRenderer({ block }: { block: Block }) {
           <ul style={{ listStyleType: "disc" }}>
             {block.items.map((item, i) => (
               <li key={i}>
-                <Box margin={{ bottom: "n" }}>
-                  {item.text}
-                  {item.example && (
-                    <Box variant="small" color="text-body-secondary" margin={{ top: "xxs" }}>
-                      <br />
-                      <CopyToClipboard
-                        variant="inline"
-                        copyButtonAriaLabel="Copy prompt"
-                        copySuccessText="Prompt copied"
-                        copyErrorText="Prompt failed to copy"
-                        textToCopy={item.example.match(/"([^"]*)"/)?.[1] ?? item.example}
-                        textToDisplay={item.example}
-                      />
-                    </Box>
-                  )}
-                </Box>
+                <Box margin={{ bottom: "n" }}>{item.text}</Box>
+                {item.example && (
+                  <Box variant="small" color="text-body-secondary" margin={{ top: "xxs" }}>
+                    <CopyToClipboard
+                      variant="inline"
+                      copyButtonAriaLabel="Copy prompt"
+                      copySuccessText="Prompt copied"
+                      copyErrorText="Prompt failed to copy"
+                      textToCopy={item.example.match(/"([^"]*)"/)?.[1] ?? item.example}
+                      textToDisplay={item.example}
+                    />
+                  </Box>
+                )}
               </li>
             ))}
           </ul>
