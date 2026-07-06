@@ -135,8 +135,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Find the \"Cloudscape\" project in the Projects section and click \"+ New Branch\" to create a new branch for your workshop testing.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4f405dd7a45e44fcb812ecc14a3d85e8?format=webp&width=1600",
-              alt: "Cloudscape project — New Branch",
-              caption: "Cloudscape project — New Branch",
+              alt: "Cloudscape project, New Branch",
+              caption: "Cloudscape project, New Branch",
             },
           },
           {
@@ -215,8 +215,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Click the mode selector next to the prompt box and choose \"Plan\" so Fusion collaborates on an approach before generating any code.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fb3a4968ac0514794b5f010d405118f19?format=webp&width=1600",
-              alt: "Mode selector — Plan",
-              caption: "Mode selector — Plan",
+              alt: "Mode selector, Plan",
+              caption: "Mode selector, Plan",
             },
           },
           {
@@ -279,8 +279,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Switch from \"Interact\" to \"Design\" mode, then select the \"Style\" tab. Select an element in the visual editor to access Figma-like editing controls.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4dd9ff9956644463bee4e3f61692e56d?format=webp&width=1600",
-              alt: "Design Mode — Style tab",
-              caption: "Design Mode — Style tab",
+              alt: "Design Mode, Style tab",
+              caption: "Design Mode, Style tab",
             },
           },
           {
@@ -330,8 +330,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Open the Share panel and click \"Pull\" under Code Handoff. Copy the CLI command shown there.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa22103b8ca9a4201b7e994ecda45baa2?format=webp&width=800",
-              alt: "Share Project — Pull CLI command",
-              caption: "Share Project — Pull CLI command",
+              alt: "Share Project, Pull CLI command",
+              caption: "Share Project, Pull CLI command",
             },
           },
           {
@@ -347,8 +347,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Fusion project — it updates automatically, no manual sync needed.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7a6b54b38a7449418747fcbbb5eba30e?format=webp&width=1600",
-              alt: "Share Project — Push CLI command",
-              caption: "Share Project — Push CLI command",
+              alt: "Share Project, Push CLI command",
+              caption: "Share Project, Push CLI command",
             },
           },
           {
@@ -356,8 +356,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Fusion, the top bar will show you're behind the remote — click the sync icon to pull those changes into the project.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa7314b9f95704816abf7602ae65d560f?format=webp&width=1600",
-              alt: "Fusion — commit behind remote, click to sync",
-              caption: "Fusion — commit behind remote, click to sync",
+              alt: "Fusion, commit behind remote, click to sync",
+              caption: "Fusion, commit behind remote, click to sync",
             },
           },
         ],
@@ -406,7 +406,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Experiment using prompts, screenshots, and more. You're low-key coding now—keep flexing your vibe-coding skills with any time you have left. Share what you've built with your peers around you.",
+        text: "Experiment using prompts, screenshots, and more. You're low-key coding now, so keep flexing your vibe-coding skills with any time you have left. Share what you've built with your peers around you.",
       },
       { type: "heading", text: "Other recommendations" },
       {
