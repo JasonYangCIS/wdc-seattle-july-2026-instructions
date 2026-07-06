@@ -603,7 +603,8 @@ function BlockRenderer({ block }: { block: Block }) {
                 <Box margin={{ bottom: "n" }}>
                   {item.text}
                   {item.example && (
-                    <Box variant="small" color="text-body-secondary" margin={{ top: "xxs", left: "xs" }}>
+                    <Box variant="small" color="text-body-secondary" margin={{ top: "xxs" }}>
+                      <br />
                       <CopyToClipboard
                         variant="inline"
                         copyButtonAriaLabel="Copy prompt"
