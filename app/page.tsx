@@ -66,7 +66,7 @@ function renderTextWithInlineLink(
 
 type Block =
   | { type: "eyebrow"; text: string }
-  | { type: "paragraph"; text: string; strongLead?: string }
+  | { type: "paragraph"; text: string; strongLead?: string; link?: { text: string; href: string } }
   | { type: "heading"; text: string }
   | { type: "bullets"; items: { text: string; example?: string }[] }
   | {
@@ -425,6 +425,38 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       },
     ],
   },
+  {
+    navTitle: "Recap & Resources",
+    heading: "Recap & Resources",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Nice work! Over the course of this workshop, you used Fusion to go from a Figma design to a fully themed, production-ready Cloudscape dashboard.",
+      },
+      { type: "heading", text: "What we covered" },
+      {
+        type: "bullets",
+        items: [
+          { text: "Generating a dashboard from a Figma design using the Builder.io Figma plugin and Smart Export." },
+          { text: "Using Plan mode to collaborate with Fusion on an approach before generating code, then adding theming support." },
+          { text: "Setting up Storybook to develop and review components in isolation." },
+          { text: "Using Design mode's Style tab to make Figma-like visual edits and apply them directly to the code." },
+          { text: "Handing code off between Fusion and a local IDE with Push/Pull, or plain git push/sync." },
+          { text: "Submitting a pull request and using the Builder bot review agent, including tagging @builder-bot to address feedback." },
+          { text: "Free experimentation with prompts, theming, and accessibility recommendations." },
+        ],
+      },
+      { type: "heading", text: "Keep learning" },
+      {
+        type: "paragraph",
+        text: "To keep exploring Fusion beyond this workshop, check out the Get Started with Fusion docs.",
+        link: {
+          text: "Get Started with Fusion docs",
+          href: "https://www.builder.io/c/docs/get-started-fusion",
+        },
+      },
+    ],
+  },
 ];
 
 function getHighResSrc(src: string) {
@@ -557,7 +589,7 @@ function BlockRenderer({ block }: { block: Block }) {
       return (
         <Box variant="p" color="text-body-secondary">
           {block.strongLead && <strong>{block.strongLead}</strong>}
-          {block.text}
+          {renderTextWithInlineLink(block.text, block.link)}
         </Box>
       );
     case "heading":
