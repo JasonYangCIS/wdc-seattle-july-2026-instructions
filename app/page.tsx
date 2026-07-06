@@ -412,10 +412,10 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       {
         type: "bullets",
         items: [
-          { text: "Change the theme of the entire application", example: "e.g. \"Match the visual style of Manchester United\"" },
-          { text: "Ask questions to Fusion", example: "e.g. \"Am I using all Cloudscape design tokens and components?\"" },
-          { text: "Ask Fusion to give you recommendations", example: "e.g. \"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
-          { text: "Add gamification to the application", example: "e.g. \"Gamify the dashboard to make progress feel more fun.\"" },
+          { text: "Change the theme of the entire application", example: "\"Match the visual style of Manchester United\"" },
+          { text: "Ask questions to Fusion", example: "\"Am I using all Cloudscape design tokens and components?\"" },
+          { text: "Ask Fusion to give you recommendations", example: "\"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
+          { text: "Add gamification to the application", example: "\"Gamify the dashboard to make progress feel more fun.\"" },
         ],
       },
       { type: "heading", text: "Explore the Code" },
@@ -600,7 +600,7 @@ function BlockRenderer({ block }: { block: Block }) {
           <ul style={{ listStyleType: "disc" }}>
             {block.items.map((item, i) => (
               <li key={i}>
-                <Box margin={{ bottom: "n" }}>{item.text}</Box>
+                <Box margin={{ bottom: "n" }}>{item.text}{item.example ? ":" : ""}</Box>
                 {item.example && (
                   <Box variant="small" color="text-body-secondary" margin={{ top: "xxs" }}>
                     <CopyToClipboard
