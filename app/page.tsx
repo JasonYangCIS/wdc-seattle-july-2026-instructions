@@ -76,6 +76,7 @@ type Block =
         text: string;
         boldText?: string;
         prompt?: string;
+        tip?: string;
         image?: ImageRef;
         video?: VideoRef;
         link?: { text: string; href: string };
@@ -133,6 +134,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             title: "Create Your Branch",
             text: "Find the \"Cloudscape\" project in the Projects section and click \"+ New Branch\" to create a new branch for your workshop testing.",
+            tip: "It will take a moment for the project to run after your branch is created.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4f405dd7a45e44fcb812ecc14a3d85e8?format=webp&width=1600",
               alt: "Cloudscape project, New Branch",
@@ -582,6 +584,17 @@ function PromptBlock({ text }: { text: string }) {
   );
 }
 
+function TipText({ text }: { text: string }) {
+  return (
+    <div className="flex items-start gap-2">
+      <Icon name="status-info" variant="link" />
+      <Box variant="small" color="text-body-secondary" margin="n">
+        <em>Tip: {text}</em>
+      </Box>
+    </div>
+  );
+}
+
 function BlockRenderer({ block }: { block: Block }) {
   switch (block.type) {
     case "eyebrow":
@@ -651,6 +664,7 @@ function BlockRenderer({ block }: { block: Block }) {
                         {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                       </Box>
                       {item.prompt && <PromptBlock text={item.prompt} />}
+                      {item.tip && <TipText text={item.tip} />}
                     </SpaceBetween>
                     {item.video ? <LazyVideo video={item.video} /> : <Figure image={item.image!} />}
                   </Grid>
@@ -660,6 +674,7 @@ function BlockRenderer({ block }: { block: Block }) {
                       {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                     </Box>
                     {item.prompt && <PromptBlock text={item.prompt} />}
+                    {item.tip && <TipText text={item.tip} />}
                   </SpaceBetween>
                 )}
               </SpaceBetween>
