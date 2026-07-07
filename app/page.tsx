@@ -441,7 +441,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         text: "To keep exploring Fusion beyond this workshop, check out the Get Started with Fusion docs.",
         link: {
           text: "Get Started with Fusion docs",
-          href: "https://www.builder.io/c/docs/get-started-fusion",
+          href: "https://www.builder.io/c/docs/fusion",
         },
       },
     ],
