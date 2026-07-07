@@ -309,12 +309,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         text: "Take the branch Fusion generated and bring it down to your local machine to keep working in your own editor or terminal.",
       },
       {
-        type: "alert",
-        alertType: "warning",
-        header: "TODO",
-        text: "Amazon uses git farm internally, so these code hand-off steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm, and is considering changing this step to use the Prototype feature instead of Push/Pull.",
-      },
-      {
         type: "numbered",
         items: [
           {
@@ -668,7 +662,7 @@ export default function Home() {
     type: "link",
     text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
     href: `#step-${i}`,
-    ...((i === 0 || i === 6 || i === 7) && {
+    ...((i === 0 || i === 6) && {
       info: <Icon name="status-warning" variant="warning" ariaLabel="Has an open TODO" />,
     }),
   }));
