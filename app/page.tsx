@@ -76,6 +76,7 @@ type Block =
         text: string;
         boldText?: string;
         prompt?: string;
+        command?: string;
         image?: ImageRef;
         video?: VideoRef;
         link?: { text: string; href: string };
@@ -331,7 +332,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             title: "Authenticate with the Builder.io CLI",
             text: "In your terminal, run the following command and follow the prompt to authenticate with Builder.io.",
-            prompt: "npx builder.io@latest auth --spaceId da9013cf334340238f9e2401de83cc04",
+            command: "npx builder.io@latest auth --spaceId da9013cf334340238f9e2401de83cc04",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F381a9d6debfe47a8841baa7a6ad3208c?format=webp&width=1600",
               alt: "Builder.io CLI authentication",
@@ -550,6 +551,29 @@ function PromptBlock({ text }: { text: string }) {
   );
 }
 
+function CommandBlock({ text }: { text: string }) {
+  return (
+    <Container disableContentPaddings={false}>
+      <SpaceBetween size="xs">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Icon name="command-prompt" variant="subtle" />
+            <Box variant="awsui-key-label">Command</Box>
+          </div>
+          <CopyToClipboard
+            variant="icon"
+            copyButtonAriaLabel="Copy command"
+            copySuccessText="Command copied"
+            copyErrorText="Command failed to copy"
+            textToCopy={text}
+          />
+        </div>
+        <Box variant="code">{text}</Box>
+      </SpaceBetween>
+    </Container>
+  );
+}
+
 function BlockRenderer({ block }: { block: Block }) {
   switch (block.type) {
     case "eyebrow":
@@ -619,6 +643,7 @@ function BlockRenderer({ block }: { block: Block }) {
                         {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                       </Box>
                       {item.prompt && <PromptBlock text={item.prompt} />}
+                      {item.command && <CommandBlock text={item.command} />}
                     </SpaceBetween>
                     {item.video ? <LazyVideo video={item.video} /> : <Figure image={item.image!} />}
                   </Grid>
@@ -628,6 +653,7 @@ function BlockRenderer({ block }: { block: Block }) {
                       {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                     </Box>
                     {item.prompt && <PromptBlock text={item.prompt} />}
+                    {item.command && <CommandBlock text={item.command} />}
                   </SpaceBetween>
                 )}
               </SpaceBetween>
