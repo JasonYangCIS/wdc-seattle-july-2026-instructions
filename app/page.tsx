@@ -662,7 +662,7 @@ export default function Home() {
     type: "link",
     text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
     href: `#step-${i}`,
-    ...((i === 0 || i === 6) && {
+    ...(i === 0 && {
       info: <Icon name="status-warning" variant="warning" ariaLabel="Has an open TODO" />,
     }),
   }));
