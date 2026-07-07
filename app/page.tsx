@@ -187,7 +187,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Export & Paste the Design",
-            text: "Use the Cloudscape Figma design file and a natural language prompt.",
+            text: "With the example Figma Cloudscape design pasted in, add a natural language prompt to tell Fusion what to build.",
             prompt: "Create code commits dashboard using this Figma design and the mock data found in repo.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7ead95da82384033b46e1e61d8c954ab?format=webp&width=1600",
