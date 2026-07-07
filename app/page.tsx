@@ -334,7 +334,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "In your terminal, run the following command and follow the prompt to authenticate with Builder.io.",
             command: "npx builder.io@latest auth --spaceId da9013cf334340238f9e2401de83cc04",
             image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F381a9d6debfe47a8841baa7a6ad3208c?format=webp&width=1600",
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F961dce265144421dabbccd948b7a6ab4?format=webp&width=1600",
               alt: "Builder.io CLI authentication",
               caption: "Builder.io CLI authentication",
             },
