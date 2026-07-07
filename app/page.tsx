@@ -210,7 +210,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Add theming with Plan mode",
+    navTitle: "Add themes with Plan mode",
     heading: "Add Theming with Plan mode",
     blocks: [
       { type: "paragraph", text: "Add theming functionality to the Code Commits dashboard." },
