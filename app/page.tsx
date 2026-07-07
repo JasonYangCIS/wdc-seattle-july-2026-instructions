@@ -388,8 +388,33 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Submit a pull request",
-    heading: "Submit a Pull Request",
+    navTitle: "Free experimentation",
+    heading: "Experiment!",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Experiment using prompts, screenshots, and more. You're low-key coding now, so keep flexing your vibe-coding skills with any time you have left. Share what you've built with your peers around you.",
+      },
+      { type: "heading", text: "Other recommendations" },
+      {
+        type: "bullets",
+        items: [
+          { text: "Change the theme of the entire application", example: "\"Match the visual style of Manchester United\"" },
+          { text: "Ask questions to Fusion", example: "\"Am I using all Cloudscape design tokens and components?\"" },
+          { text: "Ask Fusion to give you recommendations", example: "\"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
+          { text: "Add gamification to the application", example: "\"Gamify the dashboard to make progress feel more fun.\"" },
+        ],
+      },
+      { type: "heading", text: "Explore the Code" },
+      {
+        type: "paragraph",
+        text: "Switch to the Code tab to see what Fusion generated, browse files, and learn how Cloudscape tokens are applied.",
+      },
+    ],
+  },
+  {
+    navTitle: "Bonus: Submit a pull request",
+    heading: "Bonus: Submit a Pull Request",
     blocks: [
       {
         type: "paragraph",
@@ -420,31 +445,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
         ],
-      },
-    ],
-  },
-  {
-    navTitle: "Free experimentation",
-    heading: "Experiment!",
-    blocks: [
-      {
-        type: "paragraph",
-        text: "Experiment using prompts, screenshots, and more. You're low-key coding now, so keep flexing your vibe-coding skills with any time you have left. Share what you've built with your peers around you.",
-      },
-      { type: "heading", text: "Other recommendations" },
-      {
-        type: "bullets",
-        items: [
-          { text: "Change the theme of the entire application", example: "\"Match the visual style of Manchester United\"" },
-          { text: "Ask questions to Fusion", example: "\"Am I using all Cloudscape design tokens and components?\"" },
-          { text: "Ask Fusion to give you recommendations", example: "\"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
-          { text: "Add gamification to the application", example: "\"Gamify the dashboard to make progress feel more fun.\"" },
-        ],
-      },
-      { type: "heading", text: "Explore the Code" },
-      {
-        type: "paragraph",
-        text: "Switch to the Code tab to see what Fusion generated, browse files, and learn how Cloudscape tokens are applied.",
       },
     ],
   },
