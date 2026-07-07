@@ -329,6 +329,16 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
+            title: "Authenticate with the Builder.io CLI",
+            text: "In your terminal, run the following command and follow the prompt to authenticate with Builder.io.",
+            prompt: "npx builder.io@latest auth --spaceId da9013cf334340238f9e2401de83cc04",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F381a9d6debfe47a8841baa7a6ad3208c?format=webp&width=1600",
+              alt: "Builder.io CLI authentication",
+              caption: "Builder.io CLI authentication",
+            },
+          },
+          {
             title: "Checkout the Branch Locally",
             text: "In Kiro or any terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
           },
