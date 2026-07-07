@@ -776,9 +776,9 @@ export default function Home() {
               ×
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://builder.aws.com/assets/logo-dark-mode-BWHgg2gz.svg"
-                alt="AWS"
-                className="h-7 w-auto md:h-8 mt-4"
+                src="https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fd522358f89fa47d7943ab6239b6fb7b3?format=webp&width=1600"
+                alt="Amazon"
+                className="h-9 w-auto md:h-8 mt-2"
               />
             </span>
           </div>
