@@ -94,7 +94,7 @@ type StepContent = {
 
 const CLOUDSCAPE_STEPS: StepContent[] = [
   {
-    navTitle: "Welcome & Overview",
+    navTitle: "Welcome & overview",
     heading: "Overview",
     blocks: [
       { type: "eyebrow", text: "AMAZON WDC SEATTLE · BUILDER.IO WORKSHOP · CLOUDSCAPE DESIGN SYSTEM EXERCISE" },
@@ -125,7 +125,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Setup Instructions",
+    navTitle: "Setup instructions",
     heading: "Setup",
     blocks: [
       {
@@ -155,7 +155,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Create Dashboard From Figma",
+    navTitle: "Create dashboard from Figma",
     heading: "Create Dashboard From Figma",
     blocks: [
       {
@@ -210,7 +210,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Add Theming with Plan mode",
+    navTitle: "Add theming with Plan mode",
     heading: "Add Theming with Plan mode",
     blocks: [
       { type: "paragraph", text: "Add theming functionality to the Code Commits dashboard." },
@@ -271,7 +271,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Use Design Mode",
+    navTitle: "Use Design mode",
     heading: "Use Design Mode",
     blocks: [
       {
@@ -308,7 +308,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Code Hand-off",
+    navTitle: "Code hand-off",
     heading: "Code Hand-off",
     blocks: [
       {
@@ -372,7 +372,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Submit a Pull Request",
+    navTitle: "Submit a pull request",
     heading: "Submit a Pull Request",
     blocks: [
       {
@@ -408,7 +408,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Free Experimentation",
+    navTitle: "Free experimentation",
     heading: "Experiment!",
     blocks: [
       {
@@ -433,7 +433,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Recap & Resources",
+    navTitle: "Recap & resources",
     heading: "Recap & Resources",
     blocks: [
       {
