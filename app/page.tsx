@@ -460,6 +460,13 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
               href: "https://www.builder.io/c/docs/builder-cli-api",
             },
           },
+          {
+            text: "To learn how to connect MCP servers to your Fusion project, check out the MCP integrations docs.",
+            link: {
+              text: "MCP integrations docs",
+              href: "https://www.builder.io/c/docs/fusion-integrations-for-developers",
+            },
+          },
         ],
       },
     ],
