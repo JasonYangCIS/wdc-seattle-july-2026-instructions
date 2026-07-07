@@ -245,17 +245,18 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Set up Storybook so the dashboard's Cloudscape components can be developed and reviewed in isolation.",
+        text: "Storybook is already set up in this project so the dashboard's Cloudscape components can be developed and reviewed in isolation. Add stories for the design system components and check them out at the /storybook/ route.",
       },
       {
         type: "prompt",
-        text: "Set up Storybook for this project and add stories for all of the current design system components, with controls for switching between the light, dark, and creative themes so we can see how the new theming affects each component. Add scripts to run Storybook locally and build a static Storybook, and add a link in the dashboard header to open Storybook, plus a link back to the dashboard from Storybook.",
+        text: "Add stories for all of the current design system components, with controls for switching between the light, dark, and creative themes so we can see how the new theming affects each component.",
       },
       {
         type: "bullets",
         items: [
           { text: "Storybook lets you preview and test components outside of the full dashboard, one component at a time." },
           { text: "Once generated, switch to the Code tab to find the new story files alongside the component they document." },
+          { text: "Visit the /storybook/ route to view your stories." },
         ],
       },
     ],
