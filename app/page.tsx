@@ -301,8 +301,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Code Hand-off",
-    heading: "Code Hand-off",
+    navTitle: "Pull into Kiro IDE",
+    heading: "Pull into Kiro IDE",
     blocks: [
       {
         type: "paragraph",
