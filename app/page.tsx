@@ -365,42 +365,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Submit a Pull Request",
-    heading: "Submit a Pull Request",
-    blocks: [
-      {
-        type: "paragraph",
-        text: "Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
-      },
-      {
-        type: "alert",
-        alertType: "warning",
-        header: "TODO",
-        text: "Amazon uses git farm internally, so these pull request steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm.",
-      },
-      {
-        type: "numbered",
-        items: [
-          {
-            title: "Send the PR",
-            text: "Click the \"Send PR\" button in the top right of the Fusion workspace to open a pull request for your branch against the base branch.",
-          },
-          {
-            title: "Wait for the Builder Bot Review",
-            text: "The Builder bot PR review agent automatically runs against your pull request and leaves comments directly on the PR, flagging potential bugs, style issues, or suggestions.",
-          },
-          {
-            title: "Ask @builder-bot to Make Changes",
-            text: "Open the pull request on GitHub and leave a comment, either on a specific line of code or directly on the PR itself, mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it. You can also tag it once to \"address all feedback in this pull request.\"",
-            video: {
-              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6de6aa254f334d85a732071a6b830b76?alt=media&token=21671f78-b7be-40fe-bce4-502ec269c114&apiKey=YJIGb4i01jvw0SRdL5Bt",
-            },
-          },
-        ],
-      },
-    ],
-  },
-  {
     navTitle: "Free Experimentation",
     heading: "Experiment!",
     blocks: [
