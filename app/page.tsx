@@ -100,7 +100,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       { type: "eyebrow", text: "AMAZON WDC SEATTLE · BUILDER.IO WORKSHOP · CLOUDSCAPE DESIGN SYSTEM EXERCISE" },
       {
         type: "paragraph",
-        text: "We are going to build a custom dashboard using the Cloudscape design system and the Builder's Fusion product.",
+        text: "We are going to build a custom dashboard using the Cloudscape design system and the Builder's Fusion product, while exploring different workflows that our Fusion product enables.",
       },
       {
         type: "paragraph",
