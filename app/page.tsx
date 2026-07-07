@@ -446,7 +446,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       },
       {
         type: "paragraph",
-        text: "To learn more about pushing and pulling changes between Fusion and your local machine, check out the Connecting local repos docs.",
+        text: "To learn more about connecting a local repo to your Fusion project, check out the Connecting local repos docs.",
         link: {
           text: "Connecting local repos docs",
           href: "https://www.builder.io/c/docs/projects-local-repo",
