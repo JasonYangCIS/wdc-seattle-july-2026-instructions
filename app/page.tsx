@@ -150,6 +150,17 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
               caption: "Rename branch",
             },
           },
+        ],
+      },
+    ],
+  },
+  {
+    navTitle: "Create Code Commits Dashboard",
+    heading: "Create Code Commits Dashboard",
+    blocks: [
+      {
+        type: "numbered",
+        items: [
           {
             title: "Open the Design File",
             text: "Open the Cloudscape dashboard file in Figma by clicking the \"Open in Figma\" button. Make sure you open it in a Figma Organization where you can install plugins.",
@@ -186,12 +197,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
         ],
       },
-    ],
-  },
-  {
-    navTitle: "Create Code Commits Dashboard",
-    heading: "Create Code Commits Dashboard",
-    blocks: [
       { type: "paragraph", text: "Use the Cloudscape Figma design file and a natural language prompt." },
       {
         type: "prompt",
