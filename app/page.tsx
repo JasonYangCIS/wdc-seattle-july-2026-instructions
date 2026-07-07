@@ -68,7 +68,7 @@ type Block =
   | { type: "eyebrow"; text: string }
   | { type: "paragraph"; text: string; strongLead?: string; link?: { text: string; href: string } }
   | { type: "heading"; text: string }
-  | { type: "bullets"; items: { text: string; example?: string }[] }
+  | { type: "bullets"; items: { text: string; example?: string; link?: { text: string; href: string } }[] }
   | {
       type: "numbered";
       items: {
@@ -437,28 +437,30 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       },
       { type: "heading", text: "Keep learning" },
       {
-        type: "paragraph",
-        text: "To keep exploring Fusion beyond this workshop, check out the Get Started with Fusion docs.",
-        link: {
-          text: "Get Started with Fusion docs",
-          href: "https://www.builder.io/c/docs/fusion",
-        },
-      },
-      {
-        type: "paragraph",
-        text: "To learn more about connecting a local repo to your Fusion project, check out the Connecting local repos docs.",
-        link: {
-          text: "Connecting local repos docs",
-          href: "https://www.builder.io/c/docs/projects-local-repo",
-        },
-      },
-      {
-        type: "paragraph",
-        text: "To learn more about pushing and pulling changes with the CLI, check out the Builder CLI docs.",
-        link: {
-          text: "Builder CLI docs",
-          href: "https://www.builder.io/c/docs/builder-cli-api",
-        },
+        type: "bullets",
+        items: [
+          {
+            text: "To keep exploring Fusion beyond this workshop, check out the Get Started with Fusion docs.",
+            link: {
+              text: "Get Started with Fusion docs",
+              href: "https://www.builder.io/c/docs/fusion",
+            },
+          },
+          {
+            text: "To learn more about connecting a local repo to your Fusion project, check out the Connecting local repos docs.",
+            link: {
+              text: "Connecting local repos docs",
+              href: "https://www.builder.io/c/docs/projects-local-repo",
+            },
+          },
+          {
+            text: "To learn more about pushing and pulling changes with the CLI, check out the Builder CLI docs.",
+            link: {
+              text: "Builder CLI docs",
+              href: "https://www.builder.io/c/docs/builder-cli-api",
+            },
+          },
+        ],
       },
     ],
   },
@@ -629,7 +631,10 @@ function BlockRenderer({ block }: { block: Block }) {
           <ul style={{ listStyleType: "disc" }}>
             {block.items.map((item, i) => (
               <li key={i}>
-                <Box margin={{ bottom: "n" }}>{item.text}{item.example ? ":" : ""}</Box>
+                <Box margin={{ bottom: "n" }}>
+                  {renderTextWithInlineLink(item.text, item.link)}
+                  {item.example ? ":" : ""}
+                </Box>
                 {item.example && (
                   <Box variant="small" color="text-body-secondary" margin={{ top: "xxs" }}>
                     <CopyToClipboard
