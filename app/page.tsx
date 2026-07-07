@@ -352,6 +352,21 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             title: "Make Changes in Your Local IDE",
             text: "Open the repo in your own editor (VS Code, Kiro, etc.) and make whatever code changes you like: install packages, refactor, add features, fix bugs. For example, add or simply make a change in the README, then commit the changes.",
           },
+        ],
+      },
+    ],
+  },
+  {
+    navTitle: "Push local Kiro branch up",
+    heading: "Push local Kiro branch up",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Once you've made changes locally, send them back up to the Fusion project.",
+      },
+      {
+        type: "numbered",
+        items: [
           {
             title: "Option A: Push Back with the Push Command",
             text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Fusion project. It updates automatically, so there's no manual sync needed.",
