@@ -393,7 +393,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Experiment using prompts, screenshots, and more. You're low-key coding now, so keep flexing your vibe-coding skills with any time you have left. Share what you've built with your peers around you.",
+        text: "Use any remaining time to keep iterating with prompts, screenshots, and other inputs. Push the tooling further and see what it can generate for you. Share what you've built with your peers around you.",
       },
       { type: "heading", text: "Other recommendations" },
       {
