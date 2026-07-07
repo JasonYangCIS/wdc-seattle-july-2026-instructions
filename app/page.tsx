@@ -418,7 +418,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
+        text: "This bonus step uses GitHub. Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
       },
       {
         type: "numbered",
