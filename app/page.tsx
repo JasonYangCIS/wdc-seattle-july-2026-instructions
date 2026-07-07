@@ -155,8 +155,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Create Code Commits Dashboard",
-    heading: "Create Code Commits Dashboard",
+    navTitle: "Create dashboard from Figma",
+    heading: "Create dashboard from Figma",
     blocks: [
       {
         type: "numbered",
