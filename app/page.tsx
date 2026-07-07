@@ -452,6 +452,14 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           href: "https://www.builder.io/c/docs/projects-local-repo",
         },
       },
+      {
+        type: "paragraph",
+        text: "To learn more about pushing and pulling changes with the CLI, check out the Builder CLI docs.",
+        link: {
+          text: "Builder CLI docs",
+          href: "https://www.builder.io/c/docs/builder-cli-api",
+        },
+      },
     ],
   },
 ];
