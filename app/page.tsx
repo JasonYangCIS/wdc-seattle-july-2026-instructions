@@ -77,6 +77,7 @@ type Block =
         boldText?: string;
         prompt?: string;
         command?: string;
+        tip?: string;
         image?: ImageRef;
         video?: VideoRef;
         link?: { text: string; href: string };
@@ -94,7 +95,7 @@ type StepContent = {
 
 const CLOUDSCAPE_STEPS: StepContent[] = [
   {
-    navTitle: "Welcome & Overview",
+    navTitle: "Welcome & overview",
     heading: "Overview",
     blocks: [
       { type: "eyebrow", text: "AMAZON WDC SEATTLE · BUILDER.IO WORKSHOP · CLOUDSCAPE DESIGN SYSTEM EXERCISE" },
@@ -125,7 +126,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Setup Instructions",
+    navTitle: "Setup instructions",
     heading: "Setup",
     blocks: [
       {
@@ -134,6 +135,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             title: "Create Your Branch",
             text: "Find the \"Cloudscape\" project in the Projects section and click \"+ New Branch\" to create a new branch for your workshop testing.",
+            tip: "It will take a moment for the project to run after your branch is created.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4f405dd7a45e44fcb812ecc14a3d85e8?format=webp&width=1600",
               alt: "Cloudscape project, New Branch",
@@ -149,6 +151,17 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
               caption: "Rename branch",
             },
           },
+        ],
+      },
+    ],
+  },
+  {
+    navTitle: "Create dashboard from Figma",
+    heading: "Create Dashboard From Figma",
+    blocks: [
+      {
+        type: "numbered",
+        items: [
           {
             title: "Open the Design File",
             text: "Open the Cloudscape dashboard file in Figma by clicking the \"Open in Figma\" button. Make sure you open it in a Figma Organization where you can install plugins.",
@@ -163,24 +176,24 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
-            title: "Install the Figma Plugin",
-            text: "Install the Builder.io Figma plugin on the design file you just opened. Open the plugin and select the \"Dashboard\" layer in Figma.",
+            title: "Install the Plugin & Export the Design",
+            text: "Install the Builder.io Figma plugin on the design file you just opened. Select the layer you want to export to Fusion, then use the plugin's Smart Export feature to export it. Copy the results from Figma and paste them into Fusion's chat box.",
             link: {
               text: "Install the Builder.io Figma plugin",
               href: "https://www.figma.com/community/plugin/747985167520967365",
             },
             video: {
-              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fdd4aab2a40e54e1ea6fa36f74983e371?alt=media&token=f1a4489f-cf18-4981-bb4f-932fffe1302c&apiKey=YJIGb4i01jvw0SRdL5Bt",
+              src: "https://cdn.builder.io/o/assets%2Fda9013cf334340238f9e2401de83cc04%2Fe6b36f8ac11e4bd2b35d21377a4812ab?alt=media&token=a4e6334c-1460-4100-851d-6ed454602687&apiKey=da9013cf334340238f9e2401de83cc04",
             },
           },
           {
-            title: "Export & Paste the Design",
-            text: "Click the \"Smart Export\" button. Once the plugin is done exporting, paste into the Fusion prompt box. Don't submit your prompt yet! Proceed to Step 03 to continue.",
-            boldText: "Don't submit your prompt yet!",
+            title: "Build the dashboard",
+            text: "With the example Figma Cloudscape design pasted in, add a natural language prompt to tell Fusion to build it using the mock data found in repo.",
+            prompt: "Create code commits dashboard using this Figma design and the mock data found in repo.",
             image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F471b86a0abe1411b969def9442e839c2?format=webp&width=1600",
-              alt: "Fusion prompt with design attachment",
-              caption: "Fusion prompt with design attachment",
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7ead95da82384033b46e1e61d8c954ab?format=webp&width=1600",
+              alt: "Figma design prompt",
+              caption: "Figma design prompt",
             },
           },
         ],
@@ -188,23 +201,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Create Code Commits Dashboard",
-    heading: "Create Code Commits Dashboard",
-    blocks: [
-      { type: "paragraph", text: "Use the Cloudscape Figma design file and a natural language prompt." },
-      {
-        type: "prompt",
-        text: "Create code commits dashboard using this Figma design and the mock data found in repo.",
-        image: {
-          src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7ead95da82384033b46e1e61d8c954ab?format=webp&width=1600",
-          alt: "Figma design prompt",
-          caption: "Figma design prompt",
-        },
-      },
-    ],
-  },
-  {
-    navTitle: "Add Theming with Plan mode",
+    navTitle: "Add themes with Plan mode",
     heading: "Add Theming with Plan mode",
     blocks: [
       { type: "paragraph", text: "Add theming functionality to the Code Commits dashboard." },
@@ -244,28 +241,29 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Incorporate Storybook",
-    heading: "Incorporate Storybook",
+    navTitle: "Add Storybook Stories",
+    heading: "Add Storybook Stories",
     blocks: [
       {
         type: "paragraph",
-        text: "Set up Storybook so the dashboard's Cloudscape components can be developed and reviewed in isolation.",
+        text: "Storybook is already set up in this project so the dashboard's Cloudscape components can be developed and reviewed in isolation. Add stories for the design system components and check them out at the /storybook/ route.",
       },
       {
         type: "prompt",
-        text: "Set up Storybook for this project and add stories for all of the current design system components, with controls for switching between the light, dark, and creative themes so we can see how the new theming affects each component. Add scripts to run Storybook locally and build a static Storybook, and add a link in the dashboard header to open Storybook, plus a link back to the dashboard from Storybook.",
+        text: "Add stories for all of the current design system components, with controls for switching between the light, dark, and creative themes so we can see how the new theming affects each component. Add a link in the dashboard header to open Storybook at the /storybook/ route, plus a link back to the dashboard from Storybook.",
       },
       {
         type: "bullets",
         items: [
           { text: "Storybook lets you preview and test components outside of the full dashboard, one component at a time." },
           { text: "Once generated, switch to the Code tab to find the new story files alongside the component they document." },
+          { text: "Visit the /storybook/ route to view your stories." },
         ],
       },
     ],
   },
   {
-    navTitle: "Use Design Mode",
+    navTitle: "Use Design mode",
     heading: "Use Design Mode",
     blocks: [
       {
@@ -302,8 +300,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Pull branch into local Kiro",
-    heading: "Pull branch into local Kiro",
+    navTitle: "Code hand-off",
+    heading: "Code Hand-off",
     blocks: [
       {
         type: "paragraph",
@@ -390,7 +388,43 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Free Experimentation",
+    navTitle: "Submit a pull request",
+    heading: "Submit a Pull Request",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
+      },
+      {
+        type: "alert",
+        alertType: "warning",
+        header: "TODO",
+        text: "Amazon uses git farm internally, so these pull request steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm.",
+      },
+      {
+        type: "numbered",
+        items: [
+          {
+            title: "Send the PR",
+            text: "Click the \"Send PR\" button in the top right of the Fusion workspace to open a pull request for your branch against the base branch.",
+          },
+          {
+            title: "Wait for the Builder Bot Review",
+            text: "The Builder bot PR review agent automatically runs against your pull request and leaves comments directly on the PR, flagging potential bugs, style issues, or suggestions.",
+          },
+          {
+            title: "Ask @builder-bot to Make Changes",
+            text: "Open the pull request on GitHub and leave a comment, either on a specific line of code or directly on the PR itself, mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it. You can also tag it once to \"address all feedback in this pull request.\"",
+            video: {
+              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6de6aa254f334d85a732071a6b830b76?alt=media&token=21671f78-b7be-40fe-bce4-502ec269c114&apiKey=YJIGb4i01jvw0SRdL5Bt",
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    navTitle: "Free experimentation",
     heading: "Experiment!",
     blocks: [
       {
@@ -415,7 +449,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Recap & Resources",
+    navTitle: "Recap & resources",
     heading: "Recap & Resources",
     blocks: [
       {
@@ -619,6 +653,17 @@ function CommandBlock({ text }: { text: string }) {
   );
 }
 
+function TipText({ text }: { text: string }) {
+  return (
+    <div className="flex items-start gap-2">
+      <Icon name="status-info" variant="link" />
+      <Box variant="small" color="text-body-secondary" margin="n">
+        <em>Tip: {text}</em>
+      </Box>
+    </div>
+  );
+}
+
 function BlockRenderer({ block }: { block: Block }) {
   switch (block.type) {
     case "eyebrow":
@@ -692,6 +737,7 @@ function BlockRenderer({ block }: { block: Block }) {
                       </Box>
                       {item.prompt && <PromptBlock text={item.prompt} />}
                       {item.command && <CommandBlock text={item.command} />}
+                      {item.tip && <TipText text={item.tip} />}
                     </SpaceBetween>
                     {item.video ? <LazyVideo video={item.video} /> : <Figure image={item.image!} />}
                   </Grid>
@@ -702,6 +748,7 @@ function BlockRenderer({ block }: { block: Block }) {
                     </Box>
                     {item.prompt && <PromptBlock text={item.prompt} />}
                     {item.command && <CommandBlock text={item.command} />}
+                    {item.tip && <TipText text={item.tip} />}
                   </SpaceBetween>
                 )}
               </SpaceBetween>
@@ -886,7 +933,7 @@ export default function Home() {
 
       <footer className="w-full bg-gray-100 border-t border-gray-200">
         <div className="mx-auto max-w-7xl px-4 py-2 md:px-6 text-center text-sm text-gray-600">
-          Builder.io &lt;&gt; AWS Cloudscape Workshop Seattle 2026
+          Builder.io &lt;&gt; Amazon Cloudscape Workshop Seattle 2026
         </div>
       </footer>
     </div>
