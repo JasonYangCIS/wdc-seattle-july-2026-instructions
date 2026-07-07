@@ -90,6 +90,7 @@ type Block =
 type StepContent = {
   navTitle: string;
   heading: string;
+  bonus?: boolean;
   blocks: Block[];
 };
 
@@ -413,36 +414,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Bonus: Submit a pull request",
-    heading: "Bonus: Submit a Pull Request",
-    blocks: [
-      {
-        type: "paragraph",
-        text: "This bonus step uses GitHub. Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
-      },
-      {
-        type: "numbered",
-        items: [
-          {
-            title: "Send the PR",
-            text: "Click the \"Send PR\" button in the top right of the Fusion workspace to open a pull request for your branch against the base branch.",
-          },
-          {
-            title: "Wait for the Builder Bot Review",
-            text: "The Builder bot PR review agent automatically runs against your pull request and leaves comments directly on the PR, flagging potential bugs, style issues, or suggestions.",
-          },
-          {
-            title: "Ask @builder-bot to Make Changes",
-            text: "Open the pull request on GitHub and leave a comment, either on a specific line of code or directly on the PR itself, mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it. You can also tag it once to \"address all feedback in this pull request.\"",
-            video: {
-              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6de6aa254f334d85a732071a6b830b76?alt=media&token=21671f78-b7be-40fe-bce4-502ec269c114&apiKey=YJIGb4i01jvw0SRdL5Bt",
-            },
-          },
-        ],
-      },
-    ],
-  },
-  {
     navTitle: "Recap & resources",
     heading: "Recap & Resources",
     blocks: [
@@ -493,6 +464,37 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             link: {
               text: "MCP integrations docs",
               href: "https://www.builder.io/c/docs/fusion-integrations-for-developers",
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    navTitle: "Bonus: Submit a pull request",
+    heading: "Bonus: Submit a Pull Request",
+    bonus: true,
+    blocks: [
+      {
+        type: "paragraph",
+        text: "This bonus step uses GitHub. Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
+      },
+      {
+        type: "numbered",
+        items: [
+          {
+            title: "Send the PR",
+            text: "Click the \"Send PR\" button in the top right of the Fusion workspace to open a pull request for your branch against the base branch.",
+          },
+          {
+            title: "Wait for the Builder Bot Review",
+            text: "The Builder bot PR review agent automatically runs against your pull request and leaves comments directly on the PR, flagging potential bugs, style issues, or suggestions.",
+          },
+          {
+            title: "Ask @builder-bot to Make Changes",
+            text: "Open the pull request on GitHub and leave a comment, either on a specific line of code or directly on the PR itself, mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it. You can also tag it once to \"address all feedback in this pull request.\"",
+            video: {
+              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6de6aa254f334d85a732071a6b830b76?alt=media&token=21671f78-b7be-40fe-bce4-502ec269c114&apiKey=YJIGb4i01jvw0SRdL5Bt",
             },
           },
         ],
@@ -779,18 +781,24 @@ export default function Home() {
   const [stepIndex, setStepIndex] = useState(0);
 
   const steps = CLOUDSCAPE_STEPS;
-  const total = steps.length;
+  const countedSteps = steps.filter((s) => !s.bonus);
+  const total = countedSteps.length;
   const step = steps[stepIndex];
-  const progressPct = ((stepIndex + 1) / total) * 100;
+  const countedIndex = countedSteps.indexOf(step);
+  const progressPct = step.bonus ? 100 : ((countedIndex + 1) / total) * 100;
 
-  const navItems: SideNavigationProps.Item[] = steps.map((s, i) => ({
-    type: "link",
-    text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
-    href: `#step-${i}`,
-    ...(i === 0 && {
-      info: <Icon name="status-warning" variant="warning" ariaLabel="Has an open TODO" />,
-    }),
-  }));
+  let countedNumber = 0;
+  const navItems: SideNavigationProps.Item[] = steps.map((s, i) => {
+    if (!s.bonus) countedNumber += 1;
+    return {
+      type: "link",
+      text: s.bonus ? s.navTitle : `${String(countedNumber).padStart(2, "0")}  ${s.navTitle}`,
+      href: `#step-${i}`,
+      ...(i === 0 && {
+        info: <Icon name="status-warning" variant="warning" ariaLabel="Has an open TODO" />,
+      }),
+    };
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -875,7 +883,7 @@ export default function Home() {
         notifications={
           <ProgressBar
             value={progressPct}
-            label={`Step ${stepIndex + 1} of ${total}`}
+            label={step.bonus ? "Bonus step" : `Step ${countedIndex + 1} of ${total}`}
           />
         }
         navigation={
@@ -907,8 +915,8 @@ export default function Home() {
                     iconName="angle-right"
                     iconAlign="right"
                     variant="primary"
-                    disabled={stepIndex === total - 1}
-                    onClick={() => setStepIndex((i) => Math.min(total - 1, i + 1))}
+                    disabled={stepIndex === steps.length - 1}
+                    onClick={() => setStepIndex((i) => Math.min(steps.length - 1, i + 1))}
                   >
                     Next
                   </Button>
