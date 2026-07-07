@@ -421,12 +421,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         text: "Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
       },
       {
-        type: "alert",
-        alertType: "warning",
-        header: "TODO",
-        text: "Amazon uses git farm internally, so these pull request steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm.",
-      },
-      {
         type: "numbered",
         items: [
           {
