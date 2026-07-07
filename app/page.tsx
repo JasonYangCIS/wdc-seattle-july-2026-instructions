@@ -240,8 +240,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Incorporate Storybook",
-    heading: "Incorporate Storybook",
+    navTitle: "Add Storybook Stories",
+    heading: "Add Storybook Stories",
     blocks: [
       {
         type: "paragraph",
