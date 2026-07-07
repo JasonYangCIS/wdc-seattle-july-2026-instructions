@@ -182,7 +182,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
               href: "https://www.figma.com/community/plugin/747985167520967365",
             },
             video: {
-              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fdd4aab2a40e54e1ea6fa36f74983e371?alt=media&token=f1a4489f-cf18-4981-bb4f-932fffe1302c&apiKey=YJIGb4i01jvw0SRdL5Bt",
+              src: "https://cdn.builder.io/o/assets%2Fda9013cf334340238f9e2401de83cc04%2Fe6b36f8ac11e4bd2b35d21377a4812ab?alt=media&token=a4e6334c-1460-4100-851d-6ed454602687&apiKey=da9013cf334340238f9e2401de83cc04",
             },
           },
           {
