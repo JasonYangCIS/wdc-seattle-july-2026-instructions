@@ -176,7 +176,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Install the Figma Plugin",
-            text: "Install the Builder.io Figma plugin on the design file you just opened. Open the plugin and select the \"Dashboard\" layer in Figma.",
+            text: "Install the Builder.io Figma plugin on the design file you just opened. Select the layer you want to export to Fusion, then use the plugin's Smart Export feature to export it. Copy the results from Figma and paste them into Fusion's chat box.",
             link: {
               text: "Install the Builder.io Figma plugin",
               href: "https://www.figma.com/community/plugin/747985167520967365",
