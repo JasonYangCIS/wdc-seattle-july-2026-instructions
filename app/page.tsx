@@ -186,7 +186,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
-            title: "Add a Prompt to Build the Dashboard",
+            title: "Build the dashboard with the Figma design and mock data",
             text: "With the example Figma Cloudscape design pasted in, add a natural language prompt to tell Fusion to build it using the mock data found in repo.",
             prompt: "Create code commits dashboard using this Figma design and the mock data found in repo.",
             image: {
