@@ -175,7 +175,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
-            title: "Install the Figma Plugin",
+            title: "Install the Plugin & Export the Design",
             text: "Install the Builder.io Figma plugin on the design file you just opened. Select the layer you want to export to Fusion, then use the plugin's Smart Export feature to export it. Copy the results from Figma and paste them into Fusion's chat box.",
             link: {
               text: "Install the Builder.io Figma plugin",
@@ -186,7 +186,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
-            title: "Export & Paste the Design",
+            title: "Add a Prompt to Build the Dashboard",
             text: "With the example Figma Cloudscape design pasted in, add a natural language prompt to tell Fusion to build it using the mock data found in repo.",
             prompt: "Create code commits dashboard using this Figma design and the mock data found in repo.",
             image: {
