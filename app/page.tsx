@@ -410,7 +410,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       { type: "heading", text: "Explore the Code" },
       {
         type: "paragraph",
-        text: "Switch to the Code tab to see what Fusion generated, browse files, and learn how Cloudscape tokens are applied.",
+        text: "Switch to the Code tab to see what Builder generated, browse files, and learn how Cloudscape tokens are applied.",
       },
     ],
   },
@@ -420,7 +420,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Nice work! Over the course of this workshop, you used Fusion to go from a Figma design to a fully themed, production-ready Cloudscape dashboard.",
+        text: "Nice work! Over the course of this workshop, you used Builder to go from a Figma design to a fully themed, production-ready Cloudscape dashboard.",
       },
       { type: "heading", text: "What we covered" },
       {
