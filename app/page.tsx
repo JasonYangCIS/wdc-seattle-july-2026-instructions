@@ -107,7 +107,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       {
         type: "paragraph",
         strongLead: "Your goal",
-        text: ": Add a new dashboard to Cloudscape and make it your own. You don't need to know how to code to do this, and can do so by prompting with natural language. You can find the full list of suggested prompts and required resources for the workshop exercise beginning after going to the next step.",
+        text: ": Add a new dashboard to Cloudscape and make it your own. You can move quickly by prompting with natural language instead of hand-writing every change. You can find the full list of suggested prompts and required resources for the workshop exercise beginning after going to the next step.",
       },
       {
         type: "alert",
