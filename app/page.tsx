@@ -386,8 +386,9 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
-            title: "Option B: git push and Sync Manually",
-            text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Builder, the top bar will show you're behind the remote. Click the sync icon to pull those changes into the project.",
+            title: "Option B: Git Push and Sync Manually",
+            text: "Alternatively, commit and git push your changes to the remote branch as usual. Back in Builder, the top bar will show you're behind the remote. Click the sync icon to pull those changes into the project.",
+            codeText: "git push",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa7314b9f95704816abf7602ae65d560f?format=webp&width=1600",
               alt: "Builder, commit behind remote, click to sync",
