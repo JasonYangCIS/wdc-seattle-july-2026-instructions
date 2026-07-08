@@ -35,7 +35,8 @@ type VideoRef = {
 function renderTextWithInlineLink(
   text: string,
   link?: { text: string; href: string },
-  boldText?: string
+  boldText?: string,
+  codeText?: string
 ) {
   let content: string | ReactNode = text;
   if (boldText) {
@@ -46,6 +47,20 @@ function renderTextWithInlineLink(
           {text.slice(0, index)}
           <strong>{boldText}</strong>
           {text.slice(index + boldText.length)}
+        </>
+      );
+    }
+  }
+  if (codeText) {
+    const index = text.indexOf(codeText);
+    if (index !== -1) {
+      content = (
+        <>
+          {text.slice(0, index)}
+          <Box variant="awsui-inline-code" display="inline">
+            {codeText}
+          </Box>
+          {text.slice(index + codeText.length)}
         </>
       );
     }
@@ -75,6 +90,7 @@ type Block =
         title: string;
         text: string;
         boldText?: string;
+        codeText?: string;
         prompt?: string;
         command?: string;
         tip?: string;
@@ -320,17 +336,9 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
-            title: "Copy the Pull Command",
-            text: "Open the Share panel and click \"Pull\" under Code Handoff. Copy the CLI command shown there.",
-            image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa22103b8ca9a4201b7e994ecda45baa2?format=webp&width=800",
-              alt: "Share Project, Pull CLI command",
-              caption: "Share Project, Pull CLI command",
-            },
-          },
-          {
             title: "Authenticate with the Builder.io CLI",
-            text: "In your terminal, run the following command and follow the prompt to authenticate with Builder.io.",
+            text: "In your terminal, cd into the cloned project directory, then run the following command and follow the prompt to authenticate with Builder.io.",
+            codeText: "cd",
             command: "npx builder.io@latest auth --spaceId da9013cf334340238f9e2401de83cc04",
             tip: "da9013cf334340238f9e2401de83cc04 is this Builder space's API key.",
             image: {
@@ -341,7 +349,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Checkout the Branch Locally",
-            text: "Click \"Share\" in the top right, then click \"Pull\" under Code Handoff to copy the command. In Kiro or any terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
+            text: "Click \"Share\" in the top right, then click \"Pull\" under Code Handoff to copy the command. In your terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
+            codeText: "cd",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7b07d6405b9d4d60952a7fe8be3811c9?format=webp&width=1600",
               alt: "Share Project, Pull CLI command",
@@ -365,10 +374,10 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         items: [
           {
             title: "Make Changes in Your Local IDE",
-            text: "Open the repo in your own editor (VS Code, Kiro, etc.) and make whatever code changes you like: install packages, refactor, add features, fix bugs. For example, add or simply make a change in the README, then commit the changes.",
+            text: "Open the repo in your own editor (Kiro, VSCode, etc.) and make whatever code changes you like: install packages, refactor, add features, fix bugs. For example, add or simply make a change in the README, then commit the changes.",
           },
           {
-            title: "Option A: Push Back with the Push Command",
+            title: "Option A: Push Changes with the Push Command",
             text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Builder project. It updates automatically, so there's no manual sync needed.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7a6b54b38a7449418747fcbbb5eba30e?format=webp&width=1600",
@@ -377,8 +386,9 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
-            title: "Option B: git push and Sync Manually",
-            text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Builder, the top bar will show you're behind the remote. Click the sync icon to pull those changes into the project.",
+            title: "Option B: Git Push and Sync Manually",
+            text: "Alternatively, commit and git push your changes to the remote branch as usual. Back in Builder, the top bar will show you're behind the remote. Click the sync icon to pull those changes into the project.",
+            codeText: "git push",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa7314b9f95704816abf7602ae65d560f?format=webp&width=1600",
               alt: "Builder, commit behind remote, click to sync",
@@ -420,7 +430,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Nice work! Over the course of this workshop, you used Builder to go from a Figma design to a fully themed, production-ready Cloudscape dashboard.",
+        text: "Nice work! Over the course of this workshop, you used Builder to go from a Figma design to a fully themed Cloudscape dashboard.",
       },
       { type: "heading", text: "What we covered" },
       {
@@ -431,7 +441,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           { text: "Setting up Storybook to develop and review components in isolation." },
           { text: "Using Design mode's Style tab to make Figma-like visual edits and apply them directly to the code." },
           { text: "Handing code off between Builder and a local IDE with Push/Pull, or plain git push/sync." },
-          { text: "Submitting a pull request and using the Builder bot review agent, including tagging @builder-bot to address feedback." },
           { text: "Free experimentation with prompts, theming, and accessibility recommendations." },
         ],
       },
@@ -466,6 +475,9 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
               text: "MCP integrations docs",
               href: "https://www.builder.io/c/docs/fusion-integrations-for-developers",
             },
+          },
+          {
+            text: "Bonus: Submitting a pull request and using the Builder bot review agent, including tagging @builder-bot to address feedback.",
           },
         ],
       },
@@ -730,7 +742,7 @@ function BlockRenderer({ block }: { block: Block }) {
                   >
                     <SpaceBetween size="xs">
                       <Box variant="p" color="text-body-secondary" margin="n">
-                        {renderTextWithInlineLink(item.text, item.link, item.boldText)}
+                        {renderTextWithInlineLink(item.text, item.link, item.boldText, item.codeText)}
                       </Box>
                       {item.prompt && <PromptBlock text={item.prompt} />}
                       {item.command && <CommandBlock text={item.command} />}
@@ -741,7 +753,7 @@ function BlockRenderer({ block }: { block: Block }) {
                 ) : (
                   <SpaceBetween size="xs">
                     <Box variant="p" color="text-body-secondary" margin="n">
-                      {renderTextWithInlineLink(item.text, item.link, item.boldText)}
+                      {renderTextWithInlineLink(item.text, item.link, item.boldText, item.codeText)}
                     </Box>
                     {item.prompt && <PromptBlock text={item.prompt} />}
                     {item.command && <CommandBlock text={item.command} />}
