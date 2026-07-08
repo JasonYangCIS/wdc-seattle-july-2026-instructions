@@ -178,7 +178,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Install the Plugin & Export the Design",
-            text: "Install the Builder.io Figma plugin on the design file you just opened. Select the layer you want to export to Fusion, then use the plugin's Smart Export feature to export it. Copy the results from Figma and paste them into Fusion's chat box.",
+            text: "Install the Builder.io Figma plugin on the design file you just opened. Select the layer you want to export to Builder, then use the plugin's Smart Export feature to export it. Copy the results from Figma and paste them into Builder's chat box.",
             link: {
               text: "Install the Builder.io Figma plugin",
               href: "https://www.figma.com/community/plugin/747985167520967365",
@@ -189,7 +189,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Build the dashboard",
-            text: "With the example Figma Cloudscape design pasted in, add a natural language prompt to tell Fusion to build it using the mock data found in repo.",
+            text: "With the example Figma Cloudscape design pasted in, add a natural language prompt to tell Builder to build it using the mock data found in repo.",
             prompt: "Create code commits dashboard using this Figma design and the mock data found in repo.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7ead95da82384033b46e1e61d8c954ab?format=webp&width=1600",
@@ -211,7 +211,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         items: [
           {
             title: "Switch to Plan Mode",
-            text: "Click the mode selector next to the prompt box and choose \"Plan\" so Fusion collaborates on an approach before generating any code.",
+            text: "Click the mode selector next to the prompt box and choose \"Plan\" so Builder collaborates on an approach before generating any code.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fb3a4968ac0514794b5f010d405118f19?format=webp&width=1600",
               alt: "Mode selector, Plan",
@@ -230,7 +230,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Review the Plan & Submit for Action",
-            text: "Read through the plan Fusion proposes, making changes if necessary. Once it looks right, implement the plan so Fusion can generate the code.",
+            text: "Read through the plan Builder proposes, making changes if necessary. Once it looks right, implement the plan so Builder can generate the code.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F25d836efcb734e8a8d6b2ccb50b60c55?format=webp&width=1600",
               alt: "Reviewing and implementing the plan",
@@ -369,7 +369,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Option A: Push Back with the Push Command",
-            text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Fusion project. It updates automatically, so there's no manual sync needed.",
+            text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Builder project. It updates automatically, so there's no manual sync needed.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7a6b54b38a7449418747fcbbb5eba30e?format=webp&width=1600",
               alt: "Share Project, Push CLI command",
@@ -378,7 +378,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Option B: git push and Sync Manually",
-            text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Fusion, the top bar will show you're behind the remote. Click the sync icon to pull those changes into the project.",
+            text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Builder, the top bar will show you're behind the remote. Click the sync icon to pull those changes into the project.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa7314b9f95704816abf7602ae65d560f?format=webp&width=1600",
               alt: "Builder, commit behind remote, click to sync",
@@ -402,8 +402,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         type: "bullets",
         items: [
           { text: "Change the theme of the entire application", example: "\"Match the visual style of Manchester United\"" },
-          { text: "Ask questions to Fusion", example: "\"Am I using all Cloudscape design tokens and components?\"" },
-          { text: "Ask Fusion to give you recommendations", example: "\"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
+          { text: "Ask questions to Builder", example: "\"Am I using all Cloudscape design tokens and components?\"" },
+          { text: "Ask Builder to give you recommendations", example: "\"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
           { text: "Add gamification to the application", example: "\"Gamify the dashboard to make progress feel more fun.\"" },
         ],
       },
@@ -427,7 +427,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         type: "bullets",
         items: [
           { text: "Generating a dashboard from a Figma design using the Builder.io Figma plugin and Smart Export." },
-          { text: "Using Plan mode to collaborate with Fusion on an approach before generating code, then adding theming support." },
+          { text: "Using Plan mode to collaborate with Builder on an approach before generating code, then adding theming support." },
           { text: "Setting up Storybook to develop and review components in isolation." },
           { text: "Using Design mode's Style tab to make Figma-like visual edits and apply them directly to the code." },
           { text: "Handing code off between Builder and a local IDE with Push/Pull, or plain git push/sync." },
@@ -440,14 +440,14 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         type: "bullets",
         items: [
           {
-            text: "To keep exploring Fusion beyond this workshop, check out the Get Started with Fusion docs.",
+            text: "To keep exploring Builder beyond this workshop, check out the Get Started with Builder docs.",
             link: {
               text: "Get Started with Builder docs",
               href: "https://www.builder.io/c/docs/fusion",
             },
           },
           {
-            text: "To learn more about connecting a local repo to your Fusion project, check out the Connecting local repos docs.",
+            text: "To learn more about connecting a local repo to your Builder project, check out the Connecting local repos docs.",
             link: {
               text: "Connecting local repos docs",
               href: "https://www.builder.io/c/docs/projects-local-repo",
@@ -461,7 +461,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
-            text: "To learn how to connect MCP servers to your Fusion project, check out the MCP integrations docs.",
+            text: "To learn how to connect MCP servers to your Builder project, check out the MCP integrations docs.",
             link: {
               text: "MCP integrations docs",
               href: "https://www.builder.io/c/docs/fusion-integrations-for-developers",
@@ -478,14 +478,14 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "This bonus step uses GitHub. Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
+        text: "This bonus step uses GitHub. Once you're happy with your changes, open a pull request from Builder and let the Builder bot review agent take a first pass before a human does.",
       },
       {
         type: "numbered",
         items: [
           {
             title: "Send the PR",
-            text: "Click the \"Send PR\" button in the top right of the Fusion workspace to open a pull request for your branch against the base branch.",
+            text: "Click the \"Send PR\" button in the top right of the Builder workspace to open a pull request for your branch against the base branch.",
           },
           {
             title: "Wait for the Builder Bot Review",
