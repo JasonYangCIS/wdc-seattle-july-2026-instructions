@@ -377,7 +377,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Open the repo in your own editor (Kiro, VSCode, etc.) and make whatever code changes you like: install packages, refactor, add features, fix bugs. For example, add or simply make a change in the README, then commit the changes.",
           },
           {
-            title: "Option A: Push Back with the Push Command",
+            title: "Option A: Push Changes with the Push Command",
             text: "Open the Share panel, switch to \"Push\", and copy the CLI command shown there. Run it from your local repo to send your changes straight back into the Builder project. It updates automatically, so there's no manual sync needed.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7a6b54b38a7449418747fcbbb5eba30e?format=webp&width=1600",
