@@ -441,7 +441,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           { text: "Setting up Storybook to develop and review components in isolation." },
           { text: "Using Design mode's Style tab to make Figma-like visual edits and apply them directly to the code." },
           { text: "Handing code off between Builder and a local IDE with Push/Pull, or plain git push/sync." },
-          { text: "Submitting a pull request and using the Builder bot review agent, including tagging @builder-bot to address feedback." },
           { text: "Free experimentation with prompts, theming, and accessibility recommendations." },
         ],
       },
@@ -476,6 +475,9 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
               text: "MCP integrations docs",
               href: "https://www.builder.io/c/docs/fusion-integrations-for-developers",
             },
+          },
+          {
+            text: "Bonus: Submitting a pull request and using the Builder bot review agent, including tagging @builder-bot to address feedback.",
           },
         ],
       },
