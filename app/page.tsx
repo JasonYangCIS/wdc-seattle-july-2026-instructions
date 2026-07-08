@@ -320,15 +320,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
-            title: "Copy the Pull Command",
-            text: "Open the Share panel and click \"Pull\" under Code Handoff. Copy the CLI command shown there.",
-            image: {
-              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa22103b8ca9a4201b7e994ecda45baa2?format=webp&width=800",
-              alt: "Share Project, Pull CLI command",
-              caption: "Share Project, Pull CLI command",
-            },
-          },
-          {
             title: "Authenticate with the Builder.io CLI",
             text: "In your terminal, run the following command and follow the prompt to authenticate with Builder.io.",
             command: "npx builder.io@latest auth --spaceId da9013cf334340238f9e2401de83cc04",
