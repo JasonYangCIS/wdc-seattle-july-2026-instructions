@@ -306,7 +306,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Take the branch Fusion generated and bring it down to your local machine to keep working in your own editor or terminal.",
+        text: "Take the branch Builder generated and bring it down to your local machine to keep working in your own editor or terminal.",
       },
       {
         type: "numbered",
