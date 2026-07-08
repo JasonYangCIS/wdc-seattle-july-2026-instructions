@@ -430,7 +430,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Nice work! Over the course of this workshop, you used Builder to go from a Figma design to a fully themed, production-ready Cloudscape dashboard.",
+        text: "Nice work! Over the course of this workshop, you used Builder to go from a Figma design to a fully themed Cloudscape dashboard.",
       },
       { type: "heading", text: "What we covered" },
       {
