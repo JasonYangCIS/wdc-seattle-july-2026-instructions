@@ -350,6 +350,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             title: "Checkout the Branch Locally",
             text: "Click \"Share\" in the top right, then click \"Pull\" under Code Handoff to copy the command. In your terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
+            codeText: "cd",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7b07d6405b9d4d60952a7fe8be3811c9?format=webp&width=1600",
               alt: "Share Project, Pull CLI command",
