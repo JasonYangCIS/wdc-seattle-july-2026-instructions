@@ -35,7 +35,8 @@ type VideoRef = {
 function renderTextWithInlineLink(
   text: string,
   link?: { text: string; href: string },
-  boldText?: string
+  boldText?: string,
+  codeText?: string
 ) {
   let content: string | ReactNode = text;
   if (boldText) {
@@ -46,6 +47,20 @@ function renderTextWithInlineLink(
           {text.slice(0, index)}
           <strong>{boldText}</strong>
           {text.slice(index + boldText.length)}
+        </>
+      );
+    }
+  }
+  if (codeText) {
+    const index = text.indexOf(codeText);
+    if (index !== -1) {
+      content = (
+        <>
+          {text.slice(0, index)}
+          <Box variant="awsui-inline-code" display="inline">
+            {codeText}
+          </Box>
+          {text.slice(index + codeText.length)}
         </>
       );
     }
@@ -75,6 +90,7 @@ type Block =
         title: string;
         text: string;
         boldText?: string;
+        codeText?: string;
         prompt?: string;
         command?: string;
         tip?: string;
@@ -322,6 +338,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             title: "Authenticate with the Builder.io CLI",
             text: "In your terminal, cd into the cloned project directory, then run the following command and follow the prompt to authenticate with Builder.io.",
+            codeText: "cd",
             command: "npx builder.io@latest auth --spaceId da9013cf334340238f9e2401de83cc04",
             tip: "da9013cf334340238f9e2401de83cc04 is this Builder space's API key.",
             image: {
@@ -721,7 +738,7 @@ function BlockRenderer({ block }: { block: Block }) {
                   >
                     <SpaceBetween size="xs">
                       <Box variant="p" color="text-body-secondary" margin="n">
-                        {renderTextWithInlineLink(item.text, item.link, item.boldText)}
+                        {renderTextWithInlineLink(item.text, item.link, item.boldText, item.codeText)}
                       </Box>
                       {item.prompt && <PromptBlock text={item.prompt} />}
                       {item.command && <CommandBlock text={item.command} />}
@@ -732,7 +749,7 @@ function BlockRenderer({ block }: { block: Block }) {
                 ) : (
                   <SpaceBetween size="xs">
                     <Box variant="p" color="text-body-secondary" margin="n">
-                      {renderTextWithInlineLink(item.text, item.link, item.boldText)}
+                      {renderTextWithInlineLink(item.text, item.link, item.boldText, item.codeText)}
                     </Box>
                     {item.prompt && <PromptBlock text={item.prompt} />}
                     {item.command && <CommandBlock text={item.command} />}
