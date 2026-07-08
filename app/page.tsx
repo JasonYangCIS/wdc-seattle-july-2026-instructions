@@ -68,7 +68,7 @@ type Block =
   | { type: "eyebrow"; text: string }
   | { type: "paragraph"; text: string; strongLead?: string; link?: { text: string; href: string } }
   | { type: "heading"; text: string }
-  | { type: "bullets"; items: { text: string; example?: string }[] }
+  | { type: "bullets"; items: { text: string; example?: string; link?: { text: string; href: string } }[] }
   | {
       type: "numbered";
       items: {
@@ -76,6 +76,7 @@ type Block =
         text: string;
         boldText?: string;
         prompt?: string;
+        command?: string;
         tip?: string;
         image?: ImageRef;
         video?: VideoRef;
@@ -89,6 +90,7 @@ type Block =
 type StepContent = {
   navTitle: string;
   heading: string;
+  bonus?: boolean;
   blocks: Block[];
 };
 
@@ -100,12 +102,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       { type: "eyebrow", text: "AMAZON WDC SEATTLE · BUILDER.IO WORKSHOP · CLOUDSCAPE DESIGN SYSTEM EXERCISE" },
       {
         type: "paragraph",
-        text: "We are going to build a custom dashboard using the Cloudscape design system and the Builder's Fusion product.",
+        text: "We are going to build a custom dashboard using the Cloudscape design system and the Builder's Fusion product, while exploring different workflows that Fusion enables.",
       },
       {
         type: "paragraph",
         strongLead: "Your goal",
-        text: ": In the next hour, add a new dashboard to Cloudscape and make it your own. You don't need to know how to code to do this, and can do so by prompting with natural language. You can find the full list of suggested prompts and required resources for the workshop exercise beginning after going to the next step.",
+        text: ": Add a new dashboard to Cloudscape and make it your own. You don't need to know how to code to do this, and can do so by prompting with natural language. You can find the full list of suggested prompts and required resources for the workshop exercise beginning after going to the next step.",
       },
       {
         type: "alert",
@@ -299,18 +301,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Code hand-off",
-    heading: "Code Hand-off",
+    navTitle: "Pull branch into local Kiro",
+    heading: "Pull branch into local Kiro",
     blocks: [
       {
         type: "paragraph",
         text: "Take the branch Fusion generated and bring it down to your local machine to keep working in your own editor or terminal.",
-      },
-      {
-        type: "alert",
-        alertType: "warning",
-        header: "TODO",
-        text: "Amazon uses git farm internally, so these code hand-off steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm, and is considering changing this step to use the Prototype feature instead of Push/Pull.",
       },
       {
         type: "numbered",
@@ -333,9 +329,40 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             },
           },
           {
-            title: "Checkout the Branch Locally",
-            text: "In Kiro or any terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
+            title: "Authenticate with the Builder.io CLI",
+            text: "In your terminal, run the following command and follow the prompt to authenticate with Builder.io.",
+            command: "npx builder.io@latest auth --spaceId da9013cf334340238f9e2401de83cc04",
+            tip: "da9013cf334340238f9e2401de83cc04 is this Builder Fusion space's API key.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa010b9328e514d439180896a8d0bf5bb?format=webp&width=1600",
+              alt: "Builder.io CLI authentication",
+              caption: "Builder.io CLI authentication",
+            },
           },
+          {
+            title: "Checkout the Branch Locally",
+            text: "Click \"Share\" in the top right, then click \"Pull\" under Code Handoff to copy the command. In Kiro or any terminal, cd into the cloned repo and paste the copied command to check out your branch locally.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F7b07d6405b9d4d60952a7fe8be3811c9?format=webp&width=1600",
+              alt: "Share Project, Pull CLI command",
+              caption: "Share Project, Pull CLI command",
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    navTitle: "Push local Kiro branch up",
+    heading: "Push local Kiro branch up",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Once you've made changes locally, send them back up to the Fusion project.",
+      },
+      {
+        type: "numbered",
+        items: [
           {
             title: "Make Changes in Your Local IDE",
             text: "Open the repo in your own editor (VS Code, Kiro, etc.) and make whatever code changes you like: install packages, refactor, add features, fix bugs. For example, add or simply make a change in the README, then commit the changes.",
@@ -363,48 +390,12 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Submit a pull request",
-    heading: "Submit a Pull Request",
-    blocks: [
-      {
-        type: "paragraph",
-        text: "Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
-      },
-      {
-        type: "alert",
-        alertType: "warning",
-        header: "TODO",
-        text: "Amazon uses git farm internally, so these pull request steps may not apply as written. Builder team still needs to confirm the equivalent workflow for git farm.",
-      },
-      {
-        type: "numbered",
-        items: [
-          {
-            title: "Send the PR",
-            text: "Click the \"Send PR\" button in the top right of the Fusion workspace to open a pull request for your branch against the base branch.",
-          },
-          {
-            title: "Wait for the Builder Bot Review",
-            text: "The Builder bot PR review agent automatically runs against your pull request and leaves comments directly on the PR, flagging potential bugs, style issues, or suggestions.",
-          },
-          {
-            title: "Ask @builder-bot to Make Changes",
-            text: "Open the pull request on GitHub and leave a comment, either on a specific line of code or directly on the PR itself, mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it. You can also tag it once to \"address all feedback in this pull request.\"",
-            video: {
-              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6de6aa254f334d85a732071a6b830b76?alt=media&token=21671f78-b7be-40fe-bce4-502ec269c114&apiKey=YJIGb4i01jvw0SRdL5Bt",
-            },
-          },
-        ],
-      },
-    ],
-  },
-  {
     navTitle: "Free experimentation",
     heading: "Experiment!",
     blocks: [
       {
         type: "paragraph",
-        text: "Experiment using prompts, screenshots, and more. You're low-key coding now, so keep flexing your vibe-coding skills with any time you have left. Share what you've built with your peers around you.",
+        text: "Use any remaining time to keep iterating with prompts, screenshots, and other inputs. Push the tooling further and see what it can generate for you. Share what you've built with your peers around you.",
       },
       { type: "heading", text: "Other recommendations" },
       {
@@ -446,12 +437,68 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       },
       { type: "heading", text: "Keep learning" },
       {
+        type: "bullets",
+        items: [
+          {
+            text: "To keep exploring Fusion beyond this workshop, check out the Get Started with Fusion docs.",
+            link: {
+              text: "Get Started with Fusion docs",
+              href: "https://www.builder.io/c/docs/fusion",
+            },
+          },
+          {
+            text: "To learn more about connecting a local repo to your Fusion project, check out the Connecting local repos docs.",
+            link: {
+              text: "Connecting local repos docs",
+              href: "https://www.builder.io/c/docs/projects-local-repo",
+            },
+          },
+          {
+            text: "To learn more about pushing and pulling changes with the CLI, check out the Builder CLI docs.",
+            link: {
+              text: "Builder CLI docs",
+              href: "https://www.builder.io/c/docs/builder-cli-api",
+            },
+          },
+          {
+            text: "To learn how to connect MCP servers to your Fusion project, check out the MCP integrations docs.",
+            link: {
+              text: "MCP integrations docs",
+              href: "https://www.builder.io/c/docs/fusion-integrations-for-developers",
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    navTitle: "Bonus: Submit a pull request",
+    heading: "Bonus: Submit a Pull Request",
+    bonus: true,
+    blocks: [
+      {
         type: "paragraph",
-        text: "To keep exploring Fusion beyond this workshop, check out the Get Started with Fusion docs.",
-        link: {
-          text: "Get Started with Fusion docs",
-          href: "https://www.builder.io/c/docs/get-started-fusion",
-        },
+        text: "This bonus step uses GitHub. Once you're happy with your changes, open a pull request from Fusion and let the Builder bot review agent take a first pass before a human does.",
+      },
+      {
+        type: "numbered",
+        items: [
+          {
+            title: "Send the PR",
+            text: "Click the \"Send PR\" button in the top right of the Fusion workspace to open a pull request for your branch against the base branch.",
+          },
+          {
+            title: "Wait for the Builder Bot Review",
+            text: "The Builder bot PR review agent automatically runs against your pull request and leaves comments directly on the PR, flagging potential bugs, style issues, or suggestions.",
+          },
+          {
+            title: "Ask @builder-bot to Make Changes",
+            text: "Open the pull request on GitHub and leave a comment, either on a specific line of code or directly on the PR itself, mentioning \"@builder-bot\" with what you want changed. The bot will push a new commit addressing it. You can also tag it once to \"address all feedback in this pull request.\"",
+            video: {
+              src: "https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6de6aa254f334d85a732071a6b830b76?alt=media&token=21671f78-b7be-40fe-bce4-502ec269c114&apiKey=YJIGb4i01jvw0SRdL5Bt",
+            },
+          },
+        ],
       },
     ],
   },
@@ -580,6 +627,29 @@ function PromptBlock({ text }: { text: string }) {
   );
 }
 
+function CommandBlock({ text }: { text: string }) {
+  return (
+    <Container disableContentPaddings={false}>
+      <SpaceBetween size="xs">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Icon name="command-prompt" variant="subtle" />
+            <Box variant="awsui-key-label">Command</Box>
+          </div>
+          <CopyToClipboard
+            variant="icon"
+            copyButtonAriaLabel="Copy command"
+            copySuccessText="Command copied"
+            copyErrorText="Command failed to copy"
+            textToCopy={text}
+          />
+        </div>
+        <Box variant="code">{text}</Box>
+      </SpaceBetween>
+    </Container>
+  );
+}
+
 function TipText({ text }: { text: string }) {
   return (
     <div className="flex items-start gap-2">
@@ -610,7 +680,10 @@ function BlockRenderer({ block }: { block: Block }) {
           <ul style={{ listStyleType: "disc" }}>
             {block.items.map((item, i) => (
               <li key={i}>
-                <Box margin={{ bottom: "n" }}>{item.text}{item.example ? ":" : ""}</Box>
+                <Box margin={{ bottom: "n" }}>
+                  {renderTextWithInlineLink(item.text, item.link)}
+                  {item.example ? ":" : ""}
+                </Box>
                 {item.example && (
                   <Box variant="small" color="text-body-secondary" margin={{ top: "xxs" }}>
                     <CopyToClipboard
@@ -660,6 +733,7 @@ function BlockRenderer({ block }: { block: Block }) {
                         {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                       </Box>
                       {item.prompt && <PromptBlock text={item.prompt} />}
+                      {item.command && <CommandBlock text={item.command} />}
                       {item.tip && <TipText text={item.tip} />}
                     </SpaceBetween>
                     {item.video ? <LazyVideo video={item.video} /> : <Figure image={item.image!} />}
@@ -670,6 +744,7 @@ function BlockRenderer({ block }: { block: Block }) {
                       {renderTextWithInlineLink(item.text, item.link, item.boldText)}
                     </Box>
                     {item.prompt && <PromptBlock text={item.prompt} />}
+                    {item.command && <CommandBlock text={item.command} />}
                     {item.tip && <TipText text={item.tip} />}
                   </SpaceBetween>
                 )}
@@ -707,18 +782,24 @@ export default function Home() {
   const [stepIndex, setStepIndex] = useState(0);
 
   const steps = CLOUDSCAPE_STEPS;
-  const total = steps.length;
+  const countedSteps = steps.filter((s) => !s.bonus);
+  const total = countedSteps.length;
   const step = steps[stepIndex];
-  const progressPct = ((stepIndex + 1) / total) * 100;
+  const countedIndex = countedSteps.indexOf(step);
+  const progressPct = step.bonus ? 100 : ((countedIndex + 1) / total) * 100;
 
-  const navItems: SideNavigationProps.Item[] = steps.map((s, i) => ({
-    type: "link",
-    text: `${String(i + 1).padStart(2, "0")}  ${s.navTitle}`,
-    href: `#step-${i}`,
-    ...((i === 0 || i === 6 || i === 7) && {
-      info: <Icon name="status-warning" variant="warning" ariaLabel="Has an open TODO" />,
-    }),
-  }));
+  let countedNumber = 0;
+  const navItems: SideNavigationProps.Item[] = steps.map((s, i) => {
+    if (!s.bonus) countedNumber += 1;
+    return {
+      type: "link",
+      text: s.bonus ? s.navTitle : `${String(countedNumber).padStart(2, "0")}  ${s.navTitle}`,
+      href: `#step-${i}`,
+      ...((i === 0 || i === 6 || i === 7) && {
+        info: <Icon name="status-warning" variant="warning" ariaLabel="Has an open TODO" />,
+      }),
+    };
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -803,7 +884,7 @@ export default function Home() {
         notifications={
           <ProgressBar
             value={progressPct}
-            label={`Step ${stepIndex + 1} of ${total}`}
+            label={step.bonus ? "Bonus step" : `Step ${countedIndex + 1} of ${total}`}
           />
         }
         navigation={
@@ -835,8 +916,8 @@ export default function Home() {
                     iconName="angle-right"
                     iconAlign="right"
                     variant="primary"
-                    disabled={stepIndex === total - 1}
-                    onClick={() => setStepIndex((i) => Math.min(total - 1, i + 1))}
+                    disabled={stepIndex === steps.length - 1}
+                    onClick={() => setStepIndex((i) => Math.min(steps.length - 1, i + 1))}
                   >
                     Next
                   </Button>
