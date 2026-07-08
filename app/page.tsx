@@ -102,7 +102,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       { type: "eyebrow", text: "AMAZON WDC SEATTLE · BUILDER.IO WORKSHOP · CLOUDSCAPE DESIGN SYSTEM EXERCISE" },
       {
         type: "paragraph",
-        text: "We are going to build a custom dashboard using the Cloudscape design system and the Builder's Fusion product, while exploring different workflows that Fusion enables.",
+        text: "We are going to build a custom dashboard using the Cloudscape design system and Builder, while exploring different workflows that Builder enables.",
       },
       {
         type: "paragraph",
@@ -332,7 +332,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             title: "Authenticate with the Builder.io CLI",
             text: "In your terminal, run the following command and follow the prompt to authenticate with Builder.io.",
             command: "npx builder.io@latest auth --spaceId da9013cf334340238f9e2401de83cc04",
-            tip: "da9013cf334340238f9e2401de83cc04 is this Builder Fusion space's API key.",
+            tip: "da9013cf334340238f9e2401de83cc04 is this Builder space's API key.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa010b9328e514d439180896a8d0bf5bb?format=webp&width=1600",
               alt: "Builder.io CLI authentication",
@@ -358,7 +358,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     blocks: [
       {
         type: "paragraph",
-        text: "Once you've made changes locally, send them back up to the Fusion project.",
+        text: "Once you've made changes locally, send them back up to the Builder project.",
       },
       {
         type: "numbered",
@@ -381,8 +381,8 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "Alternatively, commit and `git push` your changes to the remote branch as usual. Back in Fusion, the top bar will show you're behind the remote. Click the sync icon to pull those changes into the project.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2Fa7314b9f95704816abf7602ae65d560f?format=webp&width=1600",
-              alt: "Fusion, commit behind remote, click to sync",
-              caption: "Fusion, commit behind remote, click to sync",
+              alt: "Builder, commit behind remote, click to sync",
+              caption: "Builder, commit behind remote, click to sync",
             },
           },
         ],
@@ -430,7 +430,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           { text: "Using Plan mode to collaborate with Fusion on an approach before generating code, then adding theming support." },
           { text: "Setting up Storybook to develop and review components in isolation." },
           { text: "Using Design mode's Style tab to make Figma-like visual edits and apply them directly to the code." },
-          { text: "Handing code off between Fusion and a local IDE with Push/Pull, or plain git push/sync." },
+          { text: "Handing code off between Builder and a local IDE with Push/Pull, or plain git push/sync." },
           { text: "Submitting a pull request and using the Builder bot review agent, including tagging @builder-bot to address feedback." },
           { text: "Free experimentation with prompts, theming, and accessibility recommendations." },
         ],
@@ -442,7 +442,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           {
             text: "To keep exploring Fusion beyond this workshop, check out the Get Started with Fusion docs.",
             link: {
-              text: "Get Started with Fusion docs",
+              text: "Get Started with Builder docs",
               href: "https://www.builder.io/c/docs/fusion",
             },
           },
