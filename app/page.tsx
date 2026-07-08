@@ -285,7 +285,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Apply the Visual Changes",
-            text: "After adjusting styles in the Style tab, click \"Apply Visual Changes\" to have Fusion implement your edits directly.",
+            text: "After adjusting styles in the Style tab, click \"Apply Visual Changes\" to have Builder implement your edits directly.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F3cc323b429bf4c24b3b740f4087a1bc5?format=webp&width=1600",
               alt: "Apply Visual Changes",
@@ -296,7 +296,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       },
       {
         type: "paragraph",
-        text: "You can add a prompt from the \"Generate\" tab, or click the \"Apply Visual Changes\" button to have Fusion implement updates directly.",
+        text: "You can add a prompt from the \"Generate\" tab, or click the \"Apply Visual Changes\" button to have Builder implement updates directly.",
       },
     ],
   },
