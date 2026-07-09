@@ -514,6 +514,62 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       },
     ],
   },
+  {
+    navTitle: "Bonus: Run a local repo via CLI",
+    heading: "Bonus: Run a Local Repo via CLI",
+    bonus: true,
+    blocks: [
+      {
+        type: "paragraph",
+        text: "You can connect a locally running instance of this repo to your Builder project, so Builder previews and edits your app while it runs on your own machine.",
+        link: {
+          text: "Connecting local repos docs",
+          href: "https://www.builder.io/c/docs/projects-local-repo",
+        },
+      },
+      {
+        type: "numbered",
+        items: [
+          {
+            title: "Start Your Local Dev Server",
+            text: "In your terminal, cd into this workshop's repo (the one you cloned and checked out your branch in earlier) and start the local dev server. It needs to already be running before the next step.",
+          },
+          {
+            title: "Launch the Local Repo Connection",
+            text: "With the dev server running, open another terminal in the same repo and run the following command to connect it to Builder.",
+            command: 'npx "@builder.io/dev-tools@latest" launch --serverUrl http://localhost:9615',
+            tip: "Replace the port in --serverUrl with whatever port your local dev server is actually running on.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F3e08484cd16e41bf8c932b5cc8c0be72?format=webp&width=1600",
+              alt: "Running the local repo connection command in a terminal",
+              caption: "Running the local repo connection command in a terminal",
+            },
+          },
+          {
+            title: "See Your Local Server in Builder",
+            text: "Back in Builder, you'll see \"Local server\" in the top left with your branch name underneath it, and the preview will now show what's running on your machine instead of the cloud sandbox. Any changes you make through Builder, whether from prompting, Design mode, or the Code tab, are written straight to your local files, so your local IDE updates automatically without you needing to pull or sync anything.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F86529c1995c34a60868e92955785d688?format=webp&width=1600",
+              alt: "Builder workspace showing the connected local server and live preview",
+              caption: "Builder workspace showing the connected local server and live preview",
+            },
+          },
+        ],
+      },
+      {
+        type: "bullets",
+        items: [
+          {
+            text: "To learn more about connecting a local repo to your Builder project, check out the Connecting local repos docs.",
+            link: {
+              text: "Connecting local repos docs",
+              href: "https://www.builder.io/c/docs/projects-local-repo",
+            },
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 function getHighResSrc(src: string) {
