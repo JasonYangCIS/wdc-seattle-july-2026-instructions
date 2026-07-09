@@ -514,6 +514,36 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       },
     ],
   },
+  {
+    navTitle: "Bonus: Run a local repo via CLI",
+    heading: "Bonus: Run a Local Repo via CLI",
+    bonus: true,
+    blocks: [
+      {
+        type: "paragraph",
+        text: "You can connect a locally running instance of this repo to your Builder project, so Builder previews and edits your app while it runs on your own machine.",
+        link: {
+          text: "Connecting local repos docs",
+          href: "https://www.builder.io/c/docs/projects-local-repo",
+        },
+      },
+      {
+        type: "numbered",
+        items: [
+          {
+            title: "Start Your Local Dev Server",
+            text: "In your terminal, cd into this workshop's repo (the one you cloned and checked out your branch in earlier) and start the local dev server. It needs to already be running before the next step.",
+          },
+          {
+            title: "Launch the Local Repo Connection",
+            text: "With the dev server running, open another terminal in the same repo and run the following command to connect it to Builder.",
+            command: 'npx "@builder.io/dev-tools@latest" launch --serverUrl http://localhost:9615',
+            tip: "Replace the port in --serverUrl with whatever port your local dev server is actually running on.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 function getHighResSrc(src: string) {
