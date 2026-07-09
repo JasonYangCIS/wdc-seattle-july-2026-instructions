@@ -539,6 +539,11 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             text: "With the dev server running, open another terminal in the same repo and run the following command to connect it to Builder.",
             command: 'npx "@builder.io/dev-tools@latest" launch --serverUrl http://localhost:9615',
             tip: "Replace the port in --serverUrl with whatever port your local dev server is actually running on.",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F3e08484cd16e41bf8c932b5cc8c0be72?format=webp&width=1600",
+              alt: "Running the local repo connection command in a terminal",
+              caption: "Running the local repo connection command in a terminal",
+            },
           },
         ],
       },
