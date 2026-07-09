@@ -547,7 +547,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "See Your Local Server in Builder",
-            text: "Back in Builder, you'll see \"Local server\" in the top left with your branch name underneath it, and the preview will now show what's running on your machine instead of the cloud sandbox.",
+            text: "Back in Builder, you'll see \"Local server\" in the top left with your branch name underneath it, and the preview will now show what's running on your machine instead of the cloud sandbox. Any changes you make through Builder, whether from prompting, Design mode, or the Code tab, are written straight to your local files, so your local IDE updates automatically without you needing to pull or sync anything.",
             image: {
               src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F86529c1995c34a60868e92955785d688?format=webp&width=1600",
               alt: "Builder workspace showing the connected local server and live preview",
