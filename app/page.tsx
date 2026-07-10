@@ -138,7 +138,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           { text: "You may see your app briefly appear, disappear, and then reappear. This is normal." },
           { text: "Check the left sidebar if you're unsure. If there's active coding or \"thinking\" in progress, the task isn't finished." },
           { text: "If you run into an issue, click \"Attempt to Fix\" (if available). Otherwise, raise your hand for help." },
-          { text: "Mention \"clear chat\" when switching from one large feature to another that doesn't have dependencies on the previous context." },
+          { text: "\"clear chat\" when switching from one large feature to another that doesn't have dependencies on the previous context." },
         ],
       },
     ],
