@@ -112,7 +112,7 @@ type Block =
     };
 
 const WORKSHOP_JOIN_URL = "https://builder.io/app/space-join?apiKey=da9013cf334340238f9e2401de83cc04";
-const WORKSHOP_QR_SRC = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(WORKSHOP_JOIN_URL)}`;
+const WORKSHOP_QR_SRC = "https://da7ee3d4b24c4cf78f72-development.builderio.xyz/workshop-assets/login-qr.webp";
 
 type StepContent = {
   navTitle: string;
