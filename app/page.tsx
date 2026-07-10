@@ -194,7 +194,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           },
           {
             title: "Open the Plugin & Export the Design",
-            text: "Open the Builder.io Figma plugin on the design file you just opened. Select the layer you want to export to Builder, then use the plugin's Smart Export feature to export it. Copy the results from Figma and paste them into Builder's chat box.",
+            text: "Open the Builder.io Figma plugin on the design file you just opened. Click Login in the plugin and authorize it against this space. Select the layer you want to export to Builder, then use the plugin's Smart Export feature to export it. Copy the results from Figma and paste them into Builder's chat box.",
             link: {
               text: "Open the Builder.io Figma plugin",
               href: "https://www.figma.com/community/plugin/747985167520967365",
