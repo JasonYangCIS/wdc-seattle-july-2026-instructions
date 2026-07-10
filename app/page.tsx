@@ -416,7 +416,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           { text: "Ask questions to Builder", example: "\"Am I using all Cloudscape design tokens and components?\"" },
           { text: "Ask Builder to give you recommendations", example: "\"How can I make this dashboard adhere to WCAG 2.1 AA accessibility guidelines? Give me recommendations.\"" },
           { text: "Add gamification to the application", example: "\"Gamify the dashboard to make progress feel more fun.\"" },
-          { text: "Add 3d data visualization with loose requirements", example: "\"Use three.js to add an experimental creative 3D \"galaxy\" data visualization to the top of the dashboard\"" },
+          { text: "Add 3d data visualization with loose requirements", example: "\"Use three.js to add an experimental creative 3D 'galaxy' data visualization to the top of the dashboard\"" },
         ],
       },
       { type: "heading", text: "Explore the Code" },
