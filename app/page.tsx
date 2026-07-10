@@ -101,7 +101,18 @@ type Block =
     }
   | { type: "prompt"; text: string; image?: ImageRef }
   | { type: "image"; image: ImageRef }
-  | { type: "alert"; alertType: "success" | "error" | "warning" | "info"; header?: string; text: string };
+  | {
+      type: "alert";
+      alertType: "success" | "error" | "warning" | "info";
+      header?: string;
+      text: string;
+      link?: { text: string; href: string };
+      image?: ImageRef;
+      note?: string;
+    };
+
+const WORKSHOP_JOIN_URL = "https://builder.io/app/space-join?apiKey=da9013cf334340238f9e2401de83cc04";
+const WORKSHOP_QR_SRC = "https://da7ee3d4b24c4cf78f72-development.builderio.xyz/workshop-assets/login-qr.webp";
 
 type StepContent = {
   navTitle: string;
@@ -127,9 +138,17 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       },
       {
         type: "alert",
-        alertType: "warning",
-        header: "TODO",
-        text: "Builder team still needs to figure out a way to link attendees to the workshop space and automatically authenticate both in-person and online Amazon employees.",
+        alertType: "info",
+        header: "Logging In",
+        text: "Scan the QR code below to create a user in the space we will be using for this demo. You can also access by clicking the link: Join the Workshop",
+        link: {
+          text: "Join the Workshop",
+          href: WORKSHOP_JOIN_URL,
+        },
+        image: {
+          src: WORKSHOP_QR_SRC,
+          alt: "QR code to join the Builder.io workshop space",
+        },
       },
       { type: "heading", text: "Pro tips" },
       {
@@ -842,7 +861,18 @@ function BlockRenderer({ block }: { block: Block }) {
     case "alert":
       return (
         <Alert type={block.alertType} header={block.header}>
-          {block.text}
+          {renderTextWithInlineLink(block.text, block.link)}
+          {block.image && (
+            <Box margin={{ top: "s" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={block.image.src} alt={block.image.alt} className="h-40 w-40" />
+            </Box>
+          )}
+          {block.note && (
+            <Box variant="small" color="text-body-secondary" margin={{ top: "xs" }}>
+              {block.note}
+            </Box>
+          )}
         </Alert>
       );
   }
@@ -865,9 +895,6 @@ export default function Home() {
       type: "link",
       text: s.bonus ? s.navTitle : `${String(countedNumber).padStart(2, "0")}  ${s.navTitle}`,
       href: `#step-${i}`,
-      ...(i === 0 && {
-        info: <Icon name="status-warning" variant="warning" ariaLabel="Has an open TODO" />,
-      }),
     };
   });
 
@@ -958,16 +985,28 @@ export default function Home() {
           />
         }
         navigation={
-          <SideNavigation
-            header={{ text: "Workshop steps", href: "#step-0" }}
-            activeHref={`#step-${stepIndex}`}
-            items={navItems}
-            onFollow={(event) => {
-              event.preventDefault();
-              const index = Number(event.detail.href.replace("#step-", ""));
-              setStepIndex(index);
-            }}
-          />
+          <div className="flex h-full flex-col">
+            <div className="flex-1">
+              <SideNavigation
+                header={{ text: "Workshop steps", href: "#step-0" }}
+                activeHref={`#step-${stepIndex}`}
+                items={navItems}
+                onFollow={(event) => {
+                  event.preventDefault();
+                  const index = Number(event.detail.href.replace("#step-", ""));
+                  setStepIndex(index);
+                }}
+              />
+            </div>
+            <div className="flex flex-col items-center gap-2 border-t border-gray-200 p-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={WORKSHOP_QR_SRC} alt="QR code to log in to the workshop space" className="h-24 w-24" />
+              <span className="text-center text-xs text-gray-600">Create a user by scanning the QR code</span>
+              <span className="text-center text-xs text-gray-500">
+                Once a user is created you can log into builder at any time at builder.io/login
+              </span>
+            </div>
+          </div>
         }
         content={
           <ContentLayout>
