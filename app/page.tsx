@@ -140,7 +140,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
         type: "alert",
         alertType: "info",
         header: "Logging In",
-        text: "Scan the QR code below to create a user in the space we will be using for this demo. You can also access by clicking the link: ",
+        text: "Scan the QR code below to create a user in the space we will be using for this demo. You can also access by clicking the link: Join the Workshop",
         link: {
           text: "Join the Workshop",
           href: WORKSHOP_JOIN_URL,
@@ -149,7 +149,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
           src: WORKSHOP_QR_SRC,
           alt: "QR code to join the Builder.io workshop space",
         },
-        note: "Once a user is created you can log into builder at any time at builder.io/login",
       },
       { type: "heading", text: "Pro tips" },
       {
