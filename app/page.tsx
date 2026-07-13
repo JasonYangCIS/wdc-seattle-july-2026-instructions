@@ -109,6 +109,10 @@ type Block =
       link?: { text: string; href: string };
       image?: ImageRef;
       note?: string;
+    }
+  | {
+      type: "contacts";
+      items: { name: string; title: string; email: string; image: ImageRef }[];
     };
 
 const WORKSHOP_JOIN_URL = "https://builder.io/app/space-join?apiKey=da9013cf334340238f9e2401de83cc04";
@@ -505,6 +509,66 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
+    navTitle: "Contact information",
+    heading: "Contact Information",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Have questions after the workshop? Reach out to the Builder.io team below.",
+      },
+      {
+        type: "contacts",
+        items: [
+          {
+            name: "Andreas Cary",
+            title: "Senior Customer Engineer",
+            email: "andreas@builder.io",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F9e00f0dc93f44dcda2cddb8daf0c8021?format=webp&width=1600",
+              alt: "Andreas Cary",
+            },
+          },
+          {
+            name: "George Schultz",
+            title: "Enterprise Account Executive",
+            email: "george@builder.io",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4d0c2e1ceefa447aa0c1066ceea62c77?format=webp&width=1600",
+              alt: "George Schultz",
+            },
+          },
+          {
+            name: "Jason Yang",
+            title: "Customer Engineer",
+            email: "jyang@builder.io",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F5bc20278bae94c34ba96121e46031e93?format=webp&width=1600",
+              alt: "Jason Yang",
+            },
+          },
+          {
+            name: "Tim Garibaldi",
+            title: "Head of Customer Engineering & Solutions",
+            email: "tim@builder.io",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F72a543e6c8b7405bbe2f4b9b8ead84a8?format=webp&width=1600",
+              alt: "Tim Garibaldi",
+            },
+          },
+          {
+            name: "Maraya Gibson",
+            title: "Enterprise Customer Success Manager",
+            email: "maraya@builder.io",
+            image: {
+              src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F9e2cb5e030f84fc190f0a34c590aaa2f?format=webp&width=1600",
+              alt: "Maraya Gibson",
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
     navTitle: "Bonus: Submit a pull request",
     heading: "Bonus: Submit a Pull Request",
     bonus: true,
@@ -874,6 +938,32 @@ function BlockRenderer({ block }: { block: Block }) {
             </Box>
           )}
         </Alert>
+      );
+    case "contacts":
+      return (
+        <Grid
+          gridDefinition={block.items.map(() => ({ colspan: { default: 12, xs: 6, m: 4 } }))}
+        >
+          {block.items.map((item, i) => (
+            <Container key={i}>
+              <SpaceBetween size="xs" alignItems="center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  className="h-24 w-24 rounded-full object-cover"
+                />
+                <Box variant="h4" margin="n" textAlign="center">
+                  {item.name}
+                </Box>
+                <Box variant="small" color="text-body-secondary" textAlign="center">
+                  {item.title}
+                </Box>
+                <Link href={`mailto:${item.email}`}>{item.email}</Link>
+              </SpaceBetween>
+            </Container>
+          ))}
+        </Grid>
       );
   }
 }
