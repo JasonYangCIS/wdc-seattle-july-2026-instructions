@@ -1024,17 +1024,22 @@ export default function Home() {
   });
 
   useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    const slugIndex = steps.findIndex((s) => s.slug === hash);
-    if (slugIndex !== -1) {
-      setStepIndex(slugIndex);
-      return;
-    }
-    const stepMatch = hash.match(/^step-(\d+)$/);
-    if (stepMatch) {
-      const index = Number(stepMatch[1]);
-      if (index >= 0 && index < steps.length) setStepIndex(index);
-    }
+    const resolveHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      const slugIndex = steps.findIndex((s) => s.slug === hash);
+      if (slugIndex !== -1) {
+        setStepIndex(slugIndex);
+        return;
+      }
+      const stepMatch = hash.match(/^step-(\d+)$/);
+      if (stepMatch) {
+        const index = Number(stepMatch[1]);
+        if (index >= 0 && index < steps.length) setStepIndex(index);
+      }
+    };
+    resolveHash();
+    window.addEventListener("hashchange", resolveHash);
+    return () => window.removeEventListener("hashchange", resolveHash);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
