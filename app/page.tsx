@@ -126,6 +126,7 @@ type StepContent = {
   heading: string;
   bonus?: boolean;
   standalone?: boolean;
+  slug?: string;
   blocks: Block[];
 };
 
@@ -603,6 +604,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     navTitle: "Contact information",
     heading: "Contact Information",
     standalone: true,
+    slug: "contact-info",
     blocks: [
       {
         type: "paragraph",
@@ -1020,6 +1022,21 @@ export default function Home() {
       href: `#step-${i}`,
     });
   });
+
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    const slugIndex = steps.findIndex((s) => s.slug === hash);
+    if (slugIndex !== -1) {
+      setStepIndex(slugIndex);
+      return;
+    }
+    const stepMatch = hash.match(/^step-(\d+)$/);
+    if (stepMatch) {
+      const index = Number(stepMatch[1]);
+      if (index >= 0 && index < steps.length) setStepIndex(index);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
