@@ -942,26 +942,31 @@ function BlockRenderer({ block }: { block: Block }) {
     case "contacts":
       return (
         <Grid
-          gridDefinition={block.items.map(() => ({ colspan: { default: 12, xs: 6, m: 4 } }))}
+          disableGutters
+          gridDefinition={block.items.map(() => ({ colspan: { default: 6, xs: 4, m: 3 } }))}
         >
           {block.items.map((item, i) => (
-            <Container key={i}>
-              <SpaceBetween size="xs" alignItems="center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.image.src}
-                  alt={item.image.alt}
-                  className="h-24 w-24 rounded-full object-cover"
-                />
-                <Box variant="h4" margin="n" textAlign="center">
-                  {item.name}
+            <Box key={i} padding="xs">
+              <Container disableContentPaddings>
+                <Box padding="s">
+                  <SpaceBetween size="xs" alignItems="center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={item.image.src}
+                      alt={item.image.alt}
+                      className="h-16 w-16 rounded-full object-cover"
+                    />
+                    <Box variant="h4" margin="n" textAlign="center">
+                      {item.name}
+                    </Box>
+                    <Box variant="small" color="text-body-secondary" textAlign="center">
+                      {item.title}
+                    </Box>
+                    <Link href={`mailto:${item.email}`}>{item.email}</Link>
+                  </SpaceBetween>
                 </Box>
-                <Box variant="small" color="text-body-secondary" textAlign="center">
-                  {item.title}
-                </Box>
-                <Link href={`mailto:${item.email}`}>{item.email}</Link>
-              </SpaceBetween>
-            </Container>
+              </Container>
+            </Box>
           ))}
         </Grid>
       );
