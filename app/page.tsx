@@ -513,77 +513,6 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
     ],
   },
   {
-    navTitle: "Contact information",
-    heading: "Contact Information",
-    standalone: true,
-    blocks: [
-      {
-        type: "paragraph",
-        text: "Have questions after the workshop? Reach out to the Builder.io team below.",
-      },
-      {
-        type: "contacts",
-        groups: [
-          {
-            title: "Your Account Representatives",
-            items: [
-              {
-                name: "Maraya Gibson",
-                title: "Enterprise Customer Success Manager",
-                email: "maraya@builder.io",
-                image: {
-                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F9e2cb5e030f84fc190f0a34c590aaa2f?format=webp&width=1600&height=1600&fit=cover",
-                  alt: "Maraya Gibson",
-                },
-              },
-              {
-                name: "George Schultz",
-                title: "Enterprise Account Executive",
-                email: "george@builder.io",
-                image: {
-                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4d0c2e1ceefa447aa0c1066ceea62c77?format=webp&width=1600&height=1600&fit=cover",
-                  alt: "George Schultz",
-                },
-              },
-              {
-                name: "Andreas Cary",
-                title: "Senior Customer Engineer",
-                email: "andreas@builder.io",
-                image: {
-                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F9e00f0dc93f44dcda2cddb8daf0c8021?format=webp&width=1600&height=1600&fit=cover",
-                  alt: "Andreas Cary",
-                },
-              },
-            ],
-          },
-          {
-            title: "Your Workshop Hosts",
-            items: [
-              {
-                name: "Tim Garibaldi",
-                title: "Head of Customer Engineering & Solutions",
-                email: "tim@builder.io",
-                image: {
-                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F72a543e6c8b7405bbe2f4b9b8ead84a8?format=webp&width=1600&height=1600&fit=cover",
-                  alt: "Tim Garibaldi",
-                },
-              },
-              {
-                name: "Jason Yang",
-                title: "Customer Engineer",
-                email: "jyang@builder.io",
-                image: {
-                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F5bc20278bae94c34ba96121e46031e93?format=webp&width=1600&height=1600&fit=cover",
-                  alt: "Jason Yang",
-                },
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
     navTitle: "Bonus: Submit a pull request",
     heading: "Bonus: Submit a Pull Request",
     bonus: true,
@@ -665,6 +594,77 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
               text: "Connecting local repos docs",
               href: "https://www.builder.io/c/docs/projects-local-repo",
             },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    navTitle: "Contact information",
+    heading: "Contact Information",
+    standalone: true,
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Have questions after the workshop? Reach out to the Builder.io team below.",
+      },
+      {
+        type: "contacts",
+        groups: [
+          {
+            title: "Your Account Representatives",
+            items: [
+              {
+                name: "Maraya Gibson",
+                title: "Enterprise Customer Success Manager",
+                email: "maraya@builder.io",
+                image: {
+                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F9e2cb5e030f84fc190f0a34c590aaa2f?format=webp&width=1600&height=1600&fit=cover",
+                  alt: "Maraya Gibson",
+                },
+              },
+              {
+                name: "George Schultz",
+                title: "Enterprise Account Executive",
+                email: "george@builder.io",
+                image: {
+                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4d0c2e1ceefa447aa0c1066ceea62c77?format=webp&width=1600&height=1600&fit=cover",
+                  alt: "George Schultz",
+                },
+              },
+              {
+                name: "Andreas Cary",
+                title: "Senior Customer Engineer",
+                email: "andreas@builder.io",
+                image: {
+                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F9e00f0dc93f44dcda2cddb8daf0c8021?format=webp&width=1600&height=1600&fit=cover",
+                  alt: "Andreas Cary",
+                },
+              },
+            ],
+          },
+          {
+            title: "Your Workshop Hosts",
+            items: [
+              {
+                name: "Tim Garibaldi",
+                title: "Head of Customer Engineering & Solutions",
+                email: "tim@builder.io",
+                image: {
+                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F72a543e6c8b7405bbe2f4b9b8ead84a8?format=webp&width=1600&height=1600&fit=cover",
+                  alt: "Tim Garibaldi",
+                },
+              },
+              {
+                name: "Jason Yang",
+                title: "Customer Engineer",
+                email: "jyang@builder.io",
+                image: {
+                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F5bc20278bae94c34ba96121e46031e93?format=webp&width=1600&height=1600&fit=cover",
+                  alt: "Jason Yang",
+                },
+              },
+            ],
           },
         ],
       },
