@@ -954,7 +954,7 @@ function BlockRenderer({ block }: { block: Block }) {
                     <img
                       src={item.image.src}
                       alt={item.image.alt}
-                      className="h-16 w-16 rounded-full object-cover"
+                      className="h-20 w-20 rounded-full object-cover"
                     />
                     <Box variant="h4" margin="n" textAlign="center">
                       {item.name}
