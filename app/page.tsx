@@ -109,15 +109,24 @@ type Block =
       link?: { text: string; href: string };
       image?: ImageRef;
       note?: string;
+    }
+  | {
+      type: "contacts";
+      groups: {
+        title: string;
+        items: { name: string; title: string; email: string; image: ImageRef }[];
+      }[];
     };
 
 const WORKSHOP_JOIN_URL = "https://builder.io/app/space-join?apiKey=da9013cf334340238f9e2401de83cc04";
-const WORKSHOP_QR_SRC = "https://da7ee3d4b24c4cf78f72-development.builderio.xyz/workshop-assets/login-qr.webp";
+const WORKSHOP_QR_SRC = "https://wdc-seattle-2026.builder.cloud/workshop-assets/login-qr.webp";
 
 type StepContent = {
   navTitle: string;
   heading: string;
   bonus?: boolean;
+  standalone?: boolean;
+  slug?: string;
   blocks: Block[];
 };
 
@@ -591,6 +600,78 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
       },
     ],
   },
+  {
+    navTitle: "Contact information",
+    heading: "Contact Information",
+    standalone: true,
+    slug: "contact-info",
+    blocks: [
+      {
+        type: "paragraph",
+        text: "Have questions after the workshop? Reach out to the Builder.io team below.",
+      },
+      {
+        type: "contacts",
+        groups: [
+          {
+            title: "Your Account Representatives",
+            items: [
+              {
+                name: "Maraya Gibson",
+                title: "Enterprise Customer Success Manager",
+                email: "maraya@builder.io",
+                image: {
+                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F9e2cb5e030f84fc190f0a34c590aaa2f?format=webp&width=1600&height=1600&fit=cover",
+                  alt: "Maraya Gibson",
+                },
+              },
+              {
+                name: "George Schultz",
+                title: "Enterprise Account Executive",
+                email: "george@builder.io",
+                image: {
+                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F4d0c2e1ceefa447aa0c1066ceea62c77?format=webp&width=1600&height=1600&fit=cover",
+                  alt: "George Schultz",
+                },
+              },
+              {
+                name: "Andreas Cary",
+                title: "Senior Customer Engineer",
+                email: "andreas@builder.io",
+                image: {
+                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F9e00f0dc93f44dcda2cddb8daf0c8021?format=webp&width=1600&height=1600&fit=cover",
+                  alt: "Andreas Cary",
+                },
+              },
+            ],
+          },
+          {
+            title: "Your Workshop Hosts",
+            items: [
+              {
+                name: "Tim Garibaldi",
+                title: "Head of Technical Success",
+                email: "tim@builder.io",
+                image: {
+                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F72a543e6c8b7405bbe2f4b9b8ead84a8?format=webp&width=1600&height=1600&fit=cover",
+                  alt: "Tim Garibaldi",
+                },
+              },
+              {
+                name: "Jason Yang",
+                title: "Customer Engineer",
+                email: "jyang@builder.io",
+                image: {
+                  src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F5bc20278bae94c34ba96121e46031e93?format=webp&width=1600&height=1600&fit=cover",
+                  alt: "Jason Yang",
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 function getHighResSrc(src: string) {
@@ -875,6 +956,46 @@ function BlockRenderer({ block }: { block: Block }) {
           )}
         </Alert>
       );
+    case "contacts":
+      return (
+        <SpaceBetween size="l">
+          {block.groups.map((group, g) => (
+            <SpaceBetween size="s" key={g}>
+              <Box variant="h3" margin="n">
+                {group.title}
+              </Box>
+              <Grid
+                disableGutters
+                gridDefinition={group.items.map(() => ({ colspan: { default: 6, xs: 4, m: 3 } }))}
+              >
+                {group.items.map((item, i) => (
+                  <Box key={i} padding="xs">
+                    <Container disableContentPaddings>
+                      <Box padding="s">
+                        <SpaceBetween size="xs" alignItems="center">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={item.image.src}
+                            alt={item.image.alt}
+                            className="h-20 w-20 rounded-full object-cover"
+                          />
+                          <Box variant="h4" margin="n" textAlign="center">
+                            {item.name}
+                          </Box>
+                          <Box variant="small" color="text-body-secondary" textAlign="center">
+                            {item.title}
+                          </Box>
+                          <Link href={`mailto:${item.email}`}>{item.email}</Link>
+                        </SpaceBetween>
+                      </Box>
+                    </Container>
+                  </Box>
+                ))}
+              </Grid>
+            </SpaceBetween>
+          ))}
+        </SpaceBetween>
+      );
   }
 }
 
@@ -882,21 +1003,45 @@ export default function Home() {
   const [stepIndex, setStepIndex] = useState(0);
 
   const steps = CLOUDSCAPE_STEPS;
-  const countedSteps = steps.filter((s) => !s.bonus);
+  const countedSteps = steps.filter((s) => !s.bonus && !s.standalone);
   const total = countedSteps.length;
   const step = steps[stepIndex];
   const countedIndex = countedSteps.indexOf(step);
-  const progressPct = step.bonus ? 100 : ((countedIndex + 1) / total) * 100;
+  const progressPct = step.bonus || step.standalone ? 100 : ((countedIndex + 1) / total) * 100;
 
   let countedNumber = 0;
-  const navItems: SideNavigationProps.Item[] = steps.map((s, i) => {
-    if (!s.bonus) countedNumber += 1;
-    return {
+  const navItems: SideNavigationProps.Item[] = [];
+  steps.forEach((s, i) => {
+    if (!s.bonus && !s.standalone) countedNumber += 1;
+    if (s.standalone) {
+      navItems.push({ type: "divider" });
+    }
+    navItems.push({
       type: "link",
-      text: s.bonus ? s.navTitle : `${String(countedNumber).padStart(2, "0")}  ${s.navTitle}`,
+      text: s.bonus || s.standalone ? s.navTitle : `${String(countedNumber).padStart(2, "0")}  ${s.navTitle}`,
       href: `#step-${i}`,
-    };
+    });
   });
+
+  useEffect(() => {
+    const resolveHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      const slugIndex = steps.findIndex((s) => s.slug === hash);
+      if (slugIndex !== -1) {
+        setStepIndex(slugIndex);
+        return;
+      }
+      const stepMatch = hash.match(/^step-(\d+)$/);
+      if (stepMatch) {
+        const index = Number(stepMatch[1]);
+        if (index >= 0 && index < steps.length) setStepIndex(index);
+      }
+    };
+    resolveHash();
+    window.addEventListener("hashchange", resolveHash);
+    return () => window.removeEventListener("hashchange", resolveHash);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -981,7 +1126,13 @@ export default function Home() {
         notifications={
           <ProgressBar
             value={progressPct}
-            label={step.bonus ? "Bonus step" : `Step ${countedIndex + 1} of ${total}`}
+            label={
+              step.bonus
+                ? "Bonus step"
+                : step.standalone
+                  ? step.navTitle
+                  : `Step ${countedIndex + 1} of ${total}`
+            }
           />
         }
         navigation={
