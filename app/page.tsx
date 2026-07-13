@@ -125,6 +125,7 @@ type StepContent = {
   navTitle: string;
   heading: string;
   bonus?: boolean;
+  standalone?: boolean;
   blocks: Block[];
 };
 
@@ -514,6 +515,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
   {
     navTitle: "Contact information",
     heading: "Contact Information",
+    standalone: true,
     blocks: [
       {
         type: "paragraph",
@@ -999,20 +1001,24 @@ export default function Home() {
   const [stepIndex, setStepIndex] = useState(0);
 
   const steps = CLOUDSCAPE_STEPS;
-  const countedSteps = steps.filter((s) => !s.bonus);
+  const countedSteps = steps.filter((s) => !s.bonus && !s.standalone);
   const total = countedSteps.length;
   const step = steps[stepIndex];
   const countedIndex = countedSteps.indexOf(step);
-  const progressPct = step.bonus ? 100 : ((countedIndex + 1) / total) * 100;
+  const progressPct = step.bonus || step.standalone ? 100 : ((countedIndex + 1) / total) * 100;
 
   let countedNumber = 0;
-  const navItems: SideNavigationProps.Item[] = steps.map((s, i) => {
-    if (!s.bonus) countedNumber += 1;
-    return {
+  const navItems: SideNavigationProps.Item[] = [];
+  steps.forEach((s, i) => {
+    if (!s.bonus && !s.standalone) countedNumber += 1;
+    if (s.standalone) {
+      navItems.push({ type: "divider" });
+    }
+    navItems.push({
       type: "link",
-      text: s.bonus ? s.navTitle : `${String(countedNumber).padStart(2, "0")}  ${s.navTitle}`,
+      text: s.bonus || s.standalone ? s.navTitle : `${String(countedNumber).padStart(2, "0")}  ${s.navTitle}`,
       href: `#step-${i}`,
-    };
+    });
   });
 
   useEffect(() => {
@@ -1098,7 +1104,13 @@ export default function Home() {
         notifications={
           <ProgressBar
             value={progressPct}
-            label={step.bonus ? "Bonus step" : `Step ${countedIndex + 1} of ${total}`}
+            label={
+              step.bonus
+                ? "Bonus step"
+                : step.standalone
+                  ? step.navTitle
+                  : `Step ${countedIndex + 1} of ${total}`
+            }
           />
         }
         navigation={
