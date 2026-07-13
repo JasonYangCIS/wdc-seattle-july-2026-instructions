@@ -650,7 +650,7 @@ const CLOUDSCAPE_STEPS: StepContent[] = [
             items: [
               {
                 name: "Tim Garibaldi",
-                title: "Head of Customer Engineering & Solutions",
+                title: "Head of Technical Success",
                 email: "tim@builder.io",
                 image: {
                   src: "https://cdn.builder.io/api/v1/image/assets%2Fda9013cf334340238f9e2401de83cc04%2F72a543e6c8b7405bbe2f4b9b8ead84a8?format=webp&width=1600&height=1600&fit=cover",
